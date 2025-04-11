@@ -15,12 +15,12 @@
             <div class="row mt-3">
                 <div class="column col-xs-12 col-sm-3">
                     <label>Ano da Revisão</label>
-                    <p v-text="dadosIniciativa.num_ano_periodo_revisao"></p>
+                    <p v-text="dadosRevisao.num_ano_periodo_revisao"></p>
                 </div>
 
                 <div class="column col-xs-12 col-sm-3">
                     <label>Periodo da Revisão</label>
-                    <p v-text="dadosIniciativa.dsc_periodo_monitoramento"></p>
+                    <p v-text="dadosRevisao.periodo_revisao.dsc_periodo_monitoramento"></p>
                 </div>
 
                 <div class="column col-xs-12 col-sm-3">
@@ -28,7 +28,7 @@
                     <p v-text="txt_situacao_revisao"></p>
                 </div>
 
-                <div class="column col-xs-12 col-sm-12">
+                <div v-if="situacao_revisao_observacao" class="column col-xs-12 col-sm-12">
                     <label for="observacaoRevisao">Observações CGPI sobre a Revisão</label>
                     <p v-text="situacao_revisao_observacao"></p>
                 </div>
@@ -158,8 +158,8 @@
             
                 <div class="column col-6 col-xs-12 br-textarea">
                     <label>Nova Unidade de Medida</label>
-                        <select id="txt_unidade_medida_nova" class="form-select br-select" name="txt_unidade_medida_nova" disabled
-                        @change="onChangeUnidadeMedida" v-model="dadosIndicadorRevisao.txt_unidade_medida">
+                        <select id="txt_unidade_medida_nova" class="form-select br-select" name="txt_unidade_medida_nova"
+                            v-model="dadosIndicadorRevisao.unidade_medida_id" disabled>
                             <option value="" v-text="textoEscolhaUnidadeMedida"></option>
                             <option v-for="item in unidadesMedida" v-text="item.txt_unidade_medida" :value="item.id"
                                 :key="item.id"></option>
@@ -190,7 +190,7 @@
                 <div class="column col-6 col-xs-12 br-textarea">
                     <label>Nova Periodicidade</label>
                         <select id="periodicidade_id_nova" class="form-select br-select" name="periodicidade_id_nova" disabled
-                        v-model="dadosIndicadorRevisao.dsc_periodicidades">
+                        v-model="dadosIndicadorRevisao.periodicidade_id">
                             <option value="" v-text="textoEscolhaPeriodicidade"></option>
                             <option v-for="item in periodicidades" v-text="item.dsc_periodicidades" :value="item.id"
                                 :key="item.id"></option>
@@ -206,8 +206,8 @@
             
                 <div class="column col-6 col-xs-12 br-textarea">
                     <label>Nova Polaridade do Indicador</label>
-                    <select id="polaridade_id_nova" class="form-select br-select" name="polaridade_id_nova" disabled
-                    v-model="dadosIndicadorRevisao.txt_polaridade"> <!-- Não funcionou-->
+                    <select id="polaridade_id_nova" class="form-select br-select" name="polaridade_id_nova"
+                    v-model="dadosIndicadorRevisao.polaridade_id" disabled> <!-- Não funcionou-->
                         <option value="" v-text="textoEscolhaPolaridade"></option>
                         <option v-for="item in polaridades" v-text="item.txt_polaridade" :value="item.id"
                             :key="item.id"></option>
@@ -314,7 +314,7 @@
                     <p v-text="dadosIniciativa.vlr_esperado_ano_2"></p>
                 </div>
             
-                <div class="column col-6 col-xs-12 br-textarea">
+                <div class="column col-6 col-xs-12 br-input">
                     <label>Nova Meta para 2025 {{novaUnidadeMedida}}</label>
                     <br>
                     <input id="vlr_esperado_ano_2_nova"  disabled
@@ -332,7 +332,7 @@
                     <p v-text="dadosIniciativa.vlr_esperado_ano_3"></p>
                 </div>
             
-                <div class="column col-6 col-xs-12 br-textarea">
+                <div class="column col-6 col-xs-12 br-input">
                     <label>Nova Meta para 2026 {{novaUnidadeMedida}}</label>
                     <br>
                     <input id="vlr_esperado_ano_3_nova"  disabled
@@ -350,7 +350,7 @@
                     <p v-text="dadosIniciativa.vlr_meta_final_cenario_alternativo"></p>
                 </div>
             
-                <div class="column col-6 col-xs-12 br-textarea">
+                <div class="column col-6 col-xs-12 br-input">
                     <label>Nova Meta para 2027 {{novaUnidadeMedida}}</label>
                     <br>
                     <input id="vlr_esperado_ano_4_nova" disabled
@@ -402,67 +402,80 @@
             </div>
             
             <hr>
-            
-            <div class="mt-5">
-                <div class="text-center">
-                    <span class="fs-5 fw-bold">Metas Regionalizadas</span>
+
+            <div v-if="dadosMetaRevisao.bln_meta_regionalizada">
+                
+                <div class="mt-5">
+                    <div class="text-center">
+                        <span class="fs-5 fw-bold">Metas Regionalizadas</span>
+                    </div>
+                    <div class="table-responsive mt-3">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Região</th>
+                                    <th class="text-center">Meta para 2025</th>
+                                    <th class="text-center">Nova Meta para 2025</th>
+                                    <th class="text-center">Meta para 2026</th>
+                                    <th class="text-center">Nova Meta para 2026</th>
+                                    <th class="text-center">Meta para 2027</th>
+                                    <th class="text-center">Nova Meta para 2027</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(item, index) in dadosRegionalizacao">
+                                    <td>{{ (index+1) }}</td>
+                                    <td>{{ item.txt_sigla_objetivos_estrategicos_metas_region }}</td>
+                                    <td class="text-center">{{ item.vlr_esperado_ano_2 }}</td>
+                                    <td class="text-center">
+                                        <input style="width: 150px;" id="vlr_esperado_ano_2_nova" 
+                                        type="number" 
+                                        ame="vlr_esperado_ano_2_nova"
+                                        step="0.01"
+                                        ></td>
+                                    <td class="text-center">{{ item.vlr_esperado_ano_3 }}</td>
+                                    <td class="text-center">
+                                        <input id="vlr_esperado_ano_3_nova" 
+                                        type="number" 
+                                        name="vlr_esperado_ano_3_nova"
+                                        step="0.01"
+                                        ></td>
+                                    <td class="text-center">{{ item.vlr_meta_final_cenario_alternativo }}</td>
+                                    <td class="text-center">
+                                        <input id="vlr_meta_final_cenario_alternativo_nova" 
+                                        type="number" 
+                                        name="vlr_meta_final_cenario_alternativo_nova"
+                                        step="0.01"
+                                        ></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="row">
+                        <div class="col col-xs-12 col-sm-12">
+                            <div class="p-3 text-right">
+                                <button class="br-button primary mr-3" @click="irParaPagina('/plancidades/revisao/regionalizacao/iniciativa/' + dadosRevisao.id)">
+                                    Editar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="table-responsive mt-3">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Região</th>
-                                <th class="text-center">Meta para 2025</th>
-                                <th class="text-center">Nova Meta para 2025</th>
-                                <th class="text-center">Meta para 2026</th>
-                                <th class="text-center">Nova Meta para 2026</th>
-                                <th class="text-center">Meta para 2027</th>
-                                <th class="text-center">Nova Meta para 2027</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="(item, index) in dadosRegionalizacao">
-                                <td>{{ (index+1) }}</td>
-                                <td>{{ item.txt_sigla_objetivos_estrategicos_metas_region }}</td>
-                                <td class="text-center">{{ item.vlr_esperado_ano_2 }}</td>
-                                <td class="text-center">
-                                    <input style="width: 150px;" id="vlr_esperado_ano_2_nova" 
-                                    type="number" 
-                                    ame="vlr_esperado_ano_2_nova"
-                                    step="0.01"
-                                    ></td>
-                                <td class="text-center">{{ item.vlr_esperado_ano_3 }}</td>
-                                <td class="text-center">
-                                    <input id="vlr_esperado_ano_3_nova" 
-                                    type="number" 
-                                    name="vlr_esperado_ano_3_nova"
-                                    step="0.01"
-                                    ></td>
-                                <td class="text-center">{{ item.vlr_meta_final_cenario_alternativo }}</td>
-                                <td class="text-center">
-                                    <input id="vlr_meta_final_cenario_alternativo_nova" 
-                                    type="number" 
-                                    name="vlr_meta_final_cenario_alternativo_nova"
-                                    step="0.01"
-                                    ></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <hr>
             </div>
+
+            
 
 
     <!-- Botões Formulário -->
             <div class="row">
                 <div class="col col-xs-12 col-sm-12">
                     <div class="p-3 text-right">
-                        <button class="br-button primary mr-3" :disabled="this.situacao_revisao_id == '3' || this.situacao_revisao_id == '5' || this.situacao_revisao_id == '6'" @click="IrParaEdicao(dadosIniciativa.revisao_iniciativa_id)">
+                        <button class="br-button success mr-3" :disabled="this.situacao_revisao_id == '3' || this.situacao_revisao_id == '5' || this.situacao_revisao_id == '6'" >
                         Finalizar
                         </button>
-
-                        <a class="br-button danger mr-3" type="button" :href='this.url+"/plancidades/revisao/iniciativa/listar/"+ this.dadosIniciativa.iniciativa_id'>Voltar
-                        </a>
                     </div>
                 </div>
             </div>
@@ -531,6 +544,24 @@ export default {
         
     },
     mounted() {
+        console.log(this.dadosIndicadorRevisao);
+        axios.get(this.url + '/api/plancidades/unidadesMedida').then(resposta=>{
+            this.unidadesMedida = resposta.data;
+        }).catch(error=>{
+            console.log(error);
+        });
+
+        axios.get(this.url + '/api/plancidades/periodicidades').then(resposta=>{
+            this.periodicidades = resposta.data;
+        }).catch(error=>{
+            console.log(error);
+        });
+
+        axios.get(this.url + '/api/plancidades/polaridades').then(resposta=>{
+            this.polaridades = resposta.data;
+        }).catch(error=>{
+            console.log(error);
+        });
 
         if (this.situacaoRevisao != null){
             this.situacao_revisao_id = this.situacaoRevisao.situacao_revisao_id;

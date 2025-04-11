@@ -113,12 +113,9 @@ class RevisaoIniciativaController extends Controller
         $dados_iniciativa_revisao->revisao_iniciativa_id = $revisaoId;
         $dados_iniciativa_revisao->iniciativa_id = $dados_revisao->iniciativa_id;
 
-        //No caso de os 3 seguintes campos não serem preenchidos, eles manterão o valor da iniciativa atual
-        //=========================
         $dados_iniciativa_revisao->txt_enunciado_iniciativa = $request->txt_enunciado_iniciativa_nova;
         $dados_iniciativa_revisao->dsc_iniciativa = $request->dsc_iniciativa_nova;
         $dados_iniciativa_revisao->bln_pac = $dados_iniciativa_revisao->bln_pac;
-        //=========================
 
         $dados_iniciativa_revisao->objetivo_estrategico_pei_id = '-';
         $dados_iniciativa_revisao->created_at = date('Y-m-d H:i:s');
@@ -131,9 +128,9 @@ class RevisaoIniciativaController extends Controller
         $situacao_revisao_iniciativas->revisao_iniciativa_id = $dados_revisao->id;
         $situacao_revisao_iniciativas->situacao_revisao_id = '2';
         $situacao_revisao_iniciativas->user_id = $user->id;
-        $situacao_revisao_iniciativas->created_at = date('Y-m-d H:i:s');
+        $situacao_revisao_iniciativas->updated_at = date('Y-m-d H:i:s');
         $situacao_revisao_iniciativas->iniciativa_id = $request->iniciativa;
-        $situacao_revisao_iniciativas->save();
+        $situacao_revisao_iniciativas->update();
         
         if ($dados_salvos) {
             DB::commit();
@@ -156,7 +153,7 @@ class RevisaoIniciativaController extends Controller
     public function show($revisaoId)
     {
         
-        $dadosRevisao = RevisaoIniciativas::find($revisaoId);
+        $dadosRevisao = RevisaoIniciativas::with('periodoRevisao')->find($revisaoId);
         $dadosRevisao->bln_iniciativa = IniciativasRevisao::where('revisao_iniciativa_id', $revisaoId)->first()?true:false;
         $dadosRevisao->bln_indicador = IndicadoresIniciativasRevisao::where('revisao_iniciativa_id', $revisaoId)->first()?true:false;
         $dadosRevisao->bln_metas = MetasIniciativasRevisao::where('revisao_iniciativa_id', $revisaoId)->first()?true:false;
@@ -243,9 +240,9 @@ class RevisaoIniciativaController extends Controller
             $situacao_revisao_indicadores->revisao_iniciativa_id = $revisaoId;
             $situacao_revisao_indicadores->user_id = $user->id;
             $situacao_revisao_indicadores->situacao_revisao_id = '2';
-            $situacao_revisao_indicadores->created_at = date('Y-m-d H:i:s');
+            $situacao_revisao_indicadores->updated_at = date('Y-m-d H:i:s');
             $situacao_revisao_indicadores->iniciativa_id = $request->iniciativa_id;
-            $situacao_revisao_indicadores->save();
+            $situacao_revisao_indicadores->update();
         
 
             DB::commit();
@@ -339,6 +336,35 @@ class RevisaoIniciativaController extends Controller
 
             flash()->sucesso("Sucesso", "Revisão da Iniciativa cadastrada com sucesso!");
             return Redirect::route("plancidades.revisao.iniciativa.criar", ["revisaoId" => $dados_revisao->id]);
+        } else {
+            DB::rollBack();
+            flash()->erro("Erro", "Não foi possível cadastrar a revisão.");
+            return back();
+        }
+    }
+
+    public function finalizarRevisao(Request $request, $revisaoId){
+
+        $user = Auth()->user();
+        DB::beginTransaction();
+
+        $dados_iniciativa = IniciativasRevisao::where('revisao_iniciativa_id', $revisaoId)->first();
+
+        $situacao_revisao_iniciativas = new RlcSituacaoRevisaoIniciativas();
+        $situacao_revisao_iniciativas->revisao_iniciativa_id = $revisaoId;
+        $situacao_revisao_iniciativas->situacao_revisao_id = '3';
+        $situacao_revisao_iniciativas->user_id = $user->id;
+        $situacao_revisao_iniciativas->created_at = date('Y-m-d H:i:s');
+        $situacao_revisao_iniciativas->iniciativa_id = $request->iniciativa;
+        $dados_salvos = $situacao_revisao_iniciativas->save();
+
+
+
+        if ($dados_salvos) {
+            DB::commit();
+
+            flash()->sucesso("Sucesso", "Revisão da Iniciativa cadastrada com sucesso!");
+            return Redirect::route("plancidades.revisao.iniciativa.listarRevisoes", ["iniciativa_id" => $dados_iniciativa->iniciativa_id]);
         } else {
             DB::rollBack();
             flash()->erro("Erro", "Não foi possível cadastrar a revisão.");

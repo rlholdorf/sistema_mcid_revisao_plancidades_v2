@@ -256,7 +256,7 @@ class RevisaoMetaIndicadorIniciativaController extends Controller
 
         $dados_revisao = RevisaoIniciativas::find($revisaoId);
         $dados_meta = MetasIniciativas::where('iniciativa_id', $dados_revisao->iniciativa_id)->first();
-        $dados_meta_revisao = new MetasIniciativasRevisao();
+        $dados_meta_revisao = MetasIniciativasRevisao::where('revisao_iniciativa_id', $revisaoId)->first();
 
         $dados_meta_revisao->user_id = $user->id;
         $dados_meta_revisao->revisao_iniciativa_id = $revisaoId;
@@ -272,6 +272,7 @@ class RevisaoMetaIndicadorIniciativaController extends Controller
         $dados_meta_revisao->updated_at = date('Y-m-d H:i:s');
 
 
+        //return $dados_meta_revisao;
         $dados_salvos = $dados_meta_revisao->update();
 
         if ($dados_salvos) {

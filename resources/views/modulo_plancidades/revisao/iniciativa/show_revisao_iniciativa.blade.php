@@ -22,7 +22,7 @@
 
 
     <div class="main-content pl-sm-3 mt-5 container-fluid" id="main-content">
-
+        
         <cabecalho-relatorios :botaoEditar='false' titulo="{{$dadosIniciativa->iniciativa_id}} - {{$dadosIniciativa->txt_enunciado_iniciativa}}"
             :linkcompartilhar="'{{ url("/") }}'"
             :barracompartilhar="false">
@@ -32,16 +32,20 @@
         </p>
         
         <hr>
-        <show-finalizar-revisao-iniciativa 
-        :url="'{{ url('/') }}'"
-        :dados-revisao="{{json_encode($dadosRevisao)}}"
-        :dados-iniciativa="{{json_encode($dadosIniciativa)}}"
-        :dados-iniciativa-revisao="{{json_encode($dadosIniciativaRevisao)}}"
-        :dados-indicador-revisao="{{json_encode($dadosIndicadorIniciativaRevisao)}}"
-        :dados-meta-revisao="{{json_encode($dadosMetaRevisao)}}"
-        :dados-regionalizacao-revisao="{{json_encode($dadosRegionalizacaoRevisao)}}"
-        >
-        </show-finalizar-revisao-iniciativa>
-        <span class="br-divider sm my-3"></span>
+
+        <form role="form" method="POST" action='{{ route("plancidades.revisao.iniciativa.finalizarRevisao",['revisaoId'=> $dadosRevisao->id]) }}'>
+            @csrf
+            <show-finalizar-revisao-iniciativa 
+            :url="'{{ url('/') }}'"
+            :dados-revisao="{{json_encode($dadosRevisao)}}"
+            :dados-iniciativa="{{json_encode($dadosIniciativa)}}"
+            :dados-iniciativa-revisao="{{json_encode($dadosIniciativaRevisao)}}"
+            :dados-indicador-revisao="{{json_encode($dadosIndicadorIniciativaRevisao)}}"
+            :dados-meta-revisao="{{json_encode($dadosMetaRevisao)}}"
+            :dados-regionalizacao-revisao="{{json_encode($dadosRegionalizacaoRevisao)}}"
+            >
+            </show-finalizar-revisao-iniciativa>
+            <span class="br-divider sm my-3"></span>
+        </form>
     </div>
 @endsection

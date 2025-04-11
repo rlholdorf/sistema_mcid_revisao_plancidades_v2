@@ -257,7 +257,7 @@ class RevisaoIndicadorIniciativaController extends Controller
             $situacao_revisao_indicadores->situacao_revisao_id = '2';
             $situacao_revisao_indicadores->created_at = date('Y-m-d H:i:s');
             $situacao_revisao_indicadores->iniciativa_id = $request->iniciativa_id;
-            $situacao_revisao_indicadores->save();
+            $situacao_revisao_indicadores->update();
         
 
             DB::commit();

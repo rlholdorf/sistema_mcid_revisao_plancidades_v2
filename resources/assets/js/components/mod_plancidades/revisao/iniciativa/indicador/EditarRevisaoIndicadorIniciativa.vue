@@ -60,9 +60,10 @@
                     <p v-text="dadosIniciativa.vlr_indice_referencia"></p>
                 </div>
             
-                <div class="column col-6 col-xs-12 br-textarea">
+                <div class="column col-6 col-xs-12 br-input">
                     <label>Novo Valor de Referência</label>
-                        <input class="input-medium" type="number" id="vlr_indice_referencia_nova" name="vlr_indice_referencia_nova" rows="1">
+                        <input class="input-medium" type="number" id="vlr_indice_referencia_nova" name="vlr_indice_referencia_nova" rows="1"
+                        :value="dadosIndicadorIniciativaRevisao.vlr_indice_referencia">
                         </input>
                 </div>
             </div>

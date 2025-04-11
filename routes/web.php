@@ -617,6 +617,7 @@ Route::get('/plancidades/revisao/iniciativa/consulta', 'Mod_plancidades\RevisaoI
 Route::get('/plancidades/revisao/iniciativa/listar', 'Mod_plancidades\RevisaoController@listarIniciativas')->name('plancidades.revisao.iniciativa.listarIniciativas');
 Route::get('/plancidades/revisao/iniciativa/{iniciativaId}/iniciarRevisao', 'Mod_plancidades\RevisaoIniciativaController@iniciarRevisao')->name('plancidades.revisao.iniciativa.iniciarRevisao');
 Route::post('/plancidades/revisao/iniciativa/salvarRevisao', 'Mod_plancidades\RevisaoIniciativaController@salvarRevisao')->name('plancidades.revisao.iniciativa.salvarRevisao');
+Route::post('/plancidades/revisao/iniciativa/{revisaoId}/finalizarRevisao', 'Mod_plancidades\RevisaoIniciativaController@finalizarRevisao')->name('plancidades.revisao.iniciativa.finalizarRevisao');
 Route::get('/plancidades/revisao/iniciativa/listar/{iniciativaId}', 'Mod_plancidades\RevisaoIniciativaController@index')->name('plancidades.revisao.iniciativa.listarRevisoes');
 
 
