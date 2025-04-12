@@ -13,5 +13,8 @@ class RevisaoIndicadores extends Model
 
    public $timestamps = true; // tabela possui coluna de data de criação/atualização
 
-
+   public function periodoRevisao()
+   {
+      return $this->hasOne(PeriodosMonitoramento::class, 'id', 'periodo_revisao_id');
+   }
 }
