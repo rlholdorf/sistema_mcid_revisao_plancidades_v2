@@ -127,7 +127,7 @@ class RevisaoController extends Controller
 
         $indicadores = ViewIndicadoresObjetivosEstrategicosRevisao::where($where)->orderBy('txt_titulo_objetivo_estrategico_pei')->get();
 
-        if(count($indicadores) > 0){
+        if(count($indicadores)){
             return view("modulo_plancidades.revisao.objetivo_estrategico.listar_indicadores_revisao", compact('indicadores'));
         }else{
             flash()->erro("Erro", "Nenhum indicador encontrado...");

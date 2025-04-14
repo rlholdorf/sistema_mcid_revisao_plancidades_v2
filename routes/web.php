@@ -592,16 +592,39 @@ Route::post('/plancidades/monitoramentos/validacao/projeto/{monitoramentoProjeto
 //--------Objetivos Estratégicos---------//
 
 //--Informações Básicas (indicadores e metas)--//
+//Revisão Base
 Route::get('/plancidades/revisao/objetivo_estrategico/consulta', 'Mod_plancidades\RevisaoIndicadorController@consultarIndicadores')->name('plancidades.revisao.objetivoEstrategico.consultar');
 Route::get('/plancidades/revisao/objetivo_estrategico/indicadores', 'Mod_plancidades\RevisaoController@listarIndicadores')->name('plancidades.revisao.objetivoEstrategico.listarIndicadores');
-Route::get('/plancidades/revisao/objetivo_estrategico/{indicadorId}/criar', 'Mod_plancidades\RevisaoIndicadorController@create')->name('plancidades.revisao.objetivoEstrategico.iniciarRevisao');
-Route::post('/plancidades/revisao/objetivo_estrategico/salvar', 'Mod_plancidades\RevisaoIndicadorController@store')->name('plancidades.revisao.objetivoEstrategico.salvar');
-Route::get('/plancidades/revisao/objetivo_estrategico/indicadores/{indicadorId}', 'Mod_plancidades\RevisaoIndicadorController@index')->name('plancidades.revisao.objetivoEstrategico.listarRevisoes');
-Route::get('/plancidades/revisao/objetivo_estrategico/exibir/{revisaoId}', 'Mod_plancidades\RevisaoIndicadorController@show')->name('plancidades.revisao.objetivoEstrategico.show');
+Route::get('/plancidades/revisao/objetivo_estrategico/{indicadorId}/iniciarRevisao', 'Mod_plancidades\RevisaoIndicadorController@iniciarRevisao')->name('plancidades.revisao.objetivoEstrategico.iniciarRevisao');
+Route::post('/plancidades/revisao/objetivo_estrategico/salvarRevisao', 'Mod_plancidades\RevisaoIndicadorController@salvarRevisao')->name('plancidades.revisao.objetivoEstrategico.salvarRevisao');
+Route::get('/plancidades/revisao/objetivo_estrategico/listar/{indicadorId}', 'Mod_plancidades\RevisaoIndicadorController@index')->name('plancidades.revisao.objetivoEstrategico.listarRevisoes');
 
 
+//Revisão do Indicador
+Route::get('/plancidades/revisao/objetivo_estrategico/{revisaoId}/criar', 'Mod_plancidades\RevisaoIndicadorController@create')->name('plancidades.revisao.objetivoEstrategico.criar');
+Route::post('/plancidades/revisao/objetivo_estrategico/{revisaoId}/salvar', 'Mod_plancidades\RevisaoIndicadorController@store')->name('plancidades.revisao.objetivoEstrategico.salvar');
 Route::get('/plancidades/revisao/objetivo_estrategico/{revisaoId}/editar', 'Mod_plancidades\RevisaoIndicadorController@edit')->name('plancidades.revisao.objetivoEstrategico.editar');
 Route::post('/plancidades/revisao/objetivo_estrategico/{revisaoId}/atualizar', 'Mod_plancidades\RevisaoIndicadorController@update')->name('plancidades.revisao.objetivoEstrategico.atualizar');
+
+//Revisão da Meta (Indicador)
+Route::get('/plancidades/revisao/meta/objetivo_estrategico/{revisaoId}/criar', 'Mod_plancidades\RevisaoMetaIndicadorController@create')->name('plancidades.revisao.meta.objetivoEstrategico.criar');
+Route::post('/plancidades/revisao/meta/objetivo_estrategico/{revisaoId}/salvar', 'Mod_plancidades\RevisaoMetaIndicadorController@store')->name('plancidades.revisao.meta.objetivoEstrategico.salvar');
+Route::get('/plancidades/revisao/meta/objetivo_estrategico/{revisaoId}/editar', 'Mod_plancidades\RevisaoMetaIndicadorController@edit')->name('plancidades.revisao.meta.objetivoEstrategico.editar');
+Route::post('/plancidades/revisao/meta/objetivo_estrategico/{revisaoId}/atualizar', 'Mod_plancidades\RevisaoMetaIndicadorController@update')->name('plancidades.revisao.meta.objetivoEstrategico.atualizar');
+
+//Revisão da Regionalização (Indicador)
+Route::get('/plancidades/revisao/regionalizacao/objetivo_estrategico/{revisaoId}/criar', 'Mod_plancidades\RevisaoRegionalizacaoMetaIndicadorController@create')->name('plancidades.revisao.regionalizacao.objetivoEstrategico.criar');
+Route::post('/plancidades/revisao/regionalizacao/objetivo_estrategico/{revisaoId}/salvar', 'Mod_plancidades\RevisaoRegionalizacaoMetaIndicadorController@store')->name('plancidades.revisao.regionalizacao.objetivoEstrategico.salvar');
+Route::get('/plancidades/revisao/regionalizacao/objetivo_estrategico/{revisaoId}/editar', 'Mod_plancidades\RevisaoRegionalizacaoMetaIndicadorController@edit')->name('plancidades.revisao.regionalizacao.objetivoEstrategico.editar');
+Route::post('/plancidades/revisao/regionalizacao/objetivo_estrategico/{revisaoId}/atualizar', 'Mod_plancidades\RevisaoRegionalizacaoMetaIndicadorController@update')->name('plancidades.revisao.regionalizacao.objetivoEstrategico.atualizar');
+
+
+//Finalizar Revisão
+Route::get('/plancidades/revisao/objetivo_estrategico/exibir/{revisaoId}', 'Mod_plancidades\RevisaoIndicadorController@show')->name('plancidades.revisao.objetivoEstrategico.show');
+Route::post('/plancidades/revisao/objetivo_estrategico/finalizar/{revisaoId}', 'Mod_plancidades\RevisaoIndicadorController@finalizar')->name('plancidades.revisao.objetivoEstrategico.finalizar');
+
+
+
 
 
 // //--Metas--//

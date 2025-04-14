@@ -14,7 +14,7 @@
         :link2="'{{url('/plancidades/revisao/objetivo_estrategico/consulta')}}'"
         :telanterior01="'PlanCidades'" 
         :link1="'{{url('/plancidades')}}'"
-        :telatual="'Revisar Indicador de Objetivo Estratégico'">
+        :telatual="'Revisar Indicador'">
 
     </historico-navegacao>
 
@@ -34,17 +34,17 @@
         </p>
         
         <hr>
-        <form role="form" method="POST" action='{{ route("plancidades.revisao.objetivoEstrategico.atualizar",['revisaoId'=> $revisaoCadastrada->revisao_indicador_id]) }}'>
+
+        <form role="form" method="POST" action='{{ route("plancidades.revisao.objetivoEstrategico.salvar",['revisaoId'=> $revisaoCadastrada->revisao_indicador_id]) }}'>
             @csrf
-            <editar-revisao-indicador 
+            <criar-revisao-indicador 
             :url="'{{ url('/') }}'"
             :dados-indicador="{{json_encode($dadosIndicador)}}"
-            :revisao-cadastrada="{{json_encode($revisaoCadastrada)}}"
             :dados-revisao="{{json_encode($dadosRevisao)}}"
             :dados-meta-revisao="{{json_encode($dadosMetaRevisao)}}"
-            v-bind:dados-indicador-revisao="{{json_encode($dadosIndicadorRevisao)}}"
+            :revisao-cadastrada="{{json_encode($revisaoCadastrada)}}"
             >
-            </editar-revisao-indicador>
+            </criar-revisao-indicador>
             <span class="br-divider sm my-3"></span>
         </form>
     </div>

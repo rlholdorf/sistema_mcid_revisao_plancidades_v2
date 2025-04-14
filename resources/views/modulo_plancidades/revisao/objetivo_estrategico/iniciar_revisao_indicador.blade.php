@@ -23,10 +23,11 @@
         Confira se o indicador do objetivo estratégico abaixo é o mesmo que deseja revisar. A seguir, selecione o ano e o mês de referência da revisão e clique em salvar para começar a revisar.
     </p>
 
-    <form role="form" method="POST" action='{{ route('plancidades.revisao.objetivoEstrategico.salvar') }}'>
+    <form role="form" method="POST" action='{{ route('plancidades.revisao.objetivoEstrategico.salvarRevisao') }}'>
         @csrf
         <cadastro-revisao-indicador
             :dados-indicador="{{json_encode($dadosIndicador)}} "
+            :dados-oe-ppa="{{json_encode($dadosOEPPA)}} "            
             :url="'{{ url('/') }}'">
         </cadastro-revisao-indicador>
         <span class="br-divider sm my-3"></span>

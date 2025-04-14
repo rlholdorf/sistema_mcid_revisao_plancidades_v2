@@ -26,25 +26,26 @@
             :barracompartilhar="false">
         </cabecalho-relatorios>
         <p>
-           Nesta página, você poderá visualizar as informações das metas da iniciativa.
+           Nesta página, você poderá visualizar as informações do indicador da iniciativa, suas metas e regionalizações (caso houver).
            <br>
            Ao lado de cada atributo, existe um campo para informar alterações que devam ser feitas na iniciativa.
            <br>
-           Ao final da página, clique em Avançar para salvar e continuar a revisão.
+           Ao final da página, clique em Salvar Revisão para salvar. Ao final, clique em Finalizar para enviar para análise.
         </p>
         
         <hr>
 
-        <form role="form" method="POST" action='{{ route("plancidades.revisao.meta.iniciativa.salvar",['revisaoId'=> $revisaoCadastrada->revisao_iniciativa_id]) }}'>
+        <form role="form" method="POST" action='{{ route("plancidades.revisao.regionalizacao.iniciativa.salvar",['revisaoId'=> $revisaoCadastrada->revisao_iniciativa_id]) }}'>
             @csrf
-            <criar-revisao-meta-indicador-iniciativa 
+            <criar-revisao-regionalizacao-meta-indicador-iniciativa 
             :url="'{{ url('/') }}'"
-            :dados-meta="{{json_encode($dadosMeta)}}"
-            :dados-meta-revisao="{{json_encode($dadosMetaRevisao)}}"
+            :dados-iniciativa="{{json_encode($dadosIniciativa)}}"
             :dados-revisao="{{json_encode($dadosRevisao)}}"
+            :dados-regionalizacao="{{json_encode($dadosRegionalizacao)}}"
             :revisao-cadastrada="{{json_encode($revisaoCadastrada)}}"
+            v-bind:dados-meta-revisao="{{json_encode($dadosMetaRevisao)}}"
             >
-            </criar-revisao-meta-indicador-iniciativa>
+            </criar-revisao-regionalizacao-meta-indicador-iniciativa>
             <span class="br-divider sm my-3"></span>
         </form>
     </div>

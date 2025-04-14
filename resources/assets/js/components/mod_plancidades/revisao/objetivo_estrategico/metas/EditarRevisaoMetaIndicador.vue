@@ -21,30 +21,30 @@
             
                 <div class="column col-6 col-xs-12 br-textarea">
                     <label>Nova Denominação da Meta</label>
-                    <textarea class="input-medium" id="txt_dsc_meta_nova" name="txt_dsc_meta_nova" rows="2">
+                    <textarea class="input-medium" id="txt_dsc_meta_nova" name="txt_dsc_meta_nova" rows="2" v-model="dadosMetaRevisao.txt_dsc_meta">
                     </textarea>
                 </div>
             </div>
                         
             <div class="row mt-3">
                 <div class="column col-6 col-xs-12">
-                    <label for="bln_meta_cumulativa">Meta Cumulativa</label>
+                    <label for="bln_meta_cumulativa">Cumulatividade da Meta</label>
                     <p v-text="dadosMeta.bln_meta_cumulativa ? 'Sim': 'Não'"></p>
                 </div>
         
                 <div class="column col-6 col-xs-12 br-textarea">
                     <label>Nova Cumulatividade da Meta</label>
-                    <select id="bln_meta_cumulativa_nova" class="form-select br-select" name="bln_meta_cumulativa_nova" >
+                    <select id="bln_meta_cumulativa_nova" class="form-select br-select" name="bln_meta_cumulativa_nova" v-model="dadosMetaRevisao.bln_meta_cumulativa">
                     <option value="">Selecione se a meta é ou não cumulativa</option>
-                    <option value="true">Sim</option>
-                    <option value="false">Não</option>
+                    <option :value=true>Sim</option>
+                    <option :value=false>Não</option>
                     </select>
                 </div>
             </div>
 
             <div class="row mt-3">
                 <div class="column col-6 col-xs-12">
-                    <label for="vlr_esperado_ano_2">Meta para 2025 {{dadosMeta.unidade_medida_simbolo}}</label>
+                    <label for="vlr_esperado_ano_2">Meta para 2025 {{dadosIniciativa.unidade_medida_simbolo}}</label>
                     <p v-text="dadosMeta.vlr_esperado_ano_2"></p>
                 </div>
             
@@ -55,13 +55,14 @@
                     type="number" 
                     name="vlr_esperado_ano_2_nova"
                     step="0.01"
+                    v-model="dadosMetaRevisao.vlr_esperado_ano_2"
                     >
                 </div>
             </div>    
 
             <div class="row mt-3">
                 <div class="column col-6 col-xs-12 ">
-                    <label for="vlr_esperado_ano_3">Meta para 2026 {{dadosMeta.unidade_medida_simbolo}}</label>
+                    <label for="vlr_esperado_ano_3">Meta para 2026 {{dadosIniciativa.unidade_medida_simbolo}}</label>
                     <p v-text="dadosMeta.vlr_esperado_ano_3"></p>
                 </div>
             
@@ -72,13 +73,14 @@
                     type="number" 
                     name="vlr_esperado_ano_3_nova"
                     step="0.01"
+                    v-model="dadosMetaRevisao.vlr_esperado_ano_3"
                     >
                 </div>
             </div>
 
             <div class="row mt-3">
                 <div class="column col-6 col-xs-12">
-                    <label for="vlr_meta_final_cenario_alternativo">Meta para 2027 {{dadosMeta.unidade_medida_simbolo}}</label>
+                    <label for="vlr_meta_final_cenario_alternativo">Meta para 2027 {{dadosIniciativa.unidade_medida_simbolo}}</label>
                     <p v-text="dadosMeta.vlr_meta_final_cenario_alternativo"></p>
                 </div>
             
@@ -89,6 +91,7 @@
                     type="number" 
                     name="vlr_esperado_ano_4_nova"
                     step="0.01"
+                    v-model="dadosMetaRevisao.vlr_esperado_ano_4"
                     >
                 </div>
             </div>
@@ -101,7 +104,7 @@
             
                 <div class="column col-6 col-xs-12 br-textarea">
                     <label>A meta será regionalizada?</label>
-                    <select id="bln_meta_regionalizada_nova" class="form-select br-select" name="bln_meta_regionalizada_nova" >
+                    <select id="bln_meta_regionalizada_nova" class="form-select br-select" name="bln_meta_regionalizada_nova" v-model="dadosMetaRevisao.bln_meta_regionalizada">
                     <option value="">Selecione se a meta é ou não regionalizada</option>
                     <option value="true">Sim</option>
                     <option value="false">Não</option>
@@ -117,7 +120,7 @@
             
                 <div class="column col-6 col-xs-12 br-textarea">
                     <label>Nova Justificativa para não regionalização</label>
-                    <textarea class="input-medium" id="dsc_justificativa_ausencia_regionalizacao_nova" name="dsc_justificativa_ausencia_regionalizacao_nova" rows="5">
+                    <textarea class="input-medium" id="dsc_justificativa_ausencia_regionalizacao_nova" name="dsc_justificativa_ausencia_regionalizacao_nova" rows="5" v-model="dadosMetaRevisao.dsc_justificativa_ausencia_regionalizacao">
                     </textarea>
                 </div>
             </div>
@@ -129,7 +132,7 @@
                         <button class="br-button primary mr-3" type="submit">Salvar
                         </button>
 
-                        <a class="br-button danger mr-3" type="button" :href='this.url+"/plancidades/revisao/iniciativa/consulta"'>Voltar
+                        <a class="br-button danger mr-3" type="button" :href='this.url+"/plancidades/revisao/objetivo_estrategico/consulta"'>Voltar
                         </a>
                     </div>
                 </div>
@@ -140,14 +143,14 @@
 
 <script>
 export default {
-    props: ['url', 'dadosRevisao', 'dadosMeta', 'revisaoCadastrada', 'dadosMetaRevisao'],
+    props: ['url', 'dadosRevisao', 'dadosIniciativa', 'dadosIniciativaRevisao', 'dadosIndicadorIniciativaRevisao', 'dadosMeta', 'dadosMetaRevisao', 'revisaoCadastrada'],
     data() {
         return {
         //----Campos Select
             bln_meta_regionalizada_nova:'',
             unidadesMedida:'',
             unidadeMedida:'',
-            novaUnidadeMedida:this.dadosMeta.unidade_medida_simbolo,
+            novaUnidadeMedida:this.dadosIndicadorIniciativaRevisao.unidade_medida_simbolo,
             periodicidades:'',
             periodicidade:'',
             polaridades:'',
@@ -160,29 +163,6 @@ export default {
         }
     },
     methods: {
-        onChangeUnidadeMedida(){
-            this.novaUnidadeMedida = this.unidadeMedida;
-            switch (this.novaUnidadeMedida){
-            case 1:
-                this.novaUnidadeMedida = '(R$)';
-                break;
-            case 2:
-                this.novaUnidadeMedida = '(%)';
-                break;
-            case 3:
-                this.novaUnidadeMedida = '(ADI)';
-                break;
-            case 4:
-                this.novaUnidadeMedida = '(m²)';
-                break;
-            case 5:
-                this.novaUnidadeMedida = '(UN)';
-                break;
-            default:
-                this.novaUnidadeMedida = '';
-        }
-
-        }
         
     },
     mounted() {

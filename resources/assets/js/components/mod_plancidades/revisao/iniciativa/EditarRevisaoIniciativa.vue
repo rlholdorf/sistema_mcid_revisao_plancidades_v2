@@ -69,7 +69,7 @@
                         <button class="br-button primary mr-3" type="submit" name="botao_salvar" :value="true">Avançar
                         </button>
 
-                        <a class="br-button danger mr-3" type="button" :href='this.url+"/plancidades/revisao/objetivo_estrategico/consulta"'>Voltar
+                        <a class="br-button danger mr-3" type="button" :href='this.url+"/plancidades/revisao/iniciativa/consulta"'>Voltar
                         </a>
                     </div>
                 </div>

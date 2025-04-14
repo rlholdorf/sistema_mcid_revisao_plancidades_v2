@@ -3,7 +3,7 @@
 @section('content')
 <historico-navegacao :url="'{{ url('/home') }}'" 
     :telanterior02="'Consultar Iniciativas para Revisão'"
-    :link2="'{{url('/plancidades/revisao/objetivo_estrategico/consulta')}}'"
+    :link2="'{{url('/plancidades/revisao/iniciativa/consulta')}}'"
     :telanterior01="'PlanCidades'" 
     :link1="'{{url('/plancidades')}}'"
     :telatual="'Lista de Iniciativas para Revisão'">
@@ -69,7 +69,7 @@
         <button class="br-button primary mr-3" type="button" name="Imprimir" onclick="window.print();">Imprimir
         </button>
         
-        <a class="br-button danger mr-3" type="button" href="/plancidades/revisao/objetivo_estrategico/consulta">Voltar
+        <a class="br-button danger mr-3" type="button" href="/plancidades/revisao/iniciativa/consulta">Voltar
         </a>
     </div>
 

@@ -46,7 +46,7 @@
                                     href='{{ route("plancidades.revisao.objetivoEstrategico.iniciarRevisao", ['indicadorId' =>$indicador->id]) }}'><i
                                         class="fas fa-plus"></i></a></td>
                                 <td class="text-center acao"><a class="br-button circle primary small"
-                                    href='{{ route('plancidades.revisao.objetivoEstrategico.listarRevisoes', ['indicadorId' => $indicador->id]) }}'><i
+                                    href='{{ route("plancidades.revisao.objetivoEstrategico.listarRevisoes", ['indicadorId' => $indicador->id]) }}'><i
                                         class="fas fa-eye"></i></a></td>
                             </tr>
                         @endforeach

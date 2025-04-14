@@ -1,18 +1,18 @@
 <template>
     <div>
-        <progresso-revisao-iniciativa
+        <progresso-revisao-indicador
         :url="url"
         :dados-revisao="dadosRevisao"
         :active="'metas'"
         :dados-meta-revisao="dadosMetaRevisao"
         >
-        </progresso-revisao-iniciativa>
+        </progresso-revisao-indicador>
         
         <hr>
 
         <div class="form-group">
 
-            <p class="text-center"><b>Detalhamento da Meta do Indicador da Iniciativa</b></p>
+            <p class="text-center"><b>Detalhamento da Meta do Indicador</b></p>
             <div class="row mt-3">
                 <div class="column col-6 col-xs-12">
                     <label for="txt_dsc_meta">Denominação da Meta</label>
@@ -126,10 +126,10 @@
             <div class="row">
                 <div class="col col-xs-12 col-sm-12">
                     <div class="p-3 text-right">
-                        <button class="br-button primary mr-3" type="submit">Salvar
+                        <button class="br-button primary mr-3" type="submit">Avançar
                         </button>
 
-                        <a class="br-button danger mr-3" type="button" :href='this.url+"/plancidades/revisao/iniciativa/consulta"'>Voltar
+                        <a class="br-button danger mr-3" type="button" :href='this.url+"/plancidades/revisao/objetivo_estrategico/consulta"'>Voltar
                         </a>
                     </div>
                 </div>

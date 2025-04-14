@@ -480,7 +480,10 @@ Vue.component(
 
 // Revisão
 
-
+Vue.component(
+  "progresso-revisao-indicador",
+  require("./components/mod_plancidades/revisao/componentes/ProgressoRevisaoIndicador.vue")
+);
 
 Vue.component(
   "progresso-revisao-iniciativa",
@@ -507,6 +510,21 @@ Vue.component(
 Vue.component(
   "show-revisao-indicador",
   require("./components/mod_plancidades/revisao/objetivo_estrategico/ShowRevisaoIndicador.vue")
+);
+
+Vue.component(
+  "criar-revisao-indicador",
+  require("./components/mod_plancidades/revisao/objetivo_estrategico/CriarRevisaoIndicador.vue")
+);
+
+Vue.component(
+  "criar-revisao-meta-indicador",
+  require("./components/mod_plancidades/revisao/objetivo_estrategico/metas/CriarRevisaoMetaIndicador.vue")
+);
+
+Vue.component(
+  "editar-revisao-meta-indicador",
+  require("./components/mod_plancidades/revisao/objetivo_estrategico/metas/EditarRevisaoMetaIndicador.vue")
 );
 
 

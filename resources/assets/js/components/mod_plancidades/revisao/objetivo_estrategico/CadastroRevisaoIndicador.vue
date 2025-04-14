@@ -5,24 +5,30 @@
 
                 <div class="column col-3 col-xs-12">
                     <input type="hidden" id="orgaoResponsavel" name="orgaoResponsavel" :value="dadosIndicador.orgao_pei_id">
+                    <input type="hidden" id="objetivoEstrategico" name="objetivoEstrategico" :value="dadosIndicador.objetivo_estrategico_pei_id">
+                    <input type="hidden" id="metaObjetivoEstrategico" name="metaObjetivoEstrategico" :value="dadosIndicador.objetivo_estrategico_meta_id">
+                    <input type="hidden" id="indicador" name="indicador" :value="dadosIndicador.id">
                     <label>Órgão Responsável</label>
                     <p v-text="dadosIndicador.dsc_orgao"></p>
                 </div>
             
                 <div class="column col-9 col-xs-12">
-                    <input type="hidden" id="objetivoEstrategico" name="objetivoEstrategico" :value="dadosIndicador.objetivo_estrategico_pei_id">
-                    <input type="hidden" id="metaObjetivoEstrategico" name="metaObjetivoEstrategico" :value="dadosIndicador.objetivo_estrategico_meta_id">
                     <label>Objetivo Estratégico</label>
                     <p v-text="dadosIndicador.txt_titulo_objetivo_estrategico_pei"></p>
                 </div>
             </div><!--row-->
             
+            <div v-if="dadosIndicador.bln_ppa" class="row mt-3">
+                <div class="column col-xs-12">
+                    <label for="oeppa">Objetivo Específico do PPA</label>
+                    <p v-text="dadosOePpa.id_oe_ppa+' - '+dadosOePpa.txt_denominacao_objetivo_especifico_ppa"></p>
+                </div>
+            </div><!-- div row -->
 
             <div class="row mt-3">
                 <div class="column col-xs-12">
-                    <input type="hidden" id="indicador" name="indicador" :value="dadosIndicador.id">
                     <label for="indicador">Indicador de Objetivo Estratégico</label>
-                    <p v-text="dadosIndicador.txt_denominacao_indicador"></p>
+                    <p v-text="dadosIndicador.id+' - '+dadosIndicador.txt_denominacao_indicador"></p>
                 </div>
             </div><!-- div row -->
 
@@ -31,7 +37,7 @@
                 <div class="row mt-3">
                     <div class="column col-xs-12">
                         <label for="dscMeta">Descrição da Meta</label> <!-- Puxar descrição da tab_metas_objetivo_especifico -->
-                        <p v-text="dadosIndicador.txt_dsc_meta"></p>
+                        <p v-text="dadosIndicador.objetivo_estrategico_meta_id+' - '+dadosIndicador.txt_dsc_meta"></p>
                     </div>
                 </div><!-- div row -->
 
@@ -115,7 +121,7 @@
 <script>
 
 export default {
-    props: ['url', 'dadosIndicador'],
+    props: ['url', 'dadosIndicador', 'dadosOePpa'],
     data() {
         return {
         //----Campos Select
