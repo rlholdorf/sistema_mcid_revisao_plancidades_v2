@@ -142,7 +142,7 @@ class RevisaoMetaIndicadorIniciativaController extends Controller
                 return Redirect::route("plancidades.revisao.regionalizacao.iniciativa.criar", ["revisaoId" => $revisaoId]);
             }
             else{
-                return Redirect::route("plancidades.revisao.meta.iniciativa.editar", ["revisaoId" => $revisaoId]);
+                return Redirect::route("plancidades.revisao.iniciativa.finalizar", ["revisaoId" => $revisaoId]);
             }
         } else {
             DB::rollBack();
@@ -282,7 +282,7 @@ class RevisaoMetaIndicadorIniciativaController extends Controller
                 return Redirect::route("plancidades.revisao.regionalizacao.iniciativa.criar", ["revisaoId" => $revisaoId]);
             }
             else{
-                return Redirect::route("plancidades.revisao.meta.iniciativa.editar", ["revisaoId" => $revisaoId]);
+                return Redirect::route("plancidades.revisao.iniciativa.finalizar", ["revisaoId" => $revisaoId]);
             }
         } else {
             DB::rollBack();

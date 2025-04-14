@@ -105,7 +105,7 @@ class RevisaoIndicadorController extends Controller
      */
     public function store(Request $request, $revisaoId)
     {
-        //return $request;
+        // return $request;
         
         $user = Auth()->user();
         DB::beginTransaction();

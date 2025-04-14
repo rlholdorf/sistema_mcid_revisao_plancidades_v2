@@ -14615,7 +14615,7 @@ Vue.component("altera-situacao-monitoramento-projeto", __webpack_require__(308))
 
 // Revisão
 
-Vue.component("progresso-revisao-indicador", __webpack_require__(400));
+Vue.component("progresso-revisao-indicador", __webpack_require__(397));
 
 Vue.component("progresso-revisao-iniciativa", __webpack_require__(311));
 
@@ -14628,7 +14628,7 @@ Vue.component("editar-revisao-indicador", __webpack_require__(320));
 
 Vue.component("show-revisao-indicador", __webpack_require__(323));
 
-Vue.component("criar-revisao-indicador", __webpack_require__(397));
+Vue.component("criar-revisao-indicador", __webpack_require__(400));
 
 Vue.component("criar-revisao-meta-indicador", __webpack_require__(403));
 
@@ -112230,6 +112230,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }).catch(function (error) {
             console.log(error);
         });
+
+        console.log(this.dadosIndicadorRevisao);
     }
 });
 
@@ -112510,14 +112512,14 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.dadosIndicadorRevisao.txt_unidade_medida,
-                    expression: "dadosIndicadorRevisao.txt_unidade_medida"
+                    value: _vm.dadosIndicadorRevisao.unidade_medida_id,
+                    expression: "dadosIndicadorRevisao.unidade_medida_id"
                   }
                 ],
                 staticClass: "form-select br-select",
                 attrs: {
-                  id: "txt_unidade_medida_nova",
-                  name: "txt_unidade_medida_nova"
+                  id: "unidade_medida_id_nova",
+                  name: "unidade_medida_id_nova"
                 },
                 on: {
                   change: function($event) {
@@ -112531,7 +112533,7 @@ var render = function() {
                       })
                     _vm.$set(
                       _vm.dadosIndicadorRevisao,
-                      "txt_unidade_medida",
+                      "unidade_medida_id",
                       $event.target.multiple ? $$selectedVal : $$selectedVal[0]
                     )
                   }
@@ -112642,14 +112644,14 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.dadosIndicadorRevisao.dsc_periodicidades,
-                    expression: "dadosIndicadorRevisao.dsc_periodicidades"
+                    value: _vm.dadosIndicadorRevisao.periodicidades_id,
+                    expression: "dadosIndicadorRevisao.periodicidades_id"
                   }
                 ],
                 staticClass: "form-select br-select",
                 attrs: {
-                  id: "periodicidades_id_nova",
-                  name: "periodicidades_id_nova"
+                  id: "periodicidade_id_nova",
+                  name: "periodicidade_id_nova"
                 },
                 on: {
                   change: function($event) {
@@ -112663,7 +112665,7 @@ var render = function() {
                       })
                     _vm.$set(
                       _vm.dadosIndicadorRevisao,
-                      "dsc_periodicidades",
+                      "periodicidades_id",
                       $event.target.multiple ? $$selectedVal : $$selectedVal[0]
                     )
                   }
@@ -112715,15 +112717,12 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.dadosIndicadorRevisao.txt_polaridade,
-                    expression: "dadosIndicadorRevisao.txt_polaridade"
+                    value: _vm.dadosIndicadorRevisao.polaridade_id,
+                    expression: "dadosIndicadorRevisao.polaridade_id"
                   }
                 ],
                 staticClass: "form-select br-select",
-                attrs: {
-                  id: "polaridades_id_nova",
-                  name: "polaridades_id_nova"
-                },
+                attrs: { id: "polaridade_id_nova", name: "polaridade_id_nova" },
                 on: {
                   change: function($event) {
                     var $$selectedVal = Array.prototype.filter
@@ -112736,7 +112735,7 @@ var render = function() {
                       })
                     _vm.$set(
                       _vm.dadosIndicadorRevisao,
-                      "txt_polaridade",
+                      "polaridade_id",
                       $event.target.multiple ? $$selectedVal : $$selectedVal[0]
                     )
                   }
@@ -129666,6 +129665,316 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
+Component.options.__file = "resources/assets/js/components/mod_plancidades/revisao/componentes/ProgressoRevisaoIndicador.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-383fedbe", Component.options)
+  } else {
+    hotAPI.reload("data-v-383fedbe", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 398 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['url', 'dadosRevisao', 'active', 'dadosMetaRevisao'],
+    data: function data() {
+        return {
+            indicador: false,
+            metas: false,
+            regionalizacao: false,
+            finalizar: false
+        };
+    },
+
+    methods: {
+        irParaPagina: function irParaPagina(destino, paginaAtual) {
+            if (paginaAtual) {
+                return;
+            }
+            window.location.href = this.url + destino;
+        },
+        metaRegionalizada: function metaRegionalizada() {
+            if (this.dadosMetaRevisao) {
+                return this.dadosMetaRevisao.bln_meta_regionalizada ? true : false;
+            } else {
+                return false;
+            }
+        },
+        setActive: function setActive() {
+            if (this.active == 'indicador') {
+                this.indicador = true;
+            }
+            if (this.active == 'metas') {
+                this.metas = true;
+            }
+            if (this.active == 'regionalizacao') {
+                this.regionalizacao = true;
+            }
+            if (this.active == 'finalizar') {
+                this.finalizar = true;
+            }
+        },
+
+        //debug
+        printDadosRevisao: function printDadosRevisao() {
+            console.log(this.dadosRevisao);
+        }
+    },
+    mounted: function mounted() {
+        this.setActive();
+    }
+});
+
+/***/ }),
+/* 399 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "my-5" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "nav",
+      {
+        staticClass: "br-step",
+        attrs: {
+          "data-initial": "",
+          "data-label": "top",
+          "data-scroll": "data-scroll",
+          role: "none"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "step-progress",
+            attrs: {
+              role: "listbox",
+              "aria-orientation": "horizontal",
+              "aria-label": "Lista de Opções"
+            }
+          },
+          [
+            _c(
+              "button",
+              {
+                class: { "step-progress-btn": true, active: _vm.indicador },
+                attrs: {
+                  role: "option",
+                  "aria-posinset": "1",
+                  "aria-setsize": "4",
+                  type: "button",
+                  "data-alert": _vm.dadosRevisao.bln_indicador
+                    ? "success"
+                    : "info"
+                },
+                on: {
+                  click: function($event) {
+                    return _vm.irParaPagina(
+                      "/plancidades/revisao/objetivo_estrategico/" +
+                        _vm.dadosRevisao.id +
+                        "/criar",
+                      _vm.indicador
+                    )
+                  }
+                }
+              },
+              [
+                _c("span", { staticClass: "step-info" }, [
+                  _vm._v("Indicador do OE")
+                ]),
+                _c("span", { staticClass: "step-alert" })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                class: { "step-progress-btn": true, active: _vm.metas },
+                attrs: {
+                  role: "option",
+                  "aria-posinset": "2",
+                  "aria-setsize": "4",
+                  type: "button",
+                  "data-alert": _vm.dadosRevisao.bln_metas ? "success" : "info",
+                  disabled: !_vm.dadosRevisao.bln_indicador
+                },
+                on: {
+                  click: function($event) {
+                    return _vm.irParaPagina(
+                      "/plancidades/revisao/meta/objetivo_estrategico/" +
+                        _vm.dadosRevisao.id +
+                        "/criar",
+                      _vm.metas
+                    )
+                  }
+                }
+              },
+              [
+                _c("span", { staticClass: "step-info" }, [
+                  _vm._v("Detalhamento da Meta")
+                ]),
+                _c("span", { staticClass: "step-alert" })
+              ]
+            ),
+            _vm._v(" "),
+            this.metaRegionalizada()
+              ? _c(
+                  "button",
+                  {
+                    class: {
+                      "step-progress-btn": true,
+                      active: _vm.regionalizacao
+                    },
+                    attrs: {
+                      role: "option",
+                      "aria-posinset": "3",
+                      "aria-setsize": "4",
+                      type: "button",
+                      "data-alert": _vm.dadosRevisao.bln_regionalizacao
+                        ? "success"
+                        : "info",
+                      disabled: !_vm.dadosRevisao.bln_metas
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.irParaPagina(
+                          "/plancidades/revisao/regionalizacao/objetivo_estrategico/" +
+                            _vm.dadosRevisao.id +
+                            "/criar",
+                          _vm.regionalizacao
+                        )
+                      }
+                    }
+                  },
+                  [
+                    _c("span", { staticClass: "step-info" }, [
+                      _vm._v("Regionalização")
+                    ]),
+                    _c("span", { staticClass: "step-alert" })
+                  ]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                class: { "step-progress-btn": true, active: _vm.finalizar },
+                attrs: {
+                  role: "option",
+                  "aria-posinset": "3",
+                  "aria-setsize": "4",
+                  type: "button",
+                  "data-alert": "warning"
+                },
+                on: {
+                  click: function($event) {
+                    return _vm.irParaPagina(
+                      "/plancidades/revisao/objetivo_estrategico/exibir/" +
+                        _vm.dadosRevisao.id,
+                      _vm.finalizar
+                    )
+                  }
+                }
+              },
+              [
+                _c("span", { staticClass: "step-info" }, [_vm._v("Finalizar")]),
+                _c("i", {
+                  staticClass: "step-icon fas fa-check",
+                  attrs: { "aria-hidden": "true" }
+                }),
+                _c("span", { staticClass: "step-alert" })
+              ]
+            )
+          ]
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-center mb-3" }, [
+      _c("span", { staticClass: "text-bold" }, [_vm._v("Progresso da Revisão")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-383fedbe", module.exports)
+  }
+}
+
+/***/ }),
+/* 400 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(401)
+/* template */
+var __vue_template__ = __webpack_require__(402)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
 Component.options.__file = "resources/assets/js/components/mod_plancidades/revisao/objetivo_estrategico/CriarRevisaoIndicador.vue"
 
 /* hot reload */
@@ -129688,7 +129997,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 398 */
+/* 401 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -129962,7 +130271,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 399 */
+/* 402 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -130489,316 +130798,6 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-17e3bb62", module.exports)
-  }
-}
-
-/***/ }),
-/* 400 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(401)
-/* template */
-var __vue_template__ = __webpack_require__(402)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/mod_plancidades/revisao/componentes/ProgressoRevisaoIndicador.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-383fedbe", Component.options)
-  } else {
-    hotAPI.reload("data-v-383fedbe", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 401 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['url', 'dadosRevisao', 'active', 'dadosMetaRevisao'],
-    data: function data() {
-        return {
-            indicador: false,
-            metas: false,
-            regionalizacao: false,
-            finalizar: false
-        };
-    },
-
-    methods: {
-        irParaPagina: function irParaPagina(destino, paginaAtual) {
-            if (paginaAtual) {
-                return;
-            }
-            window.location.href = this.url + destino;
-        },
-        metaRegionalizada: function metaRegionalizada() {
-            if (this.dadosMetaRevisao) {
-                return this.dadosMetaRevisao.bln_meta_regionalizada ? true : false;
-            } else {
-                return false;
-            }
-        },
-        setActive: function setActive() {
-            if (this.active == 'indicador') {
-                this.indicador = true;
-            }
-            if (this.active == 'metas') {
-                this.metas = true;
-            }
-            if (this.active == 'regionalizacao') {
-                this.regionalizacao = true;
-            }
-            if (this.active == 'finalizar') {
-                this.finalizar = true;
-            }
-        },
-
-        //debug
-        printDadosRevisao: function printDadosRevisao() {
-            console.log(this.dadosRevisao);
-        }
-    },
-    mounted: function mounted() {
-        this.setActive();
-    }
-});
-
-/***/ }),
-/* 402 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "my-5" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c(
-      "nav",
-      {
-        staticClass: "br-step",
-        attrs: {
-          "data-initial": "",
-          "data-label": "top",
-          "data-scroll": "data-scroll",
-          role: "none"
-        }
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "step-progress",
-            attrs: {
-              role: "listbox",
-              "aria-orientation": "horizontal",
-              "aria-label": "Lista de Opções"
-            }
-          },
-          [
-            _c(
-              "button",
-              {
-                class: { "step-progress-btn": true, active: _vm.indicador },
-                attrs: {
-                  role: "option",
-                  "aria-posinset": "1",
-                  "aria-setsize": "4",
-                  type: "button",
-                  "data-alert": _vm.dadosRevisao.bln_indicador
-                    ? "success"
-                    : "info"
-                },
-                on: {
-                  click: function($event) {
-                    return _vm.irParaPagina(
-                      "/plancidades/revisao/objetivo_estrategico/" +
-                        _vm.dadosRevisao.id +
-                        "/criar",
-                      _vm.indicador
-                    )
-                  }
-                }
-              },
-              [
-                _c("span", { staticClass: "step-info" }, [
-                  _vm._v("Indicador do OE")
-                ]),
-                _c("span", { staticClass: "step-alert" })
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                class: { "step-progress-btn": true, active: _vm.metas },
-                attrs: {
-                  role: "option",
-                  "aria-posinset": "2",
-                  "aria-setsize": "4",
-                  type: "button",
-                  "data-alert": _vm.dadosRevisao.bln_metas ? "success" : "info",
-                  disabled: !_vm.dadosRevisao.bln_indicador
-                },
-                on: {
-                  click: function($event) {
-                    return _vm.irParaPagina(
-                      "/plancidades/revisao/meta/objetivo_estrategico/" +
-                        _vm.dadosRevisao.id +
-                        "/criar",
-                      _vm.metas
-                    )
-                  }
-                }
-              },
-              [
-                _c("span", { staticClass: "step-info" }, [
-                  _vm._v("Detalhamento da Meta")
-                ]),
-                _c("span", { staticClass: "step-alert" })
-              ]
-            ),
-            _vm._v(" "),
-            this.metaRegionalizada()
-              ? _c(
-                  "button",
-                  {
-                    class: {
-                      "step-progress-btn": true,
-                      active: _vm.regionalizacao
-                    },
-                    attrs: {
-                      role: "option",
-                      "aria-posinset": "3",
-                      "aria-setsize": "4",
-                      type: "button",
-                      "data-alert": _vm.dadosRevisao.bln_regionalizacao
-                        ? "success"
-                        : "info",
-                      disabled: !_vm.dadosRevisao.bln_metas
-                    },
-                    on: {
-                      click: function($event) {
-                        return _vm.irParaPagina(
-                          "/plancidades/revisao/regionalizacao/objetivo_estrategico/" +
-                            _vm.dadosRevisao.id +
-                            "/criar",
-                          _vm.regionalizacao
-                        )
-                      }
-                    }
-                  },
-                  [
-                    _c("span", { staticClass: "step-info" }, [
-                      _vm._v("Regionalização")
-                    ]),
-                    _c("span", { staticClass: "step-alert" })
-                  ]
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                class: { "step-progress-btn": true, active: _vm.finalizar },
-                attrs: {
-                  role: "option",
-                  "aria-posinset": "3",
-                  "aria-setsize": "4",
-                  type: "button",
-                  "data-alert": "warning"
-                },
-                on: {
-                  click: function($event) {
-                    return _vm.irParaPagina(
-                      "/plancidades/revisao/objetivo_estrategico/exibir/" +
-                        _vm.dadosRevisao.id,
-                      _vm.finalizar
-                    )
-                  }
-                }
-              },
-              [
-                _c("span", { staticClass: "step-info" }, [_vm._v("Finalizar")]),
-                _c("i", {
-                  staticClass: "step-icon fas fa-check",
-                  attrs: { "aria-hidden": "true" }
-                }),
-                _c("span", { staticClass: "step-alert" })
-              ]
-            )
-          ]
-        )
-      ]
-    )
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "text-center mb-3" }, [
-      _c("span", { staticClass: "text-bold" }, [_vm._v("Progresso da Revisão")])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-383fedbe", module.exports)
   }
 }
 
@@ -131601,14 +131600,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['url', 'dadosRevisao', 'dadosIniciativa', 'dadosIniciativaRevisao', 'dadosIndicadorIniciativaRevisao', 'dadosMeta', 'dadosMetaRevisao', 'revisaoCadastrada'],
+    props: ['url', 'dadosRevisao', 'dadosIndicador', 'dadosIndicadorRevisao', 'dadosMeta', 'dadosMetaRevisao', 'revisaoCadastrada'],
     data: function data() {
         return {
             //----Campos Select
             bln_meta_regionalizada_nova: '',
             unidadesMedida: '',
             unidadeMedida: '',
-            novaUnidadeMedida: this.dadosIndicadorIniciativaRevisao.unidade_medida_simbolo,
+            novaUnidadeMedida: this.dadosIndicadorRevisao.unidade_medida_simbolo,
             periodicidades: '',
             periodicidade: '',
             polaridades: '',
@@ -131642,6 +131641,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }).catch(function (error) {
             console.log(error);
         });
+        console.log(this.dadosMetaRevisao);
     }
 });
 
@@ -131656,7 +131656,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("progresso-revisao-iniciativa", {
+      _c("progresso-revisao-indicador", {
         attrs: {
           url: _vm.url,
           "dados-revisao": _vm.dadosRevisao,
@@ -131773,9 +131773,9 @@ var render = function() {
                   _vm._v("Selecione se a meta é ou não cumulativa")
                 ]),
                 _vm._v(" "),
-                _c("option", { domProps: { value: true } }, [_vm._v("Sim")]),
+                _c("option", { attrs: { value: "true" } }, [_vm._v("Sim")]),
                 _vm._v(" "),
-                _c("option", { domProps: { value: false } }, [_vm._v("Não")])
+                _c("option", { attrs: { value: "false" } }, [_vm._v("Não")])
               ]
             )
           ])
@@ -131786,7 +131786,7 @@ var render = function() {
             _c("label", { attrs: { for: "vlr_esperado_ano_2" } }, [
               _vm._v(
                 "Meta para 2025 " +
-                  _vm._s(_vm.dadosIniciativa.unidade_medida_simbolo)
+                  _vm._s(_vm.dadosIndicador.unidade_medida_simbolo)
               )
             ]),
             _vm._v(" "),
@@ -131841,7 +131841,7 @@ var render = function() {
             _c("label", { attrs: { for: "vlr_esperado_ano_3" } }, [
               _vm._v(
                 "Meta para 2026 " +
-                  _vm._s(_vm.dadosIniciativa.unidade_medida_simbolo)
+                  _vm._s(_vm.dadosIndicador.unidade_medida_simbolo)
               )
             ]),
             _vm._v(" "),
@@ -131899,7 +131899,7 @@ var render = function() {
               [
                 _vm._v(
                   "Meta para 2027 " +
-                    _vm._s(_vm.dadosIniciativa.unidade_medida_simbolo)
+                    _vm._s(_vm.dadosIndicador.unidade_medida_simbolo)
                 )
               ]
             ),
@@ -132114,7 +132114,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("p", { staticClass: "text-center" }, [
-      _c("b", [_vm._v("Detalhamento da Meta do Indicador da Iniciativa")])
+      _c("b", [_vm._v("Detalhamento da Meta do Indicador")])
     ])
   }
 ]

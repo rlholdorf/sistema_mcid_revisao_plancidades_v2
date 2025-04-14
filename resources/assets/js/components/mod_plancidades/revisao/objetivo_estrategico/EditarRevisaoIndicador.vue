@@ -79,8 +79,8 @@
             
                 <div class="column col-6 col-xs-12 br-textarea">
                     <label>Nova Unidade de Medida</label>
-                        <select id="txt_unidade_medida_nova" class="form-select br-select" name="txt_unidade_medida_nova"
-                        v-model="dadosIndicadorRevisao.txt_unidade_medida">
+                        <select id="unidade_medida_id_nova" class="form-select br-select" name="unidade_medida_id_nova"
+                        v-model="dadosIndicadorRevisao.unidade_medida_id">
                             <option value="" v-text="textoEscolhaUnidadeMedida"></option>
                             <option v-for="item in unidadesMedida" v-text="item.txt_unidade_medida" :value="item.id"
                                 :key="item.id"></option>
@@ -110,8 +110,8 @@
             
                 <div class="column col-6 col-xs-12 br-textarea">
                     <label>Nova Periodicidade</label>
-                        <select id="periodicidades_id_nova" class="form-select br-select" name="periodicidades_id_nova"
-                        v-model="dadosIndicadorRevisao.dsc_periodicidades">
+                        <select id="periodicidade_id_nova" class="form-select br-select" name="periodicidade_id_nova"
+                        v-model="dadosIndicadorRevisao.periodicidades_id">
                             <option value="" v-text="textoEscolhaPeriodicidade"></option>
                             <option v-for="item in periodicidades" v-text="item.dsc_periodicidades" :value="item.id"
                                 :key="item.id"></option>
@@ -127,8 +127,8 @@
             
                 <div class="column col-6 col-xs-12 br-textarea">
                     <label>Nova Polaridade do Indicador</label>
-                    <select id="polaridades_id_nova" class="form-select br-select" name="polaridades_id_nova"
-                    v-model="dadosIndicadorRevisao.txt_polaridade"> <!-- Não funcionou-->
+                    <select id="polaridade_id_nova" class="form-select br-select" name="polaridade_id_nova"
+                    v-model="dadosIndicadorRevisao.polaridade_id"> <!-- Não funcionou-->
                         <option value="" v-text="textoEscolhaPolaridade"></option>
                         <option v-for="item in polaridades" v-text="item.txt_polaridade" :value="item.id"
                             :key="item.id"></option>
@@ -272,6 +272,8 @@ export default {
         }).catch(error=>{
             console.log(error);
         });
+
+        console.log(this.dadosIndicadorRevisao)
 
     }
 }

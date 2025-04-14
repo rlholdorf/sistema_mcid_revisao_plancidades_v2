@@ -1,18 +1,18 @@
 <template>
     <div>
-        <progresso-revisao-iniciativa
+        <progresso-revisao-indicador
         :url="url"
         :dados-revisao="dadosRevisao"
         :active="'metas'"
         :dados-meta-revisao="dadosMetaRevisao"
         >
-        </progresso-revisao-iniciativa>
+        </progresso-revisao-indicador>
         
         <hr>
 
         <div class="form-group">
 
-            <p class="text-center"><b>Detalhamento da Meta do Indicador da Iniciativa</b></p>
+            <p class="text-center"><b>Detalhamento da Meta do Indicador</b></p>
             <div class="row mt-3">
                 <div class="column col-6 col-xs-12">
                     <label for="txt_dsc_meta">Denominação da Meta</label>
@@ -36,15 +36,15 @@
                     <label>Nova Cumulatividade da Meta</label>
                     <select id="bln_meta_cumulativa_nova" class="form-select br-select" name="bln_meta_cumulativa_nova" v-model="dadosMetaRevisao.bln_meta_cumulativa">
                     <option value="">Selecione se a meta é ou não cumulativa</option>
-                    <option :value=true>Sim</option>
-                    <option :value=false>Não</option>
+                    <option value="true">Sim</option>
+                    <option value="false">Não</option>
                     </select>
                 </div>
             </div>
 
             <div class="row mt-3">
                 <div class="column col-6 col-xs-12">
-                    <label for="vlr_esperado_ano_2">Meta para 2025 {{dadosIniciativa.unidade_medida_simbolo}}</label>
+                    <label for="vlr_esperado_ano_2">Meta para 2025 {{dadosIndicador.unidade_medida_simbolo}}</label>
                     <p v-text="dadosMeta.vlr_esperado_ano_2"></p>
                 </div>
             
@@ -62,7 +62,7 @@
 
             <div class="row mt-3">
                 <div class="column col-6 col-xs-12 ">
-                    <label for="vlr_esperado_ano_3">Meta para 2026 {{dadosIniciativa.unidade_medida_simbolo}}</label>
+                    <label for="vlr_esperado_ano_3">Meta para 2026 {{dadosIndicador.unidade_medida_simbolo}}</label>
                     <p v-text="dadosMeta.vlr_esperado_ano_3"></p>
                 </div>
             
@@ -80,7 +80,7 @@
 
             <div class="row mt-3">
                 <div class="column col-6 col-xs-12">
-                    <label for="vlr_meta_final_cenario_alternativo">Meta para 2027 {{dadosIniciativa.unidade_medida_simbolo}}</label>
+                    <label for="vlr_meta_final_cenario_alternativo">Meta para 2027 {{dadosIndicador.unidade_medida_simbolo}}</label>
                     <p v-text="dadosMeta.vlr_meta_final_cenario_alternativo"></p>
                 </div>
             
@@ -143,14 +143,14 @@
 
 <script>
 export default {
-    props: ['url', 'dadosRevisao', 'dadosIniciativa', 'dadosIniciativaRevisao', 'dadosIndicadorIniciativaRevisao', 'dadosMeta', 'dadosMetaRevisao', 'revisaoCadastrada'],
+    props: ['url', 'dadosRevisao', 'dadosIndicador', 'dadosIndicadorRevisao', 'dadosMeta', 'dadosMetaRevisao', 'revisaoCadastrada'],
     data() {
         return {
         //----Campos Select
             bln_meta_regionalizada_nova:'',
             unidadesMedida:'',
             unidadeMedida:'',
-            novaUnidadeMedida:this.dadosIndicadorIniciativaRevisao.unidade_medida_simbolo,
+            novaUnidadeMedida:this.dadosIndicadorRevisao.unidade_medida_simbolo,
             periodicidades:'',
             periodicidade:'',
             polaridades:'',
@@ -183,7 +183,7 @@ export default {
         }).catch(error=>{
             console.log(error);
         });
-
+        console.log(this.dadosMetaRevisao)
     }
 }
 </script>

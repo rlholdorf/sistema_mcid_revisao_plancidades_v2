@@ -125,7 +125,7 @@ class RevisaoMetaIndicadorController extends Controller
         $dados_meta_revisao->vlr_esperado_ano_2 = $request->vlr_esperado_ano_2_nova;
         $dados_meta_revisao->vlr_esperado_ano_3 = $request->vlr_esperado_ano_3_nova;
         $dados_meta_revisao->vlr_esperado_ano_4 = $request->vlr_esperado_ano_4_nova;
-        $dados_meta_revisao->bln_meta_regionalizada = $request->bln_meta_regionalizada_nova;
+        $dados_meta_revisao->bln_meta_regionalizada = $request->bln_meta_regionalizada_nova ? $request->bln_meta_regionalizada_nova : $dados_meta->bln_meta_regionalizada;
         $dados_meta_revisao->dsc_justificativa_ausencia_regionalizacao = $request->dsc_justificativa_ausencia_regionalizacao_nova;
         $dados_meta_revisao->created_at = date('Y-m-d H:i:s');
 
@@ -134,11 +134,11 @@ class RevisaoMetaIndicadorController extends Controller
         if ($dados_salvos) {
             DB::commit();
             flash()->sucesso("Sucesso", "Revisão da meta do Indicador cadastrada com sucesso!");
-            if($dados_meta_revisao->bln_meta_regionalizada){
-                return Redirect::route("plancidades.revisao.regionalizacao.objetivoEstrategico.criar", ["revisaoId" => $revisaoId]); //Está caindo aqui direto.
+            if($dados_meta_revisao->bln_meta_regionalizada == 'true'){
+                return Redirect::route("plancidades.revisao.regionalizacao.objetivoEstrategico.criar", ["revisaoId" => $revisaoId]);
             }
             else{
-                return Redirect::route("plancidades.revisao.meta.objetivoEstrategico.editar", ["revisaoId" => $revisaoId]);
+                return Redirect::route("plancidades.revisao.objetivoEstrategico.finalizar", ["revisaoId" => $revisaoId]);
             }
         } else {
             DB::rollBack();
@@ -224,11 +224,11 @@ class RevisaoMetaIndicadorController extends Controller
             
             
             $dadosMeta = MetasObjetivosEstrategicos::where('indicador_objetivo_estrategico_id', $dadosRevisao->indicador_objetivo_estrategico_id)->first();
-            $dadosIndicadorRevisao = IniciativasRevisao::where('revisao_indicador_id', $revisaoId)->first();
+            $dadosIndicadorRevisao = IndicadoresObjetivosEstrategicosRevisao::where('revisao_indicador_id', $revisaoId)->first();
             $dadosMetaRevisao = MetasObjetivosEstrategicosRevisao::where('revisao_indicador_id', $revisaoId)->first();
 
             if($dadosMetaRevisao){
-                return view('modulo_plancidades.revisao.objetivo_estrategico.metas.editar_revisao_meta_indicador', compact('dadosRevisao', 'dadosIndicador', 'dadosIndicadorRevisao', 'dadosIndicadorRevisao', 'dadosMeta', 'dadosMetaRevisao', 'revisaoCadastrada'));
+                return view('modulo_plancidades.revisao.objetivo_estrategico.metas.editar_revisao_meta_indicador', compact('dadosRevisao', 'dadosIndicador', 'dadosIndicadorRevisao', 'dadosMeta', 'dadosMetaRevisao', 'revisaoCadastrada'));
             }else{
                 return Redirect::route('plancidades.revisao.meta.objetivoEstrategico.criar', ["revisaoId" => $revisaoId]);
             }
@@ -262,7 +262,7 @@ class RevisaoMetaIndicadorController extends Controller
         $dados_meta_revisao->vlr_esperado_ano_2 = $request->vlr_esperado_ano_2_nova;
         $dados_meta_revisao->vlr_esperado_ano_3 = $request->vlr_esperado_ano_3_nova;
         $dados_meta_revisao->vlr_esperado_ano_4 = $request->vlr_esperado_ano_4_nova;
-        $dados_meta_revisao->bln_meta_regionalizada = $request->bln_meta_regionalizada_nova;
+        $dados_meta_revisao->bln_meta_regionalizada = $request->bln_meta_regionalizada_nova ? $request->bln_meta_regionalizada_nova : $dados_meta->bln_meta_regionalizada;
         $dados_meta_revisao->dsc_justificativa_ausencia_regionalizacao = $request->dsc_justificativa_ausencia_regionalizacao_nova;
         $dados_meta_revisao->updated_at = date('Y-m-d H:i:s');
 
@@ -276,7 +276,7 @@ class RevisaoMetaIndicadorController extends Controller
                 return Redirect::route("plancidades.revisao.regionalizacao.objetivoEstrategico.criar", ["revisaoId" => $revisaoId]);
             }
             else{
-                return Redirect::route("plancidades.revisao.meta.objetivoEstrategico.editar", ["revisaoId" => $revisaoId]);
+                return Redirect::route("plancidades.revisao.objetivoEstrategico.finalizar", ["revisaoId" => $revisaoId]);
             }
         } else {
             DB::rollBack();
