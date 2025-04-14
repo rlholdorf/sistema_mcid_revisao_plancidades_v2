@@ -39,7 +39,7 @@
                         @foreach ($iniciativas as $iniciativa)
                             <tr class="conteudoTabela">
                                 <td>{{ $iniciativa->txt_titulo_objetivo_estrategico_pei}}</td>
-                                <td>{{ $iniciativa->id }} - {{ $iniciativa->txt_enunciado_iniciativa}}</td>
+                                <td>{{ $iniciativa->iniciativa_id }} - {{ $iniciativa->txt_enunciado_iniciativa}}</td>
                                 <td>{{ $iniciativa->txt_denominacao_indicador}}</td>
                                 <td class="text-center">{{$iniciativa->bln_ppa ? 'Sim' : 'Não'}}</td>
                                 <td class="text-center">{{$iniciativa->bln_pac ? 'Sim' : 'Não'}}</td>

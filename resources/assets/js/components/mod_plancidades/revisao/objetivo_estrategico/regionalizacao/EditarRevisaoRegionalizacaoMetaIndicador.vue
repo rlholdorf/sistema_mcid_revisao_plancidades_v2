@@ -1,12 +1,12 @@
 <template>
     <div>
-        <progresso-revisao-iniciativa
+        <progresso-revisao-indicador
         :url="url"
         :dados-revisao="dadosRevisao"
         :active="'regionalizacao'"
         :dados-meta-revisao="dadosMetaRevisao"
         >
-        </progresso-revisao-iniciativa>
+        </progresso-revisao-indicador>
 
         <hr>
         
@@ -24,11 +24,11 @@
                             <tr>
                                 <th>#</th>
                                 <th>Região</th>
-                                <th class="text-center">Meta para 2025 {{this.formatarUnidadeMedida(this.dadosIniciativa.unidade_medida_id)}}</th>
+                                <th class="text-center">Meta para 2025 {{this.formatarUnidadeMedida(this.dadosIndicador.unidade_medida_id)}}</th>
                                 <th class="text-center">Nova Meta para 2025 {{this.formatarUnidadeMedida(this.dadosIndicadorRevisao.unidade_medida_id)}}</th>
-                                <th class="text-center">Meta para 2026 {{this.formatarUnidadeMedida(this.dadosIniciativa.unidade_medida_id)}}</th>
+                                <th class="text-center">Meta para 2026 {{this.formatarUnidadeMedida(this.dadosIndicador.unidade_medida_id)}}</th>
                                 <th class="text-center">Nova Meta para 2026 {{this.formatarUnidadeMedida(this.dadosIndicadorRevisao.unidade_medida_id)}}</th>
-                                <th class="text-center">Meta para 2027 {{this.formatarUnidadeMedida(this.dadosIniciativa.unidade_medida_id)}}</th>
+                                <th class="text-center">Meta para 2027 {{this.formatarUnidadeMedida(this.dadosIndicador.unidade_medida_id)}}</th>
                                 <th class="text-center">Nova Meta para 2027 {{this.formatarUnidadeMedida(this.dadosIndicadorRevisao.unidade_medida_id)}}</th>
                             </tr>
                         </thead>
@@ -36,6 +36,7 @@
                             
                             <tr v-for="(item, index) in dadosRegionalizacao">
                                 <input type="hidden" :name="`novaRegionalizacao[${index}][regionalizacao_id]`" v-model="dadosRegionalizacaoRevisao[index].regionalizacao_id">
+                                <input type="hidden" :name="`novaRegionalizacao[${index}][txt_sigla_objetivos_estrategicos_metas_region]`" v-model="dadosRegionalizacaoRevisao[index].txt_sigla_objetivos_estrategicos_metas_region">
                                 <td>{{ (index+1) }}</td>
                                 <td>{{ item.txt_sigla_iniciativas_metas_region }}</td>
                                 <td class="text-center">{{ item.vlr_esperado_ano_2 }}</td>
@@ -77,7 +78,7 @@
             <div class="row">
                 <div class="col col-xs-12 col-sm-12">
                     <div class="p-3 text-right">
-                        <button class="br-button primary mr-3" type="submit">Salvar
+                        <button class="br-button primary mr-3" type="submit">Avançar
                         </button>
 
                         <a class="br-button danger mr-3" type="button" :href='this.url+"/plancidades/revisao/objetivo_estrategico/consulta"'>Voltar
@@ -92,14 +93,14 @@
 <script>
 
 export default {
-    props: ['url', 'dadosRevisao', 'dadosIniciativa', 'dadosIndicadorRevisao', 'dadosRegionalizacao', 'dadosRegionalizacaoRevisao', 'revisaoCadastrada', 'dadosMetaRevisao'],
+    props: ['url', 'dadosRevisao', 'dadosIndicador', 'dadosIndicadorRevisao', 'dadosRegionalizacao', 'dadosRegionalizacaoRevisao', 'revisaoCadastrada', 'dadosMetaRevisao'],
     data() {
         return {
         //----Campos Select
             bln_meta_regionalizada_nova:'',
             unidadesMedida:'',
             unidadeMedida:'',
-            novaUnidadeMedida:this.dadosIniciativa.unidade_medida_simbolo,
+            novaUnidadeMedida:this.dadosIndicador.unidade_medida_simbolo,
             periodicidades:'',
             periodicidade:'',
             polaridades:'',
@@ -161,7 +162,7 @@ export default {
         }).catch(error=>{
             console.log(error);
         });
-        console.log(this.dadosIniciativa);
+        console.log(this.dadosIndicador);
     }
 }
 </script>

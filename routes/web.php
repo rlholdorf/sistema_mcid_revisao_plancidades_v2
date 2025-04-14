@@ -621,7 +621,7 @@ Route::post('/plancidades/revisao/regionalizacao/objetivo_estrategico/{revisaoId
 
 //Finalizar Revisão
 Route::get('/plancidades/revisao/objetivo_estrategico/exibir/{revisaoId}', 'Mod_plancidades\RevisaoIndicadorController@show')->name('plancidades.revisao.objetivoEstrategico.show');
-Route::post('/plancidades/revisao/objetivo_estrategico/finalizar/{revisaoId}', 'Mod_plancidades\RevisaoIndicadorController@finalizar')->name('plancidades.revisao.objetivoEstrategico.finalizar');
+Route::get('/plancidades/revisao/objetivo_estrategico/finalizar/{revisaoId}', 'Mod_plancidades\RevisaoIndicadorController@finalizarRevisao')->name('plancidades.revisao.objetivoEstrategico.finalizar');
 
 
 

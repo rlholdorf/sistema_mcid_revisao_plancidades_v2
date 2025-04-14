@@ -1,12 +1,12 @@
 <template>
     <div>{{ this.montarNovaRegionalizacao() }} <!--GAMBIARRA: monta a estrutura da variável com vários arrays para guardar os dados que serão enviados no request. Chamar a função aqui faz ela ser executada antes da renderização da página -->
-        <progresso-revisao-iniciativa
+        <progresso-revisao-indicador
         :url="url"
         :dados-revisao="dadosRevisao"
         :active="'regionalizacao'"
         :dados-meta-revisao="dadosMetaRevisao"
         >
-        </progresso-revisao-iniciativa>
+        </progresso-revisao-indicador>
 
         <hr>
         
@@ -36,8 +36,9 @@
                             
                             <tr v-for="(item, index) in dadosRegionalizacao">
                                 <input type="hidden" :name="`novaRegionalizacao[${index}][regionalizacao_id]`" v-model="novaRegionalizacao[index].regionalizacao_id">
+                                <input type="hidden" :name="`novaRegionalizacao[${index}][txt_sigla_objetivos_estrategicos_metas_region]`" v-model="novaRegionalizacao[index].txt_sigla_objetivos_estrategicos_metas_region">
                                 <td>{{ (index+1) }}</td>
-                                <td>{{ item.txt_sigla_iniciativas_metas_region }}</td>
+                                <td>{{ item.regionalizacao.txt_regionalizacao }}</td>
                                 <td class="text-center">{{ item.vlr_esperado_ano_2 }}</td>
                                 <td class="text-center">
                                     <input style="width: 150px;"
@@ -77,7 +78,7 @@
             <div class="row">
                 <div class="col col-xs-12 col-sm-12">
                     <div class="p-3 text-right">
-                        <button class="br-button primary mr-3" type="submit">Salvar
+                        <button class="br-button primary mr-3" type="submit">Avançar
                         </button>
 
                         <a class="br-button danger mr-3" type="button" :href='this.url+"/plancidades/revisao/objetivo_estrategico/consulta"'>Voltar
@@ -92,14 +93,14 @@
 <script>
 
 export default {
-    props: ['url', 'dadosRevisao', 'dadosIniciativa', 'dadosRegionalizacao', 'revisaoCadastrada', 'dadosMetaRevisao'],
+    props: ['url', 'dadosRevisao', 'dadosIndicador', 'dadosRegionalizacao', 'revisaoCadastrada', 'dadosMetaRevisao'],
     data() {
         return {
         //----Campos Select
             bln_meta_regionalizada_nova:'',
             unidadesMedida:'',
             unidadeMedida:'',
-            novaUnidadeMedida:this.dadosIniciativa.unidade_medida_simbolo,
+            novaUnidadeMedida:this.dadosIndicador.unidade_medida_simbolo,
             periodicidades:'',
             periodicidade:'',
             polaridades:'',
@@ -141,6 +142,7 @@ export default {
             this.dadosRegionalizacao.forEach((item, index) => {
                 this.novaRegionalizacao[index] = {
                     'regionalizacao_id':item.regionalizacao_id,
+                    'txt_sigla_objetivos_estrategicos_metas_region':item.txt_sigla_objetivos_estrategicos_metas_region,
                     'vlr_esperado_ano_2':null,
                     'vlr_esperado_ano_3':null,
                     'vlr_esperado_ano_4':null

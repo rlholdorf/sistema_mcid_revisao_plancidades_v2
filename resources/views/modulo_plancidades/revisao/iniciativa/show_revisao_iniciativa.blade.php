@@ -10,8 +10,8 @@
 
 
     <historico-navegacao :url="'{{ url('/home') }}'" 
-        :telanterior03="'Iniciativa {{$dadosIniciativa->iniciativa_id}}'"
-        :link3="'{{url('/plancidades/revisao/iniciativa/listar/'.$dadosIniciativa->iniciativa_id)}}'"
+        :telanterior03="'Iniciativa {{$dadosIniciativa->id}}'"
+        :link3="'{{url('/plancidades/revisao/iniciativa/listar/'.$dadosIniciativa->id)}}'"
         :telanterior02="'Consultar Iniciativas para Revisão'"
         :link2="'{{url('/plancidades/revisao/iniciativa/consulta')}}'"
         :telanterior01="'PlanCidades'" 
@@ -23,7 +23,7 @@
 
     <div class="main-content pl-sm-3 mt-5 container-fluid" id="main-content">
         
-        <cabecalho-relatorios :botaoEditar='false' titulo="{{$dadosIniciativa->iniciativa_id}} - {{$dadosIniciativa->txt_enunciado_iniciativa}}"
+        <cabecalho-relatorios :botaoEditar='false' titulo="{{$dadosIniciativa->id}} - {{$dadosIniciativa->txt_enunciado_iniciativa}}"
             :linkcompartilhar="'{{ url("/") }}'"
             :barracompartilhar="false">
         </cabecalho-relatorios>
@@ -41,6 +41,7 @@
             :dados-iniciativa="{{json_encode($dadosIniciativa)}}"
             :dados-iniciativa-revisao="{{json_encode($dadosIniciativaRevisao)}}"
             :dados-indicador-revisao="{{json_encode($dadosIndicadorIniciativaRevisao)}}"
+            :dados-meta="{{json_encode($dadosMeta)}}"
             :dados-meta-revisao="{{json_encode($dadosMetaRevisao)}}"
             :dados-regionalizacao-revisao="{{json_encode($dadosRegionalizacaoRevisao)}}"
             >

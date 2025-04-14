@@ -77,7 +77,7 @@ class RevisaoIndicadorController extends Controller
             return Redirect::route("plancidades.revisao.objetivoEstrategico.editar", ['revisaoId'=> $revisaoId]);
         }
 
-        $revisaoCadastrada = RlcSituacaoRevisaoIndicadores::where('revisao_indicador_id', $revisaoId)->first();
+        $revisaoCadastrada = RlcSituacaoRevisaoIndicadores::where('revisao_indicador_id', $revisaoId)->orderBy('created_at', 'desc')->first();
         $situacoes_nao_editaveis = array(3,5,6);
 
         if (in_array($revisaoCadastrada->situacao_revisao_id, $situacoes_nao_editaveis)) {
@@ -131,7 +131,7 @@ class RevisaoIndicadorController extends Controller
         $dados_indicador_revisao->txt_data_divulgacao_ou_disponibilizacao = $request->txt_data_divulgacao_ou_disponibilizacao_nova;
         $dados_indicador_revisao->periodicidades_id = $request->periodicidade_id_nova;
         $dados_indicador_revisao->polaridades_id = $request->polaridade_id_nova;
-        $dados_indicador_revisao->txt_formula_calculo = $request->txt_formula_calculo;
+        $dados_indicador_revisao->txt_formula_calculo = $request->txt_formula_calculo_nova;
         $dados_indicador_revisao->txt_fonte_dados_variaveis_calculo = $request->txt_fonte_dados_variaveis_calculo_nova;
         $dados_indicador_revisao->txt_forma_disponibilizacao = $request->txt_forma_disponibilizacao_nova;
         $dados_indicador_revisao->dsc_procedimento_calculo = $request->dsc_procedimento_calculo_nova;
@@ -168,33 +168,22 @@ class RevisaoIndicadorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($revisaoId)
     {
-        $dadosIndicador = ViewRevisaoIndicadoresObjEstrategicos::where('revisao_indicador_id', $id)->first();
+        $dadosRevisao = RevisaoIndicadores::with('periodoRevisao')->find($revisaoId);
+        $dadosRevisao->bln_indicador = IndicadoresObjetivosEstrategicosRevisao::where('revisao_indicador_id', $revisaoId)->first()?true:false;
+        $dadosRevisao->bln_metas = MetasObjetivosEstrategicosRevisao::where('revisao_indicador_id', $revisaoId)->first()?true:false;
+        $dadosRevisao->bln_regionalizacao = RegionalizacaoMetaObjEstrRevisao::where('revisao_indicador_id', $revisaoId)->first()?true:false;
 
-            switch ($dadosIndicador->unidade_medida_id){
-                case 1:
-                    $dadosIndicador->unidade_medida_simbolo = '(R$)';
-                    break;
-                case 2:
-                    $dadosIndicador->unidade_medida_simbolo = '(%)';
-                    break;
-                case 3:
-                    $dadosIndicador->unidade_medida_simbolo = '(ADI)';
-                    break;
-                case 4:
-                    $dadosIndicador->unidade_medida_simbolo = '(m²)';
-                    break;
-                case 5:
-                    $dadosIndicador->unidade_medida_simbolo = '(UN)';
-                    break;
-                default:
-                    $dadosIndicador->unidade_medida_simbolo = '';
-            }
-            
-            $dadosRegionalizacao = RegionalizacaoMetaObjEstr::where('meta_objetivos_estrategicos_id', $dadosIndicador->objetivo_estrategico_meta_id)->get();
+        $dadosIndicador = ViewIndicadoresObjetivosEstrategicosMetas::find($dadosRevisao->indicador_objetivo_estrategico_id);
+        $dadosIndicadorRevisao = IndicadoresObjetivosEstrategicosRevisao::where('revisao_indicador_id', $revisaoId)->first();
+        $dadosMetaRevisao = MetasObjetivosEstrategicosRevisao::where('revisao_indicador_id', $revisaoId)->first();
+        $dadosRegionalizacaoRevisao = RegionalizacaoMetaObjEstrRevisao::where('revisao_indicador_id', $revisaoId)->get();
+        $dadosRegionalizacao = RegionalizacaoMetaObjEstr::where('meta_objetivos_estrategicos_id', $dadosMetaRevisao->meta_indicador_objetivo_estrategico_id)->with('regionalizacao')->get();
+        $situacaoRevisao = RlcSituacaoRevisaoIndicadores::where('revisao_indicador_id', $revisaoId)->orderBy('created_at', 'desc')->first();
 
-            return view('modulo_plancidades.revisao.objetivo_estrategico.show_revisao_indicador', compact('dadosIndicador', 'dadosRegionalizacao'));
+        return view('modulo_plancidades.revisao.objetivo_estrategico.show_revisao_indicador', compact('dadosIndicador', 'dadosRevisao', 'dadosIndicadorRevisao', 'dadosMetaRevisao', 'dadosRegionalizacaoRevisao', 'dadosRegionalizacao', 'situacaoRevisao'));
+
 
     }
 
@@ -261,7 +250,7 @@ class RevisaoIndicadorController extends Controller
         $dados_indicador_revisao->txt_data_divulgacao_ou_disponibilizacao = $request->txt_data_divulgacao_ou_disponibilizacao_nova;
         $dados_indicador_revisao->periodicidades_id = $request->periodicidade_id_nova;
         $dados_indicador_revisao->polaridades_id = $request->polaridade_id_nova;
-        $dados_indicador_revisao->txt_formula_calculo = $request->txt_formula_calculo;
+        $dados_indicador_revisao->txt_formula_calculo = $request->txt_formula_calculo_nova;
         $dados_indicador_revisao->txt_fonte_dados_variaveis_calculo = $request->txt_fonte_dados_variaveis_calculo_nova;
         $dados_indicador_revisao->txt_forma_disponibilizacao = $request->txt_forma_disponibilizacao_nova;
         $dados_indicador_revisao->dsc_procedimento_calculo = $request->dsc_procedimento_calculo_nova;
@@ -326,6 +315,37 @@ class RevisaoIndicadorController extends Controller
         
         return view('modulo_plancidades.revisao.objetivo_estrategico.iniciar_revisao_indicador', compact('dadosIndicador', 'dadosOEPPA'));
 
+    }
+
+    public function finalizarRevisao($revisaoId){
+
+        //return ($revisaoId);
+
+        $user = Auth()->user();
+        DB::beginTransaction();
+
+        $dados_revisao = RevisaoIndicadores::where('id', $revisaoId)->first();
+
+        $situacao_revisao_indicadores = new RlcSituacaoRevisaoIndicadores();
+        $situacao_revisao_indicadores->revisao_indicador_id = $revisaoId;
+        $situacao_revisao_indicadores->situacao_revisao_id = '3';
+        $situacao_revisao_indicadores->user_id = $user->id;
+        $situacao_revisao_indicadores->created_at = date('Y-m-d H:i:s');
+        $situacao_revisao_indicadores->indicador_objetivo_estrategico_id = $dados_revisao->indicador_objetivo_estrategico_id;
+        $dados_salvos = $situacao_revisao_indicadores->save();
+
+
+
+        if ($dados_salvos) {
+            DB::commit();
+
+            flash()->sucesso("Sucesso", "Revisão do Indicador de Objetivo Estratégico cadastrada com sucesso!");
+             return Redirect::route("plancidades.revisao.objetivoEstrategico.listarRevisoes", ["indicador_objetivo_estrategico_id" => $dados_revisao->indicador_objetivo_estrategico_id]);
+        } else {
+            DB::rollBack();
+            flash()->erro("Erro", "Não foi possível cadastrar a revisão.");
+            return back();
+        }
     }
 
     public function salvarRevisao(Request $request)

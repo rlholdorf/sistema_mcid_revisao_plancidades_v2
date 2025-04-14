@@ -129,7 +129,7 @@
             <div class="row">
                 <div class="col col-xs-12 col-sm-12">
                     <div class="p-3 text-right">
-                        <button class="br-button primary mr-3" type="submit">Salvar
+                        <button class="br-button primary mr-3" type="submit">Avançar
                         </button>
 
                         <a class="br-button danger mr-3" type="button" :href='this.url+"/plancidades/revisao/objetivo_estrategico/consulta"'>Voltar

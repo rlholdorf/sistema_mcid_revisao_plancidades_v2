@@ -36,6 +36,7 @@
                             
                             <tr v-for="(item, index) in dadosRegionalizacao">
                                 <input type="hidden" :name="`novaRegionalizacao[${index}][regionalizacao_id]`" v-model="dadosRegionalizacaoRevisao[index].regionalizacao_id">
+                                <input type="hidden" :name="`novaRegionalizacao[${index}][txt_sigla_iniciativas_metas_region]`" v-model="dadosRegionalizacaoRevisao[index].txt_sigla_iniciativas_metas_region">
                                 <td>{{ (index+1) }}</td>
                                 <td>{{ item.txt_sigla_iniciativas_metas_region }}</td>
                                 <td class="text-center">{{ item.vlr_esperado_ano_2 }}</td>

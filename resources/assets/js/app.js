@@ -508,8 +508,8 @@ Vue.component(
 );
 
 Vue.component(
-  "show-revisao-indicador",
-  require("./components/mod_plancidades/revisao/objetivo_estrategico/ShowRevisaoIndicador.vue")
+  "show-finalizar-revisao-indicador",
+  require("./components/mod_plancidades/revisao/objetivo_estrategico/ShowFinalizarRevisaoIndicador.vue")
 );
 
 Vue.component(
@@ -527,6 +527,15 @@ Vue.component(
   require("./components/mod_plancidades/revisao/objetivo_estrategico/metas/EditarRevisaoMetaIndicador.vue")
 );
 
+Vue.component(
+  "criar-revisao-regionalizacao-meta-indicador",
+  require("./components/mod_plancidades/revisao/objetivo_estrategico/regionalizacao/CriarRevisaoRegionalizacaoMetaIndicador.vue")
+);
+
+Vue.component(
+  "editar-revisao-regionalizacao-meta-indicador",
+  require("./components/mod_plancidades/revisao/objetivo_estrategico/regionalizacao/EditarRevisaoRegionalizacaoMetaIndicador.vue")
+);
 
 // Revisão Iniciativas
 Vue.component(

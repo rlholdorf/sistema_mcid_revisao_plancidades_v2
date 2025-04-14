@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Mod_plancidades\IndicadoresIniciativasRevisao;
 use App\Mod_plancidades\Iniciativas;
 use App\Mod_plancidades\IniciativasRevisao;
+use App\Mod_plancidades\MetasIniciativas;
 use App\Mod_plancidades\MetasIniciativasRevisao;
 use App\Mod_plancidades\RegionalizacaoMetaIniciativaRevisao;
 use App\Mod_plancidades\RevisaoIniciativas;
@@ -163,9 +164,10 @@ class RevisaoIniciativaController extends Controller
         $dadosIniciativaRevisao = IniciativasRevisao::where('revisao_iniciativa_id', $revisaoId)->first();
         $dadosIndicadorIniciativaRevisao = IndicadoresIniciativasRevisao::where('revisao_iniciativa_id', $revisaoId)->first();
         $dadosMetaRevisao = MetasIniciativasRevisao::where('revisao_iniciativa_id', $revisaoId)->first();
+        $dadosMeta = MetasIniciativas::where('id', $dadosMetaRevisao->meta_iniciativa_id)->first();
         $dadosRegionalizacaoRevisao = RegionalizacaoMetaIniciativaRevisao::where('revisao_iniciativa_id', $revisaoId)->get();
 
-        return view('modulo_plancidades.revisao.iniciativa.show_revisao_iniciativa', compact('dadosIniciativa', 'dadosRevisao', 'dadosIniciativaRevisao', 'dadosIndicadorIniciativaRevisao', 'dadosMetaRevisao', 'dadosRegionalizacaoRevisao'));
+        return view('modulo_plancidades.revisao.iniciativa.show_revisao_iniciativa', compact('dadosIniciativa', 'dadosRevisao', 'dadosIniciativaRevisao', 'dadosIndicadorIniciativaRevisao', 'dadosMetaRevisao', 'dadosMeta', 'dadosRegionalizacaoRevisao'));
     }
 
     /**
@@ -286,7 +288,7 @@ class RevisaoIniciativaController extends Controller
             }
         }
 
-        $dadosIniciativa = ViewIndicadoresIniciativas::where('iniciativa_id' , $iniciativaId)->first();
+        $dadosIniciativa = ViewIndicadoresIniciativasRevisao::where('iniciativa_id' , $iniciativaId)->first();
         
         return view('modulo_plancidades.revisao.iniciativa.iniciar_revisao_iniciativa', compact('dadosIniciativa'));
     }

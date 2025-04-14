@@ -128,7 +128,7 @@
                 <div class="column col-6 col-xs-12 br-textarea">
                     <label>Nova Polaridade do Indicador</label>
                     <select id="polaridade_id_nova" class="form-select br-select" name="polaridade_id_nova"
-                    v-model="dadosIndicadorRevisao.polaridade_id"> <!-- Não funcionou-->
+                    v-model="dadosIndicadorRevisao.polaridades_id">
                         <option value="" v-text="textoEscolhaPolaridade"></option>
                         <option v-for="item in polaridades" v-text="item.txt_polaridade" :value="item.id"
                             :key="item.id"></option>

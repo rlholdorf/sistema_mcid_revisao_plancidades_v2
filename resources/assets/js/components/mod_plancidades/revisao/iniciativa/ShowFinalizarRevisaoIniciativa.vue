@@ -368,7 +368,7 @@
                     <p v-text="dadosIniciativa.bln_meta_regionalizada ? 'Sim': 'Não'"></p>
                 </div>
             
-                <div class="column col-6 col-xs-12 br-textarea">
+                <div v-if="dadosMeta.bln_meta_regionalizada == false" class="column col-6 col-xs-12 br-textarea">
                     <label>A meta será regionalizada?</label>
                     <select id="bln_meta_regionalizada_nova" class="form-select br-select" name="bln_meta_regionalizada_nova" disabled v-model="dadosMetaRevisao.bln_meta_regionalizada">
                     <option value="">Selecione se a meta é ou não regionalizada</option>
@@ -378,7 +378,7 @@
                 </div>
             </div>
 
-            <div class="row mt-3">
+            <div v-if="dadosMetaRevisao.bln_meta_regionalizada == false" class="row mt-3">
                 <div class="column col-6 col-xs-12">
                     <label for="dsc_justificativa_ausencia_regionalizacao">Justificativa para não regionalização</label>
                     <p v-text="dadosIniciativa.dsc_justificativa_ausencia_regionalizacao"></p>
@@ -426,7 +426,7 @@
                             <tbody>
                                 <tr v-for="(item, index) in dadosRegionalizacao">
                                     <td>{{ (index+1) }}</td>
-                                    <td>{{ item.txt_sigla_objetivos_estrategicos_metas_region }}</td>
+                                    <td>{{ item.txt_sigla_iniciativas_metas_region }}</td>
                                     <td class="text-center">{{ item.vlr_esperado_ano_2 }}</td>
                                     <td class="text-center">
                                         <input style="width: 150px;" id="vlr_esperado_ano_2_nova" 
@@ -485,7 +485,7 @@
 
 <script>
 export default {
-    props: ['url', 'dadosIniciativa', 'dadosRevisao','dadosIniciativaRevisao', 'dadosIndicadorRevisao', 'dadosMetaRevisao', 'dadosRegionalizacao'],
+    props: ['url', 'dadosIniciativa', 'dadosRevisao','dadosIniciativaRevisao', 'dadosIndicadorRevisao', 'dadosMetaRevisao', 'dadosMeta', 'dadosRegionalizacao'],
     data() {
         return {
         //----Campos Select

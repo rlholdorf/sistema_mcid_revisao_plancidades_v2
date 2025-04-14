@@ -36,8 +36,9 @@
                             
                             <tr v-for="(item, index) in dadosRegionalizacao">
                                 <input type="hidden" :name="`novaRegionalizacao[${index}][regionalizacao_id]`" v-model="novaRegionalizacao[index].regionalizacao_id">
+                                <input type="hidden" :name="`novaRegionalizacao[${index}][txt_sigla_iniciativas_metas_region]`" v-model="novaRegionalizacao[index].txt_sigla_iniciativas_metas_region">
                                 <td>{{ (index+1) }}</td>
-                                <td>{{ item.txt_sigla_iniciativas_metas_region }}</td>
+                                <td>{{ item.regionalizacao.txt_regionalizacao }}</td>
                                 <td class="text-center">{{ item.vlr_esperado_ano_2 }}</td>
                                 <td class="text-center">
                                     <input style="width: 150px;"
@@ -80,7 +81,7 @@
                         <button class="br-button primary mr-3" type="submit">Salvar
                         </button>
 
-                        <a class="br-button danger mr-3" type="button" :href='this.url+"/plancidades/revisao/objetivo_estrategico/consulta"'>Voltar
+                        <a class="br-button danger mr-3" type="button" :href='this.url+"/plancidades/revisao/iniciativa/consulta"'>Voltar
                         </a>
                     </div>
                 </div>
@@ -141,6 +142,7 @@ export default {
             this.dadosRegionalizacao.forEach((item, index) => {
                 this.novaRegionalizacao[index] = {
                     'regionalizacao_id':item.regionalizacao_id,
+                    'txt_sigla_iniciativas_metas_region':item.txt_sigla_iniciativas_metas_region,
                     'vlr_esperado_ano_2':null,
                     'vlr_esperado_ano_3':null,
                     'vlr_esperado_ano_4':null

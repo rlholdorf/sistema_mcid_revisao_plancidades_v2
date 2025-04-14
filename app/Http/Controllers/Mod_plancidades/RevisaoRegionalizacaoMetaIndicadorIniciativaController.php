@@ -82,7 +82,7 @@ class RevisaoRegionalizacaoMetaIndicadorIniciativaController extends Controller
         $dadosIniciativa = ViewIndicadoresIniciativas::where('iniciativa_id' , $dadosRevisao->iniciativa_id)->first();
         $dadosMeta = MetasIniciativas::where('iniciativa_id', $dadosRevisao->iniciativa_id)->first();
         $dadosMetaRevisao = MetasIniciativasRevisao::where('revisao_iniciativa_id', $revisaoId)->first();
-        $dadosRegionalizacao = RegionalizacaoMetaIniciativa::where('meta_iniciativa_id', $dadosMeta->id)->leftJoin('mcid_hom_plancidades.tab_metas_iniciativas', 'tab_metas_iniciativas.id','=','tab_regionalizacao_metas_iniciativas.meta_iniciativa_id')->get();
+        $dadosRegionalizacao = RegionalizacaoMetaIniciativa::where('meta_iniciativa_id', $dadosMeta->id)->with('regionalizacao')->leftJoin('mcid_hom_plancidades.tab_metas_iniciativas', 'tab_metas_iniciativas.id','=','tab_regionalizacao_metas_iniciativas.meta_iniciativa_id')->get();
         
         return view('modulo_plancidades.revisao.iniciativa.regionalizacao.criar_revisao_regionalizacao_meta_indicador_iniciativa', compact('dadosIniciativa', 'dadosMetaRevisao', 'revisaoCadastrada', 'dadosRevisao', 'dadosRegionalizacao'));
     }
@@ -106,16 +106,20 @@ class RevisaoRegionalizacaoMetaIndicadorIniciativaController extends Controller
             foreach ($request->novaRegionalizacao as $item) {
                 $regionalizacao = (object) $item;
                 
-                $regionalizacaoExiste = RegionalizacaoMetaIniciativaRevisao::where('regionalizacao_id', $regionalizacao->regionalizacao_id)->first();
+                $where = [];
+                $where[] = ['revisao_iniciativa_id', $revisaoId];
+                $where[] = ['regionalizacao_id', $regionalizacao->regionalizacao_id];
+
+                $regionalizacaoExiste = RegionalizacaoMetaIniciativaRevisao::where($where)->first();
                 if($regionalizacaoExiste){
                    throw new \Exception("Regionalização já cadastrada.");
                 }
 
                 $dados_regionalizacao_revisao = new RegionalizacaoMetaIniciativaRevisao();
-                $dados_regionalizacao = RegionalizacaoMetaIniciativa::where('regionalizacao_id', $regionalizacao->regionalizacao_id)->first();
+                $dados_regionalizacao = RegionalizacaoMetaIniciativa::where('txt_sigla_iniciativas_metas_region', $regionalizacao->txt_sigla_iniciativas_metas_region)->first();
                 
                 
-                $dados_regionalizacao_revisao->txt_sigla_iniciativas_metas_region = $dados_regionalizacao->txt_sigla_iniciativas_metas_region;
+                $dados_regionalizacao_revisao->txt_sigla_iniciativas_metas_region = $regionalizacao->txt_sigla_iniciativas_metas_region;
                 $dados_regionalizacao_revisao->meta_iniciativa_id = $dados_regionalizacao->meta_iniciativa_id;
                 $dados_regionalizacao_revisao->regionalizacao_id = $regionalizacao->regionalizacao_id;
                 $dados_regionalizacao_revisao->vlr_esperado_ano_2 = $regionalizacao->vlr_esperado_ano_2;
@@ -201,11 +205,15 @@ class RevisaoRegionalizacaoMetaIndicadorIniciativaController extends Controller
             foreach ($request->novaRegionalizacao as $item) {
                 $regionalizacao = (object) $item;
 
-                $dados_regionalizacao_revisao = RegionalizacaoMetaIniciativaRevisao::where('regionalizacao_id', $regionalizacao->regionalizacao_id)->first();
-                $dados_regionalizacao = RegionalizacaoMetaIniciativa::where('regionalizacao_id', $regionalizacao->regionalizacao_id)->first();
+                $where = [];
+                $where[] = ['revisao_iniciativa_id', $revisaoId];
+                $where[] = ['regionalizacao_id', $regionalizacao->regionalizacao_id];
+
+                $dados_regionalizacao_revisao = RegionalizacaoMetaIniciativaRevisao::where($where)->first();
+                $dados_regionalizacao = RegionalizacaoMetaIniciativa::where('txt_sigla_iniciativas_metas_region', $regionalizacao->txt_sigla_iniciativas_metas_region)->first();
                 
                 
-                $dados_regionalizacao_revisao->txt_sigla_iniciativas_metas_region = $dados_regionalizacao->txt_sigla_iniciativas_metas_region;
+                $dados_regionalizacao_revisao->txt_sigla_iniciativas_metas_region = $regionalizacao->txt_sigla_iniciativas_metas_region;
                 $dados_regionalizacao_revisao->meta_iniciativa_id = $dados_regionalizacao->meta_iniciativa_id;
                 $dados_regionalizacao_revisao->regionalizacao_id = $regionalizacao->regionalizacao_id;
                 $dados_regionalizacao_revisao->vlr_esperado_ano_2 = $regionalizacao->vlr_esperado_ano_2;
