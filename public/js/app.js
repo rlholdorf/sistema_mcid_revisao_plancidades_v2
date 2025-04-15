@@ -112475,6 +112475,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['url', 'dadosRevisao', 'dadosIndicador', 'dadosRegionalizacao', 'revisaoCadastrada', 'dadosIndicadorRevisao', 'dadosMetaRevisao'],
@@ -112873,6 +112887,58 @@ var render = function() {
               ],
               2
             )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-3" }, [
+          _c("div", { staticClass: "column col-6 col-xs-12" }, [
+            _c("label", { attrs: { for: "txt_periodo_ou_data" } }, [
+              _vm._v("Período ou Data a que se Refere o Indicador")
+            ]),
+            _vm._v(" "),
+            _c("p", {
+              domProps: {
+                textContent: _vm._s(_vm.dadosIndicador.txt_periodo_ou_data)
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "column col-6 col-xs-12 br-textarea" }, [
+            _c("label", [
+              _vm._v("Novo Período ou Data a que se Refere o Indicador")
+            ]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.dadosIndicadorRevisao.txt_periodo_ou_data,
+                  expression: "dadosIndicadorRevisao.txt_periodo_ou_data"
+                }
+              ],
+              staticClass: "input-medium",
+              attrs: {
+                id: "txt_periodo_ou_data_nova",
+                name: "txt_periodo_ou_data_nova",
+                rows: "1"
+              },
+              domProps: {
+                value: _vm.dadosIndicadorRevisao.txt_periodo_ou_data
+              },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.dadosIndicadorRevisao,
+                    "txt_periodo_ou_data",
+                    $event.target.value
+                  )
+                }
+              }
+            })
           ])
         ]),
         _vm._v(" "),
@@ -113878,26 +113944,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        onChangeUnidadeMedida: function onChangeUnidadeMedida() {
-            this.novaUnidadeMedida = this.unidadeMedida;
-            switch (this.novaUnidadeMedida) {
+        formatarUnidadeMedida: function formatarUnidadeMedida(unidadeMedidaId) {
+            switch (unidadeMedidaId) {
                 case 1:
-                    this.novaUnidadeMedida = '(R$)';
-                    break;
+                    return '(R$)';
                 case 2:
-                    this.novaUnidadeMedida = '(%)';
-                    break;
+                    return '(%)';
                 case 3:
-                    this.novaUnidadeMedida = '(ADI)';
-                    break;
+                    return '(ADI)';
                 case 4:
-                    this.novaUnidadeMedida = '(m²)';
-                    break;
+                    return '(m²)';
                 case 5:
-                    this.novaUnidadeMedida = '(UN)';
-                    break;
+                    return '(UN)';
                 default:
-                    this.novaUnidadeMedida = '';
+                    return '';
             }
         },
         IrParaPagina: function IrParaPagina(destino) {
@@ -113938,6 +113998,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.txt_situacao_revisao = 'Em revisão';
             this.situacao_revisao_observacao = '';
         };
+
+        console.log(this.situacaoRevisao);
     }
 });
 
@@ -113995,19 +114057,23 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("p", {
-              domProps: { textContent: _vm._s(_vm.txt_situacao_revisao) }
+              domProps: { textContent: _vm._s(this.txt_situacao_revisao) }
             })
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "column col-xs-12 col-sm-12" }, [
-            _c("label", { attrs: { for: "observacaoRevisao" } }, [
-              _vm._v("Observações CGPI sobre a Revisão")
-            ]),
-            _vm._v(" "),
-            _c("p", {
-              domProps: { textContent: _vm._s(_vm.situacao_revisao_observacao) }
-            })
-          ])
+          _vm.situacao_revisao_observacao
+            ? _c("div", { staticClass: "column col-xs-12 col-sm-12" }, [
+                _c("label", { attrs: { for: "observacaoRevisao" } }, [
+                  _vm._v("Observações CGPI sobre a Revisão")
+                ]),
+                _vm._v(" "),
+                _c("p", {
+                  domProps: {
+                    textContent: _vm._s(this.situacao_revisao_observacao)
+                  }
+                })
+              ])
+            : _vm._e()
         ]),
         _vm._v(" "),
         _c("hr"),
@@ -114870,7 +114936,11 @@ var render = function() {
             _c("label", { attrs: { for: "vlr_esperado_ano_2" } }, [
               _vm._v(
                 "Meta para 2025 " +
-                  _vm._s(_vm.dadosIndicador.unidade_medida_simbolo)
+                  _vm._s(
+                    this.formatarUnidadeMedida(
+                      this.dadosIndicador.unidade_medida_id
+                    )
+                  )
               )
             ]),
             _vm._v(" "),
@@ -114885,7 +114955,11 @@ var render = function() {
             _c("label", [
               _vm._v(
                 "Nova Meta para 2025 " +
-                  _vm._s(_vm.dadosIndicadorRevisao.unidade_medida_id)
+                  _vm._s(
+                    this.formatarUnidadeMedida(
+                      _vm.dadosIndicadorRevisao.unidade_medida_id
+                    )
+                  )
               )
             ]),
             _vm._v(" "),
@@ -114929,7 +115003,11 @@ var render = function() {
             _c("label", { attrs: { for: "vlr_esperado_ano_3" } }, [
               _vm._v(
                 "Meta para 2026 " +
-                  _vm._s(_vm.dadosIndicador.unidade_medida_simbolo)
+                  _vm._s(
+                    this.formatarUnidadeMedida(
+                      this.dadosIndicador.unidade_medida_id
+                    )
+                  )
               )
             ]),
             _vm._v(" "),
@@ -114944,7 +115022,11 @@ var render = function() {
             _c("label", [
               _vm._v(
                 "Nova Meta para 2026 " +
-                  _vm._s(_vm.dadosIndicadorRevisao.unidade_medida_id)
+                  _vm._s(
+                    this.formatarUnidadeMedida(
+                      _vm.dadosIndicadorRevisao.unidade_medida_id
+                    )
+                  )
               )
             ]),
             _vm._v(" "),
@@ -114988,7 +115070,11 @@ var render = function() {
             _c("label", { attrs: { for: "vlr_meta_final_cenario_atual" } }, [
               _vm._v(
                 "Meta para 2027 " +
-                  _vm._s(_vm.dadosIndicador.unidade_medida_simbolo)
+                  _vm._s(
+                    this.formatarUnidadeMedida(
+                      this.dadosIndicador.unidade_medida_id
+                    )
+                  )
               )
             ]),
             _vm._v(" "),
@@ -115005,7 +115091,11 @@ var render = function() {
             _c("label", [
               _vm._v(
                 "Nova Meta para 2027 " +
-                  _vm._s(_vm.dadosIndicadorRevisao.unidade_medida_id)
+                  _vm._s(
+                    this.formatarUnidadeMedida(
+                      _vm.dadosIndicadorRevisao.unidade_medida_id
+                    )
+                  )
               )
             ]),
             _vm._v(" "),
@@ -115759,6 +115849,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -115974,6 +116077,22 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "row mt-3" }, [
           _c("div", { staticClass: "column col-6 col-xs-12" }, [
+            _c("label", { attrs: { for: "txt_periodo_ou_data" } }, [
+              _vm._v("Período ou Data a que se Refere o Indicador")
+            ]),
+            _vm._v(" "),
+            _c("p", {
+              domProps: {
+                textContent: _vm._s(_vm.dadosIndicador.txt_periodo_ou_data)
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _vm._m(5)
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-3" }, [
+          _c("div", { staticClass: "column col-6 col-xs-12" }, [
             _c(
               "label",
               { attrs: { for: "txt_data_divulgacao_ou_disponibilizacao" } },
@@ -115989,7 +116108,7 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _vm._m(5)
+          _vm._m(6)
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row mt-3" }, [
@@ -116100,7 +116219,7 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _vm._m(6)
+          _vm._m(7)
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row mt-3" }, [
@@ -116120,7 +116239,7 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _vm._m(7)
+          _vm._m(8)
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row mt-3" }, [
@@ -116138,7 +116257,7 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _vm._m(8)
+          _vm._m(9)
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row mt-3" }, [
@@ -116154,7 +116273,7 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _vm._m(9)
+          _vm._m(10)
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
@@ -116263,6 +116382,23 @@ var staticRenderFns = [
           type: "number",
           id: "vlr_indice_referencia_nova",
           name: "vlr_indice_referencia_nova",
+          rows: "1"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "column col-6 col-xs-12 br-textarea" }, [
+      _c("label", [_vm._v("Novo Período ou Data a que se Refere o Indicador")]),
+      _vm._v(" "),
+      _c("textarea", {
+        staticClass: "input-medium",
+        attrs: {
+          id: "txt_periodo_ou_data_nova",
+          name: "txt_periodo_ou_data_nova",
           rows: "1"
         }
       })
@@ -117859,26 +117995,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        onChangeUnidadeMedida: function onChangeUnidadeMedida() {
-            this.novaUnidadeMedida = this.unidadeMedida;
-            switch (this.novaUnidadeMedida) {
+        formatarUnidadeMedida: function formatarUnidadeMedida(unidadeMedidaId) {
+            switch (unidadeMedidaId) {
                 case 1:
-                    this.novaUnidadeMedida = '(R$)';
-                    break;
+                    return '(R$)';
                 case 2:
-                    this.novaUnidadeMedida = '(%)';
-                    break;
+                    return '(%)';
                 case 3:
-                    this.novaUnidadeMedida = '(ADI)';
-                    break;
+                    return '(ADI)';
                 case 4:
-                    this.novaUnidadeMedida = '(m²)';
-                    break;
+                    return '(m²)';
                 case 5:
-                    this.novaUnidadeMedida = '(UN)';
-                    break;
+                    return '(UN)';
                 default:
-                    this.novaUnidadeMedida = '';
+                    return '';
             }
         },
         montarNovaRegionalizacao: function montarNovaRegionalizacao() {
@@ -117953,14 +118083,14 @@ var render = function() {
                 _c("tr", [
                   _c("th", [_vm._v("#")]),
                   _vm._v(" "),
-                  _c("th", [_vm._v("Região")]),
+                  _c("th", { staticClass: "text-center" }, [_vm._v("Região")]),
                   _vm._v(" "),
                   _c("th", { staticClass: "text-center" }, [
                     _vm._v(
                       "Meta para 2025" +
                         _vm._s(
                           this.formatarUnidadeMedida(
-                            this.dadosMetaRevisao.unidade_medida_id
+                            this.dadosIndicador.unidade_medida_id
                           )
                         )
                     )
@@ -117971,7 +118101,7 @@ var render = function() {
                       "Nova Meta para 2025" +
                         _vm._s(
                           this.formatarUnidadeMedida(
-                            this.dadosMetaRevisao.unidade_medida_id
+                            this.dadosIndicadorRevisao.unidade_medida_id
                           )
                         )
                     )
@@ -117982,7 +118112,7 @@ var render = function() {
                       "Meta para 2026" +
                         _vm._s(
                           this.formatarUnidadeMedida(
-                            this.dadosMetaRevisao.unidade_medida_id
+                            this.dadosIndicador.unidade_medida_id
                           )
                         )
                     )
@@ -117993,7 +118123,7 @@ var render = function() {
                       "Nova Meta para 2026" +
                         _vm._s(
                           this.formatarUnidadeMedida(
-                            this.dadosMetaRevisao.unidade_medida_id
+                            this.dadosIndicadorRevisao.unidade_medida_id
                           )
                         )
                     )
@@ -118004,7 +118134,7 @@ var render = function() {
                       "Meta para 2027" +
                         _vm._s(
                           this.formatarUnidadeMedida(
-                            this.dadosMetaRevisao.unidade_medida_id
+                            this.dadosIndicador.unidade_medida_id
                           )
                         )
                     )
@@ -118015,7 +118145,7 @@ var render = function() {
                       "Nova Meta para 2027" +
                         _vm._s(
                           this.formatarUnidadeMedida(
-                            this.dadosMetaRevisao.unidade_medida_id
+                            this.dadosIndicadorRevisao.unidade_medida_id
                           )
                         )
                     )
@@ -118100,7 +118230,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(index + 1))]),
                     _vm._v(" "),
-                    _c("td", [
+                    _c("td", { staticClass: "text-center" }, [
                       _vm._v(_vm._s(item.regionalizacao.txt_regionalizacao))
                     ]),
                     _vm._v(" "),
@@ -118120,7 +118250,6 @@ var render = function() {
                               "novaRegionalizacao[index].vlr_esperado_ano_2"
                           }
                         ],
-                        staticStyle: { width: "150px" },
                         attrs: {
                           type: "number",
                           name:
@@ -121291,26 +121420,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        onChangeUnidadeMedida: function onChangeUnidadeMedida() {
-            this.novaUnidadeMedida = this.unidadeMedida;
-            switch (this.novaUnidadeMedida) {
+        formatarUnidadeMedida: function formatarUnidadeMedida(unidadeMedidaId) {
+            switch (unidadeMedidaId) {
                 case 1:
-                    this.novaUnidadeMedida = '(R$)';
-                    break;
+                    return '(R$)';
                 case 2:
-                    this.novaUnidadeMedida = '(%)';
-                    break;
+                    return '(%)';
                 case 3:
-                    this.novaUnidadeMedida = '(ADI)';
-                    break;
+                    return '(ADI)';
                 case 4:
-                    this.novaUnidadeMedida = '(m²)';
-                    break;
+                    return '(m²)';
                 case 5:
-                    this.novaUnidadeMedida = '(UN)';
-                    break;
+                    return '(UN)';
                 default:
-                    this.novaUnidadeMedida = '';
+                    return '';
             }
         },
         IrParaPagina: function IrParaPagina(destino) {
@@ -122502,7 +122625,12 @@ var render = function() {
           _c("div", { staticClass: "column col-6 col-xs-12" }, [
             _c("label", { attrs: { for: "vlr_esperado_ano_2" } }, [
               _vm._v(
-                "Meta para 2025 " + _vm._s(_vm.dadosMeta.unidade_medida_simbolo)
+                "Meta para 2025 " +
+                  _vm._s(
+                    this.formatarUnidadeMedida(
+                      _vm.dadosIniciativa.unidade_medida_id
+                    )
+                  )
               )
             ]),
             _vm._v(" "),
@@ -122515,7 +122643,14 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "column col-6 col-xs-12 br-input" }, [
             _c("label", [
-              _vm._v("Nova Meta para 2025 " + _vm._s(_vm.novaUnidadeMedida))
+              _vm._v(
+                "Nova Meta para 2025 " +
+                  _vm._s(
+                    this.formatarUnidadeMedida(
+                      _vm.dadosIndicadorRevisao.unidade_medida_id
+                    )
+                  )
+              )
             ]),
             _vm._v(" "),
             _c("br"),
@@ -122557,7 +122692,12 @@ var render = function() {
           _c("div", { staticClass: "column col-6 col-xs-12" }, [
             _c("label", { attrs: { for: "vlr_esperado_ano_3" } }, [
               _vm._v(
-                "Meta para 2026 " + _vm._s(_vm.dadosMeta.unidade_medida_simbolo)
+                "Meta para 2026 " +
+                  _vm._s(
+                    this.formatarUnidadeMedida(
+                      _vm.dadosIniciativa.unidade_medida_id
+                    )
+                  )
               )
             ]),
             _vm._v(" "),
@@ -122570,7 +122710,14 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "column col-6 col-xs-12 br-input" }, [
             _c("label", [
-              _vm._v("Nova Meta para 2026 " + _vm._s(_vm.novaUnidadeMedida))
+              _vm._v(
+                "Nova Meta para 2026 " +
+                  _vm._s(
+                    this.formatarUnidadeMedida(
+                      _vm.dadosIndicadorRevisao.unidade_medida_id
+                    )
+                  )
+              )
             ]),
             _vm._v(" "),
             _c("br"),
@@ -122616,7 +122763,11 @@ var render = function() {
               [
                 _vm._v(
                   "Meta para 2027 " +
-                    _vm._s(_vm.dadosMeta.unidade_medida_simbolo)
+                    _vm._s(
+                      this.formatarUnidadeMedida(
+                        _vm.dadosIniciativa.unidade_medida_id
+                      )
+                    )
                 )
               ]
             ),
@@ -122632,7 +122783,14 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "column col-6 col-xs-12 br-input" }, [
             _c("label", [
-              _vm._v("Nova Meta para 2027 " + _vm._s(_vm.novaUnidadeMedida))
+              _vm._v(
+                "Nova Meta para 2027 " +
+                  _vm._s(
+                    this.formatarUnidadeMedida(
+                      _vm.dadosIndicadorRevisao.unidade_medida_id
+                    )
+                  )
+              )
             ]),
             _vm._v(" "),
             _c("br"),
@@ -123384,6 +123542,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['url', 'dadosRevisao', 'dadosIniciativa', 'revisaoCadastrada', 'dadosMetaRevisao'],
@@ -123598,6 +123769,22 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "row mt-3" }, [
           _c("div", { staticClass: "column col-6 col-xs-12" }, [
+            _c("label", { attrs: { for: "txt_periodo_ou_data" } }, [
+              _vm._v("Período ou Data a que se Refere o Indicador")
+            ]),
+            _vm._v(" "),
+            _c("p", {
+              domProps: {
+                textContent: _vm._s(_vm.dadosIniciativa.txt_periodo_ou_data)
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _vm._m(5)
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-3" }, [
+          _c("div", { staticClass: "column col-6 col-xs-12" }, [
             _c(
               "label",
               { attrs: { for: "txt_data_divulgacao_ou_disponibilizacao" } },
@@ -123613,7 +123800,7 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _vm._m(5)
+          _vm._m(6)
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row mt-3" }, [
@@ -123724,7 +123911,7 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _vm._m(6)
+          _vm._m(7)
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row mt-3" }, [
@@ -123744,7 +123931,7 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _vm._m(7)
+          _vm._m(8)
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row mt-3" }, [
@@ -123762,7 +123949,7 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _vm._m(8)
+          _vm._m(9)
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row mt-3" }, [
@@ -123780,7 +123967,7 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _vm._m(9)
+          _vm._m(10)
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
@@ -123887,6 +124074,23 @@ var staticRenderFns = [
           type: "number",
           id: "vlr_indice_referencia_nova",
           name: "vlr_indice_referencia_nova",
+          rows: "1"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "column col-6 col-xs-12 br-textarea" }, [
+      _c("label", [_vm._v("Novo Período ou Data a que se Refere o Indicador")]),
+      _vm._v(" "),
+      _c("textarea", {
+        staticClass: "input-medium",
+        attrs: {
+          id: "txt_periodo_ou_data_nova",
+          name: "txt_periodo_ou_data_nova",
           rows: "1"
         }
       })
@@ -124040,6 +124244,20 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -124606,6 +124824,38 @@ var render = function() {
               ],
               2
             )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-3" }, [
+          _c("div", { staticClass: "column col-6 col-xs-12" }, [
+            _c("label", { attrs: { for: "txt_periodo_ou_data" } }, [
+              _vm._v("Período ou Data a que se Refere o Indicador")
+            ]),
+            _vm._v(" "),
+            _c("p", {
+              domProps: {
+                textContent: _vm._s(_vm.dadosIniciativa.txt_periodo_ou_data)
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "column col-6 col-xs-12 br-textarea" }, [
+            _c("label", [
+              _vm._v("Novo Período ou Data a que se Refere o Indicador")
+            ]),
+            _vm._v(" "),
+            _c("textarea", {
+              staticClass: "input-medium",
+              attrs: {
+                id: "txt_periodo_ou_data_nova",
+                name: "txt_periodo_ou_data_nova",
+                rows: "1"
+              },
+              domProps: {
+                value: _vm.dadosIndicadorIniciativaRevisao.txt_periodo_ou_data
+              }
+            })
           ])
         ]),
         _vm._v(" "),
@@ -126586,26 +126836,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        onChangeUnidadeMedida: function onChangeUnidadeMedida() {
-            this.novaUnidadeMedida = this.unidadeMedida;
-            switch (this.novaUnidadeMedida) {
+        formatarUnidadeMedida: function formatarUnidadeMedida(unidadeMedidaId) {
+            switch (unidadeMedidaId) {
                 case 1:
-                    this.novaUnidadeMedida = '(R$)';
-                    break;
+                    return '(R$)';
                 case 2:
-                    this.novaUnidadeMedida = '(%)';
-                    break;
+                    return '(%)';
                 case 3:
-                    this.novaUnidadeMedida = '(ADI)';
-                    break;
+                    return '(ADI)';
                 case 4:
-                    this.novaUnidadeMedida = '(m²)';
-                    break;
+                    return '(m²)';
                 case 5:
-                    this.novaUnidadeMedida = '(UN)';
-                    break;
+                    return '(UN)';
                 default:
-                    this.novaUnidadeMedida = '';
+                    return '';
             }
         },
         montarNovaRegionalizacao: function montarNovaRegionalizacao() {

@@ -82,6 +82,19 @@
 
             <div class="row mt-3">
                 <div class="column col-6 col-xs-12">
+                    <label for="txt_periodo_ou_data">Período ou Data a que se Refere o Indicador</label>
+                    <p v-text="dadosIndicador.txt_periodo_ou_data"></p>
+                </div>
+            
+                <div class="column col-6 col-xs-12 br-textarea">
+                    <label>Novo Período ou Data a que se Refere o Indicador</label>
+                        <textarea class="input-medium" id="txt_periodo_ou_data_nova" name="txt_periodo_ou_data_nova" rows="1">
+                        </textarea>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="column col-6 col-xs-12">
                     <label for="txt_data_divulgacao_ou_disponibilizacao">Data de Divulgação ou Disponibilidade</label>
                     <p v-text="dadosIndicador.txt_data_divulgacao_ou_disponibilizacao"></p>
                 </div>

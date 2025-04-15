@@ -23,13 +23,13 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Região</th>
-                                <th class="text-center">Meta para 2025{{this.formatarUnidadeMedida(this.dadosMetaRevisao.unidade_medida_id)}}</th>
-                                <th class="text-center">Nova Meta para 2025{{this.formatarUnidadeMedida(this.dadosMetaRevisao.unidade_medida_id)}}</th>
-                                <th class="text-center">Meta para 2026{{this.formatarUnidadeMedida(this.dadosMetaRevisao.unidade_medida_id)}}</th>
-                                <th class="text-center">Nova Meta para 2026{{this.formatarUnidadeMedida(this.dadosMetaRevisao.unidade_medida_id)}}</th>
-                                <th class="text-center">Meta para 2027{{this.formatarUnidadeMedida(this.dadosMetaRevisao.unidade_medida_id)}}</th>
-                                <th class="text-center">Nova Meta para 2027{{this.formatarUnidadeMedida(this.dadosMetaRevisao.unidade_medida_id)}}</th>
+                                <th class="text-center">Região</th>
+                                <th class="text-center">Meta para 2025{{this.formatarUnidadeMedida(this.dadosIndicador.unidade_medida_id)}}</th>
+                                <th class="text-center">Nova Meta para 2025{{this.formatarUnidadeMedida(this.dadosIndicadorRevisao.unidade_medida_id)}}</th>
+                                <th class="text-center">Meta para 2026{{this.formatarUnidadeMedida(this.dadosIndicador.unidade_medida_id)}}</th>
+                                <th class="text-center">Nova Meta para 2026{{this.formatarUnidadeMedida(this.dadosIndicadorRevisao.unidade_medida_id)}}</th>
+                                <th class="text-center">Meta para 2027{{this.formatarUnidadeMedida(this.dadosIndicador.unidade_medida_id)}}</th>
+                                <th class="text-center">Nova Meta para 2027{{this.formatarUnidadeMedida(this.dadosIndicadorRevisao.unidade_medida_id)}}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -38,10 +38,10 @@
                                 <input type="hidden" :name="`novaRegionalizacao[${index}][regionalizacao_id]`" v-model="novaRegionalizacao[index].regionalizacao_id">
                                 <input type="hidden" :name="`novaRegionalizacao[${index}][txt_sigla_objetivos_estrategicos_metas_region]`" v-model="novaRegionalizacao[index].txt_sigla_objetivos_estrategicos_metas_region">
                                 <td>{{ (index+1) }}</td>
-                                <td>{{ item.regionalizacao.txt_regionalizacao }}</td>
+                                <td class="text-center">{{ item.regionalizacao.txt_regionalizacao }}</td>
                                 <td class="text-center">{{ item.vlr_esperado_ano_2 }}</td>
                                 <td class="text-center">
-                                    <input style="width: 150px;"
+                                    <input
                                     type="number" 
                                     :name="`novaRegionalizacao[${index}][vlr_esperado_ano_2]`"
                                     step="0.01"
@@ -114,26 +114,20 @@ export default {
         }
     },
     methods: {
-        onChangeUnidadeMedida(){
-            this.novaUnidadeMedida = this.unidadeMedida;
-            switch (this.novaUnidadeMedida){
+        formatarUnidadeMedida(unidadeMedidaId){
+            switch (unidadeMedidaId){
             case 1:
-                this.novaUnidadeMedida = '(R$)';
-                break;
+                return '(R$)';
             case 2:
-                this.novaUnidadeMedida = '(%)';
-                break;
+                return '(%)';
             case 3:
-                this.novaUnidadeMedida = '(ADI)';
-                break;
+                return '(ADI)';
             case 4:
-                this.novaUnidadeMedida = '(m²)';
-                break;
+                return '(m²)';
             case 5:
-                this.novaUnidadeMedida = '(UN)';
-                break;
+                return '(UN)';
             default:
-                this.novaUnidadeMedida = '';
+                return '';
         }
 
         },

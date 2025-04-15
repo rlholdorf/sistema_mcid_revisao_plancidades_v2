@@ -11,7 +11,7 @@
 
     <historico-navegacao :url="'{{ url('/home') }}'" 
         :telanterior03="'Indicador {{$dadosIndicador->indicador_objetivo_estrategico_id}}'"
-        :link3="'{{url('/plancidades/revisao/objetivo_estrategico/indicadores/'.$dadosIndicador->indicador_objetivo_estrategico_id)}}'"
+        :link3="'{{url('/plancidades/revisao/objetivo_estrategico/listar/'.$dadosIndicador->indicador_objetivo_estrategico_id)}}'"
         :telanterior02="'Consultar Indicadores para Revisão'"
         :link2="'{{url('/plancidades/revisao/objetivo_estrategico/consulta')}}'"
         :telanterior01="'PlanCidades'" 

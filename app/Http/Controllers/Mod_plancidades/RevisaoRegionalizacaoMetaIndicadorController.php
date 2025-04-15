@@ -72,7 +72,7 @@ class RevisaoRegionalizacaoMetaIndicadorController extends Controller
         $dadosMetaRevisao = MetasObjetivosEstrategicosRevisao::where('revisao_indicador_id', $revisaoId)->first();
         $dadosRegionalizacao = RegionalizacaoMetaObjEstr::where('meta_objetivos_estrategicos_id', $dadosMeta->id)->with('regionalizacao')->leftJoin('mcid_hom_plancidades.tab_metas_objetivos_estrategicos', 'tab_metas_objetivos_estrategicos.id','=','tab_regionalizacao_metas_objetivos_estrategicos.meta_objetivos_estrategicos_id')->get();
         
-        return view('modulo_plancidades.revisao.objetivo_estrategico.regionalizacao.criar_revisao_regionalizacao_meta_indicador', compact('dadosIndicador', 'dadosMetaRevisao', 'revisaoCadastrada', 'dadosRevisao', 'dadosRegionalizacao'));
+        return view('modulo_plancidades.revisao.objetivo_estrategico.regionalizacao.criar_revisao_regionalizacao_meta_indicador', compact('dadosIndicador', 'dadosIndicadorRevisao', 'dadosMetaRevisao', 'revisaoCadastrada', 'dadosRevisao', 'dadosRegionalizacao'));
     }
 
     /**

@@ -10,8 +10,8 @@
 
 
     <historico-navegacao :url="'{{ url('/home') }}'" 
-        :telanterior03="'Iniciativa {{$dadosIniciativa->id}}'"
-        :link3="'{{url('/plancidades/revisao/iniciativa/listar/'.$dadosIniciativa->id)}}'"
+        :telanterior03="'Iniciativa {{$dadosIniciativa->iniciativa_id}}'"
+        :link3="'{{url('/plancidades/revisao/iniciativa/listar/'.$dadosIniciativa->iniciativa_id)}}'"
         :telanterior02="'Consultar Iniciativas para Revisão'"
         :link2="'{{url('/plancidades/revisao/iniciativa/consulta')}}'"
         :telanterior01="'PlanCidades'" 

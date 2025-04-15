@@ -40,6 +40,7 @@
             <criar-revisao-regionalizacao-meta-indicador 
             :url="'{{ url('/') }}'"
             :dados-indicador="{{json_encode($dadosIndicador)}}"
+            :dados-indicador-revisao="{{json_encode($dadosIndicadorRevisao)}}"
             :dados-revisao="{{json_encode($dadosRevisao)}}"
             :dados-regionalizacao="{{json_encode($dadosRegionalizacao)}}"
             :revisao-cadastrada="{{json_encode($revisaoCadastrada)}}"

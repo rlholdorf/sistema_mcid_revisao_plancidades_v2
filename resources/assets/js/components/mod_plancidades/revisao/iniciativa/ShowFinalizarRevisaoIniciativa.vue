@@ -312,12 +312,12 @@
 
             <div class="row mt-3">
                 <div class="column col-6 col-xs-12">
-                    <label for="vlr_esperado_ano_2">Meta para 2025 {{dadosMeta.unidade_medida_simbolo}}</label>
+                    <label for="vlr_esperado_ano_2">Meta para 2025 {{this.formatarUnidadeMedida(dadosIniciativa.unidade_medida_id)}}</label>
                     <p v-text="dadosMeta.vlr_esperado_ano_2"></p>
                 </div>
             
                 <div class="column col-6 col-xs-12 br-input">
-                    <label>Nova Meta para 2025 {{novaUnidadeMedida}}</label>
+                    <label>Nova Meta para 2025 {{this.formatarUnidadeMedida(dadosIndicadorRevisao.unidade_medida_id)}}</label>
                     <br>
                     <input id="vlr_esperado_ano_2_nova"  disabled
                     type="number" 
@@ -330,12 +330,12 @@
 
             <div class="row mt-3">
                 <div class="column col-6 col-xs-12">
-                    <label for="vlr_esperado_ano_3">Meta para 2026 {{dadosMeta.unidade_medida_simbolo}}</label>
+                    <label for="vlr_esperado_ano_3">Meta para 2026 {{this.formatarUnidadeMedida(dadosIniciativa.unidade_medida_id)}}</label>
                     <p v-text="dadosMeta.vlr_esperado_ano_3"></p>
                 </div>
             
                 <div class="column col-6 col-xs-12 br-input">
-                    <label>Nova Meta para 2026 {{novaUnidadeMedida}}</label>
+                    <label>Nova Meta para 2026 {{this.formatarUnidadeMedida(dadosIndicadorRevisao.unidade_medida_id)}}</label>
                     <br>
                     <input id="vlr_esperado_ano_3_nova"  disabled
                     type="number" 
@@ -348,12 +348,12 @@
 
             <div class="row mt-3">
                 <div class="column col-6 col-xs-12">
-                    <label for="vlr_meta_final_cenario_alternativo">Meta para 2027 {{dadosMeta.unidade_medida_simbolo}}</label>
+                    <label for="vlr_meta_final_cenario_alternativo">Meta para 2027 {{this.formatarUnidadeMedida(dadosIniciativa.unidade_medida_id)}}</label>
                     <p v-text="dadosMeta.vlr_meta_final_cenario_alternativo"></p>
                 </div>
             
                 <div class="column col-6 col-xs-12 br-input">
-                    <label>Nova Meta para 2027 {{novaUnidadeMedida}}</label>
+                    <label>Nova Meta para 2027 {{this.formatarUnidadeMedida(dadosIndicadorRevisao.unidade_medida_id)}}</label>
                     <br>
                     <input id="vlr_esperado_ano_4_nova" disabled
                     type="number" 
@@ -531,27 +531,21 @@ export default {
         }
     },
     methods: {
-        onChangeUnidadeMedida(){
-            this.novaUnidadeMedida = this.unidadeMedida;
-            switch (this.novaUnidadeMedida){
+        formatarUnidadeMedida(unidadeMedidaId){
+            switch (unidadeMedidaId){
             case 1:
-                this.novaUnidadeMedida = '(R$)';
-                break;
+                return '(R$)';
             case 2:
-                this.novaUnidadeMedida = '(%)';
-                break;
+                return '(%)';
             case 3:
-                this.novaUnidadeMedida = '(ADI)';
-                break;
+                return '(ADI)';
             case 4:
-                this.novaUnidadeMedida = '(m²)';
-                break;
+                return '(m²)';
             case 5:
-                this.novaUnidadeMedida = '(UN)';
-                break;
+                return '(UN)';
             default:
-                this.novaUnidadeMedida = '';
-            }
+                return '';
+        }
         },
 
         IrParaPagina(destino){

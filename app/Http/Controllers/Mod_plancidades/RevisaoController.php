@@ -152,6 +152,8 @@ class RevisaoController extends Controller
             $where[] = ['bln_ppa', true];
         }
 
+        $where[] = ['bln_meta_iniciativa_individualizada', false];
+
         $iniciativas = ViewIndicadoresIniciativasRevisao::where($where)->orderBy('iniciativa_id')->get();
 
         // return ($iniciativas);

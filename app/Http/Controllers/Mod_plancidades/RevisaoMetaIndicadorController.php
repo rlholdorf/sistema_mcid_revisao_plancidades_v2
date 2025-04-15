@@ -132,13 +132,22 @@ class RevisaoMetaIndicadorController extends Controller
         $dados_salvos = $dados_meta_revisao->save();
 
         if ($dados_salvos) {
+
+            $situacao_revisao_indicadores = new RlcSituacaoRevisaoIndicadores();
+            $situacao_revisao_indicadores->revisao_indicador_id = $dados_revisao->id;
+            $situacao_revisao_indicadores->situacao_revisao_id = '2';
+            $situacao_revisao_indicadores->user_id = $user->id;
+            $situacao_revisao_indicadores->created_at = date('Y-m-d H:i:s');
+            $situacao_revisao_indicadores->indicador_objetivo_estrategico_id = $dados_revisao->indicador_objetivo_estrategico_id;
+            $situacao_revisao_indicadores->save();
+
             DB::commit();
             flash()->sucesso("Sucesso", "Revisão da meta do Indicador cadastrada com sucesso!");
             if($dados_meta_revisao->bln_meta_regionalizada == 'true'){
                 return Redirect::route("plancidades.revisao.regionalizacao.objetivoEstrategico.criar", ["revisaoId" => $revisaoId]);
             }
             else{
-                return Redirect::route("plancidades.revisao.objetivoEstrategico.finalizar", ["revisaoId" => $revisaoId]);
+                return Redirect::route("plancidades.revisao.objetivoEstrategico.show", ["revisaoId" => $revisaoId]);
             }
         } else {
             DB::rollBack();
@@ -276,7 +285,7 @@ class RevisaoMetaIndicadorController extends Controller
                 return Redirect::route("plancidades.revisao.regionalizacao.objetivoEstrategico.criar", ["revisaoId" => $revisaoId]);
             }
             else{
-                return Redirect::route("plancidades.revisao.objetivoEstrategico.finalizar", ["revisaoId" => $revisaoId]);
+                return Redirect::route("plancidades.revisao.objetivoEstrategico.show", ["revisaoId" => $revisaoId]);
             }
         } else {
             DB::rollBack();

@@ -128,6 +128,7 @@ class RevisaoIndicadorController extends Controller
         $dados_indicador_revisao->txt_sigla_indicador = $request->txt_sigla_indicador_nova;
         $dados_indicador_revisao->vlr_indice_referencia = $request->vlr_indice_referencia_nova;
         $dados_indicador_revisao->unidade_medida_id = $request->unidade_medida_id_nova ? $request->unidade_medida_id_nova : $dados_indicador->unidade_medida_id;
+        $dados_indicador_revisao->txt_periodo_ou_data = $request->txt_periodo_ou_data_nova;
         $dados_indicador_revisao->txt_data_divulgacao_ou_disponibilizacao = $request->txt_data_divulgacao_ou_disponibilizacao_nova;
         $dados_indicador_revisao->periodicidades_id = $request->periodicidade_id_nova;
         $dados_indicador_revisao->polaridades_id = $request->polaridade_id_nova;
@@ -145,7 +146,7 @@ class RevisaoIndicadorController extends Controller
 
         $situacao_revisao_indicadores = new RlcSituacaoRevisaoIndicadores();
         $situacao_revisao_indicadores->revisao_indicador_id = $dados_revisao->id;
-        $situacao_revisao_indicadores->situacao_revisao_id = '2';
+        $situacao_revisao_indicadores->situacao_revisao_id = '1';
         $situacao_revisao_indicadores->user_id = $user->id;
         $situacao_revisao_indicadores->created_at = date('Y-m-d H:i:s');
         $situacao_revisao_indicadores->indicador_objetivo_estrategico_id = $dados_revisao->indicador_objetivo_estrategico_id;
@@ -179,8 +180,8 @@ class RevisaoIndicadorController extends Controller
         $dadosIndicadorRevisao = IndicadoresObjetivosEstrategicosRevisao::where('revisao_indicador_id', $revisaoId)->first();
         $dadosMetaRevisao = MetasObjetivosEstrategicosRevisao::where('revisao_indicador_id', $revisaoId)->first();
         $dadosRegionalizacaoRevisao = RegionalizacaoMetaObjEstrRevisao::where('revisao_indicador_id', $revisaoId)->get();
-        $dadosRegionalizacao = RegionalizacaoMetaObjEstr::where('meta_objetivos_estrategicos_id', $dadosMetaRevisao->meta_indicador_objetivo_estrategico_id)->with('regionalizacao')->get();
-        $situacaoRevisao = RlcSituacaoRevisaoIndicadores::where('revisao_indicador_id', $revisaoId)->orderBy('created_at', 'desc')->first();
+        $dadosRegionalizacao = RegionalizacaoMetaObjEstr::where('meta_objetivos_estrategicos_id', $dadosIndicador->objetivo_estrategico_meta_id)->with('regionalizacao')->get();
+        $situacaoRevisao = ViewValidacaoRevisaoIndicadores::where('revisao_indicador_id', $revisaoId)->orderBy('created_at', 'desc')->first();
 
         return view('modulo_plancidades.revisao.objetivo_estrategico.show_revisao_indicador', compact('dadosIndicador', 'dadosRevisao', 'dadosIndicadorRevisao', 'dadosMetaRevisao', 'dadosRegionalizacaoRevisao', 'dadosRegionalizacao', 'situacaoRevisao'));
 
@@ -247,6 +248,7 @@ class RevisaoIndicadorController extends Controller
         $dados_indicador_revisao->txt_sigla_indicador = $request->txt_sigla_indicador_nova;
         $dados_indicador_revisao->vlr_indice_referencia = $request->vlr_indice_referencia_nova;
         $dados_indicador_revisao->unidade_medida_id = $request->unidade_medida_id_nova ? $request->unidade_medida_id_nova : $dados_indicador->unidade_medida_id;
+        $dados_indicador_revisao->txt_periodo_ou_data = $request->txt_periodo_ou_data_nova;
         $dados_indicador_revisao->txt_data_divulgacao_ou_disponibilizacao = $request->txt_data_divulgacao_ou_disponibilizacao_nova;
         $dados_indicador_revisao->periodicidades_id = $request->periodicidade_id_nova;
         $dados_indicador_revisao->polaridades_id = $request->polaridade_id_nova;
@@ -264,14 +266,6 @@ class RevisaoIndicadorController extends Controller
         
         //Não há necessidade de tabela de relação entre Revisão e Situação. A situação da revisão pode ser salva diretamente na tab da revisão - Renan: combinamos de manter igual Monitoramento e depois ajustar.
         if ($dados_salvos) {
-            $situacao_revisao_indicador = new RlcSituacaoRevisaoIndicadores();
-            $situacao_revisao_indicador->revisao_indicador_id = $revisaoId;
-            $situacao_revisao_indicador->user_id = $user->id;
-            $situacao_revisao_indicador->situacao_revisao_id = '2';
-            $situacao_revisao_indicador->created_at = date('Y-m-d H:i:s');
-            $situacao_revisao_indicador->indicador_objetivo_estrategico_id = $request->indicador_objetivo_estrategico_id;
-            $situacao_revisao_indicador->save();
-        
 
             DB::commit();
             flash()->sucesso("Sucesso", "Revisão do indicador de Objetivo Estratégico atualizada com sucesso!");
@@ -381,8 +375,8 @@ class RevisaoIndicadorController extends Controller
         
         $situacao_revisao_indicadores = new RlcSituacaoRevisaoIndicadores();
         $situacao_revisao_indicadores->revisao_indicador_id = $dados_revisao->id;
-        $situacao_revisao_indicadores->situacao_revisao_id = '2';
-        $situacao_revisao_indicadores->txt_observacao = 'Em revisão';
+        $situacao_revisao_indicadores->situacao_revisao_id = '1';
+        $situacao_revisao_indicadores->txt_observacao = '';
         $situacao_revisao_indicadores->user_id = $user->id;
         $situacao_revisao_indicadores->created_at = date('Y-m-d H:i:s');
         $situacao_revisao_indicadores->indicador_objetivo_estrategico_id = $request->indicador;

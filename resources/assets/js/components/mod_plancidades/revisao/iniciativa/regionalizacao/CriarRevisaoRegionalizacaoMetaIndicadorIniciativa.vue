@@ -114,26 +114,20 @@ export default {
         }
     },
     methods: {
-        onChangeUnidadeMedida(){
-            this.novaUnidadeMedida = this.unidadeMedida;
-            switch (this.novaUnidadeMedida){
+        formatarUnidadeMedida(unidadeMedidaId){
+            switch (unidadeMedidaId){
             case 1:
-                this.novaUnidadeMedida = '(R$)';
-                break;
+                return '(R$)';
             case 2:
-                this.novaUnidadeMedida = '(%)';
-                break;
+                return '(%)';
             case 3:
-                this.novaUnidadeMedida = '(ADI)';
-                break;
+                return '(ADI)';
             case 4:
-                this.novaUnidadeMedida = '(m²)';
-                break;
+                return '(m²)';
             case 5:
-                this.novaUnidadeMedida = '(UN)';
-                break;
+                return '(UN)';
             default:
-                this.novaUnidadeMedida = '';
+                return '';
         }
 
         },

@@ -25,12 +25,12 @@
 
                 <div class="column col-xs-12 col-sm-3">
                     <label for="situacaoRevisao">Situação da Revisão</label>
-                    <p v-text="txt_situacao_revisao"></p>
+                    <p v-text="this.txt_situacao_revisao"></p>
                 </div>
 
-                <div class="column col-xs-12 col-sm-12">
+                <div v-if="situacao_revisao_observacao" class="column col-xs-12 col-sm-12">
                     <label for="observacaoRevisao">Observações CGPI sobre a Revisão</label>
-                    <p v-text="situacao_revisao_observacao"></p>
+                    <p v-text="this.situacao_revisao_observacao"></p>
                 </div>
             </div><!-- div row -->
 
@@ -260,12 +260,12 @@
 
             <div class="row mt-3">
                 <div class="column col-6 col-xs-12">
-                    <label for="vlr_esperado_ano_2">Meta para 2025 {{dadosIndicador.unidade_medida_simbolo}}</label>
+                    <label for="vlr_esperado_ano_2">Meta para 2025 {{this.formatarUnidadeMedida(this.dadosIndicador.unidade_medida_id)}}</label>
                     <p v-text="dadosIndicador.vlr_esperado_ano_2"></p>
                 </div>
             
                 <div class="column col-6 col-xs-12 br-textarea">
-                    <label>Nova Meta para 2025 {{dadosIndicadorRevisao.unidade_medida_id}}</label>
+                    <label>Nova Meta para 2025 {{this.formatarUnidadeMedida(dadosIndicadorRevisao.unidade_medida_id)}}</label>
                     <br>
                     <input disabled id="vlr_esperado_ano_2_nova" 
                     type="number" 
@@ -278,12 +278,12 @@
 
             <div class="row mt-3">
                 <div class="column col-6 col-xs-12">
-                    <label for="vlr_esperado_ano_3">Meta para 2026 {{dadosIndicador.unidade_medida_simbolo}}</label>
+                    <label for="vlr_esperado_ano_3">Meta para 2026 {{this.formatarUnidadeMedida(this.dadosIndicador.unidade_medida_id)}}</label>
                     <p v-text="dadosIndicador.vlr_esperado_ano_3"></p>
                 </div>
             
                 <div class="column col-6 col-xs-12 br-textarea">
-                    <label>Nova Meta para 2026 {{dadosIndicadorRevisao.unidade_medida_id}}</label>
+                    <label>Nova Meta para 2026 {{this.formatarUnidadeMedida(dadosIndicadorRevisao.unidade_medida_id)}}</label>
                     <br>
                     <input disabled id="vlr_esperado_ano_3_nova" 
                     type="number" 
@@ -296,12 +296,12 @@
 
             <div class="row mt-3">
                 <div class="column col-6 col-xs-12">
-                    <label for="vlr_meta_final_cenario_atual">Meta para 2027 {{dadosIndicador.unidade_medida_simbolo}}</label>
+                    <label for="vlr_meta_final_cenario_atual">Meta para 2027 {{this.formatarUnidadeMedida(this.dadosIndicador.unidade_medida_id)}}</label>
                     <p v-text="dadosIndicador.vlr_meta_final_cenario_atual"></p>
                 </div>
             
                 <div class="column col-6 col-xs-12 br-textarea">
-                    <label>Nova Meta para 2027 {{dadosIndicadorRevisao.unidade_medida_id}}</label>
+                    <label>Nova Meta para 2027 {{this.formatarUnidadeMedida(dadosIndicadorRevisao.unidade_medida_id)}}</label>
                     <br>
                     <input disabled id="vlr_esperado_ano_4_nova" 
                     type="number" 
@@ -481,27 +481,21 @@ export default {
         }
     },
     methods: {
-        onChangeUnidadeMedida(){
-            this.novaUnidadeMedida = this.unidadeMedida;
-            switch (this.novaUnidadeMedida){
+        formatarUnidadeMedida(unidadeMedidaId){
+            switch (unidadeMedidaId){
             case 1:
-                this.novaUnidadeMedida = '(R$)';
-                break;
+                return '(R$)';
             case 2:
-                this.novaUnidadeMedida = '(%)';
-                break;
+                return '(%)';
             case 3:
-                this.novaUnidadeMedida = '(ADI)';
-                break;
+                return '(ADI)';
             case 4:
-                this.novaUnidadeMedida = '(m²)';
-                break;
+                return '(m²)';
             case 5:
-                this.novaUnidadeMedida = '(UN)';
-                break;
+                return '(UN)';
             default:
-                this.novaUnidadeMedida = '';
-            }
+                return '';
+        }
         },
 
         IrParaPagina(destino){
@@ -544,6 +538,7 @@ export default {
             this.situacao_revisao_observacao = '';
         };
 
+        console.log(this.situacaoRevisao);
     }
 }
 </script>
