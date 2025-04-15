@@ -112489,6 +112489,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['url', 'dadosRevisao', 'dadosIndicador', 'dadosRegionalizacao', 'revisaoCadastrada', 'dadosIndicadorRevisao', 'dadosMetaRevisao'],
@@ -113355,6 +113368,65 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-3" }, [
+          _c("div", { staticClass: "col col-xs-12 br-textarea" }, [
+            _c(
+              "label",
+              { attrs: { for: "txt_justificativa_revisao_indicador" } },
+              [
+                _vm._v(
+                  "Justificativa para as alterações do Indicador (Obrigatório)"
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value:
+                    _vm.dadosIndicadorRevisao
+                      .txt_justificativa_revisao_indicador,
+                  expression:
+                    "dadosIndicadorRevisao.txt_justificativa_revisao_indicador"
+                }
+              ],
+              staticClass: "input-medium",
+              attrs: {
+                required: "",
+                id: "txt_justificativa_revisao_indicador",
+                name: "txt_justificativa_revisao_indicador",
+                rows: "2"
+              },
+              domProps: {
+                value:
+                  _vm.dadosIndicadorRevisao.txt_justificativa_revisao_indicador
+              },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.dadosIndicadorRevisao,
+                    "txt_justificativa_revisao_indicador",
+                    $event.target.value
+                  )
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("p", { staticClass: "text-base mt-1" }, [
+              _vm._v(
+                "(Obs.: em caso de atualização decorrente de alteração orçamentária, informar ação(ões) orçamentária(s) - \n                código e título - que financia(m) a meta e a justificativa)"
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col col-xs-12 col-sm-12" }, [
             _c("div", { staticClass: "p-3 text-right" }, [
@@ -113460,6 +113532,28 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -114781,6 +114875,63 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
+        _c("div", { staticClass: "row mt-3" }, [
+          _c("div", { staticClass: "col col-xs-12 br-textarea" }, [
+            _c(
+              "label",
+              { attrs: { for: "txt_justificativa_revisao_indicador" } },
+              [
+                _vm._v(
+                  "Justificativa para as alterações do Indicador (Obrigatório)"
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value:
+                    _vm.dadosIndicadorRevisao
+                      .txt_justificativa_revisao_indicador,
+                  expression:
+                    "dadosIndicadorRevisao.txt_justificativa_revisao_indicador"
+                }
+              ],
+              staticClass: "input-medium",
+              attrs: {
+                disabled: "",
+                id: "txt_justificativa_revisao_indicador",
+                name: "txt_justificativa_revisao_indicador",
+                rows: "2"
+              },
+              domProps: {
+                value:
+                  _vm.dadosIndicadorRevisao.txt_justificativa_revisao_indicador
+              },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.dadosIndicadorRevisao,
+                    "txt_justificativa_revisao_indicador",
+                    $event.target.value
+                  )
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("p", { staticClass: "text-base mt-1" }, [
+              _vm._v(
+                "(Obs.: em caso de atualização decorrente de alteração orçamentária, informar ação(ões) orçamentária(s) - \n                código e título - que financia(m) a meta e a justificativa)"
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col col-xs-12 col-sm-12" }, [
             _c("div", { staticClass: "p-3 text-right" }, [
@@ -115274,6 +115425,53 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
+        _c("div", { staticClass: "row mt-3" }, [
+          _c("div", { staticClass: "col col-xs-12 br-textarea" }, [
+            _c("label", { attrs: { for: "txt_justificativa_revisao_meta" } }, [
+              _vm._v("Justificativa para as alterações da Meta (Obrigatório)")
+            ]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.dadosMetaRevisao.txt_justificativa_revisao_meta,
+                  expression: "dadosMetaRevisao.txt_justificativa_revisao_meta"
+                }
+              ],
+              staticClass: "input-medium",
+              attrs: {
+                disabled: "",
+                id: "txt_justificativa_revisao_meta",
+                name: "txt_justificativa_revisao_meta",
+                rows: "2"
+              },
+              domProps: {
+                value: _vm.dadosMetaRevisao.txt_justificativa_revisao_meta
+              },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.dadosMetaRevisao,
+                    "txt_justificativa_revisao_meta",
+                    $event.target.value
+                  )
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("p", { staticClass: "text-base mt-1" }, [
+              _vm._v(
+                "(Obs.: em caso de atualização decorrente de alteração orçamentária, informar ação(ões) orçamentária(s) - \n                código e título - que financia(m) a meta e a justificativa)"
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col col-xs-12 col-sm-12" }, [
             _c("div", { staticClass: "p-3 text-right" }, [
@@ -115654,6 +115852,18 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -116276,6 +116486,10 @@ var render = function() {
           _vm._m(10)
         ]),
         _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _vm._m(11),
+        _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col col-xs-12 col-sm-12" }, [
             _c("div", { staticClass: "p-3 text-right" }, [
@@ -116488,6 +116702,34 @@ var staticRenderFns = [
         }
       })
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row mt-3" }, [
+      _c("div", { staticClass: "col col-xs-12 br-textarea" }, [
+        _c("label", { attrs: { for: "txt_justificativa_revisao_indicador" } }, [
+          _vm._v("Justificativa para as alterações do Indicador (Obrigatório)")
+        ]),
+        _vm._v(" "),
+        _c("textarea", {
+          staticClass: "input-medium",
+          attrs: {
+            required: "",
+            id: "txt_justificativa_revisao_indicador",
+            name: "txt_justificativa_revisao_indicador",
+            rows: "2"
+          }
+        }),
+        _vm._v(" "),
+        _c("p", { staticClass: "text-base mt-1" }, [
+          _vm._v(
+            "(Obs.: em caso de atualização decorrente de alteração orçamentária, informar ação(ões) orçamentária(s) - \n                código e título - que financia(m) a meta e a justificativa)"
+          )
+        ])
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -116552,6 +116794,18 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -116962,6 +117216,10 @@ var render = function() {
           _vm._m(4)
         ]),
         _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _vm._m(5),
+        _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col col-xs-12 col-sm-12" }, [
             _c("div", { staticClass: "p-3 text-right" }, [
@@ -117089,6 +117347,34 @@ var staticRenderFns = [
         }
       })
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row mt-3" }, [
+      _c("div", { staticClass: "col col-xs-12 br-textarea" }, [
+        _c("label", { attrs: { for: "txt_justificativa_revisao_meta" } }, [
+          _vm._v("Justificativa para as alterações da Meta (Obrigatório)")
+        ]),
+        _vm._v(" "),
+        _c("textarea", {
+          staticClass: "input-medium",
+          attrs: {
+            required: "",
+            id: "txt_justificativa_revisao_meta",
+            name: "txt_justificativa_revisao_meta",
+            rows: "2"
+          }
+        }),
+        _vm._v(" "),
+        _c("p", { staticClass: "text-base mt-1" }, [
+          _vm._v(
+            "(Obs.: em caso de atualização decorrente de alteração orçamentária, informar ação(ões) orçamentária(s) - \n                código e título - que financia(m) a meta e a justificativa)"
+          )
+        ])
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -117153,6 +117439,19 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -117770,6 +118069,55 @@ var render = function() {
                 }
               }
             })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-3" }, [
+          _c("div", { staticClass: "col col-xs-12 br-textarea" }, [
+            _c("label", { attrs: { for: "txt_justificativa_revisao_meta" } }, [
+              _vm._v("Justificativa para as alterações da Meta (Obrigatório)")
+            ]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.dadosMetaRevisao.txt_justificativa_revisao_meta,
+                  expression: "dadosMetaRevisao.txt_justificativa_revisao_meta"
+                }
+              ],
+              staticClass: "input-medium",
+              attrs: {
+                required: "",
+                id: "txt_justificativa_revisao_meta",
+                name: "txt_justificativa_revisao_meta",
+                rows: "2"
+              },
+              domProps: {
+                value: _vm.dadosMetaRevisao.txt_justificativa_revisao_meta
+              },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.dadosMetaRevisao,
+                    "txt_justificativa_revisao_meta",
+                    $event.target.value
+                  )
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("p", { staticClass: "text-base mt-1" }, [
+              _vm._v(
+                "(Obs.: em caso de atualização decorrente de alteração orçamentária, informar ação(ões) orçamentária(s) - \n                código e título - que financia(m) a meta e a justificativa)"
+              )
+            ])
           ])
         ]),
         _vm._v(" "),
@@ -120078,6 +120426,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -120226,6 +120586,10 @@ var render = function() {
           _vm._m(3)
         ]),
         _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _vm._m(4),
+        _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col col-xs-12 col-sm-12" }, [
             _c("div", { staticClass: "p-3 text-right" }, [
@@ -120326,6 +120690,36 @@ var staticRenderFns = [
         ]
       )
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row mt-3" }, [
+      _c("div", { staticClass: "col col-xs-12 br-textarea" }, [
+        _c(
+          "label",
+          { attrs: { for: "txt_justificativa_revisao_iniciativa" } },
+          [_vm._v("Justificativa para as alterações da Entrega (Obrigatório)")]
+        ),
+        _vm._v(" "),
+        _c("textarea", {
+          staticClass: "input-medium",
+          attrs: {
+            required: "",
+            id: "txt_justificativa_revisao_iniciativa",
+            name: "txt_justificativa_revisao_iniciativa",
+            rows: "2"
+          }
+        }),
+        _vm._v(" "),
+        _c("p", { staticClass: "text-base mt-1" }, [
+          _vm._v(
+            "(Obs.: em caso de atualização decorrente de alteração orçamentária, informar ação(ões) orçamentária(s) - \n                código e título - que financia(m) a meta e a justificativa)"
+          )
+        ])
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -120390,6 +120784,19 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -120783,6 +121190,66 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-3" }, [
+          _c("div", { staticClass: "col col-xs-12 br-textarea" }, [
+            _c(
+              "label",
+              { attrs: { for: "txt_justificativa_revisao_iniciativa" } },
+              [
+                _vm._v(
+                  "Justificativa para as alterações da Entrega (Obrigatório)"
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value:
+                    _vm.dadosIniciativaRevisao
+                      .txt_justificativa_revisao_iniciativa,
+                  expression:
+                    "dadosIniciativaRevisao.txt_justificativa_revisao_iniciativa"
+                }
+              ],
+              staticClass: "input-medium",
+              attrs: {
+                required: "",
+                id: "txt_justificativa_revisao_iniciativa",
+                name: "txt_justificativa_revisao_iniciativa",
+                rows: "2"
+              },
+              domProps: {
+                value:
+                  _vm.dadosIniciativaRevisao
+                    .txt_justificativa_revisao_iniciativa
+              },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.dadosIniciativaRevisao,
+                    "txt_justificativa_revisao_iniciativa",
+                    $event.target.value
+                  )
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("p", { staticClass: "text-base mt-1" }, [
+              _vm._v(
+                "(Obs.: em caso de atualização decorrente de alteração orçamentária, informar ação(ões) orçamentária(s) - \n                código e título - que financia(m) a meta e a justificativa)"
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col col-xs-12 col-sm-12" }, [
             _c("div", { staticClass: "p-3 text-right" }, [
@@ -120886,6 +121353,39 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -121725,6 +122225,64 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
+        _c("div", { staticClass: "row mt-3" }, [
+          _c("div", { staticClass: "col col-xs-12 br-textarea" }, [
+            _c(
+              "label",
+              { attrs: { for: "txt_justificativa_revisao_iniciativa" } },
+              [
+                _vm._v(
+                  "Justificativa para as alterações da Entrega (Obrigatório)"
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value:
+                    _vm.dadosIniciativaRevisao
+                      .txt_justificativa_revisao_iniciativa,
+                  expression:
+                    "dadosIniciativaRevisao.txt_justificativa_revisao_iniciativa"
+                }
+              ],
+              staticClass: "input-medium",
+              attrs: {
+                disabled: "",
+                id: "txt_justificativa_revisao_iniciativa",
+                name: "txt_justificativa_revisao_iniciativa",
+                rows: "2"
+              },
+              domProps: {
+                value:
+                  _vm.dadosIniciativaRevisao
+                    .txt_justificativa_revisao_iniciativa
+              },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.dadosIniciativaRevisao,
+                    "txt_justificativa_revisao_iniciativa",
+                    $event.target.value
+                  )
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("p", { staticClass: "text-base mt-1" }, [
+              _vm._v(
+                "(Obs.: em caso de atualização decorrente de alteração orçamentária, informar ação(ões) orçamentária(s) - \n                código e título - que financia(m) a meta e a justificativa)"
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col col-xs-12 col-sm-12" }, [
             _c("div", { staticClass: "p-3 text-right" }, [
@@ -122471,6 +123029,66 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
+        _c("div", { staticClass: "row mt-3" }, [
+          _c("div", { staticClass: "col col-xs-12 br-textarea" }, [
+            _c(
+              "label",
+              {
+                attrs: { for: "txt_justificativa_revisao_indicador_iniciativa" }
+              },
+              [
+                _vm._v(
+                  "Justificativa para as alterações do Indicador da Entrega (Obrigatório)"
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value:
+                    _vm.dadosIndicadorRevisao
+                      .txt_justificativa_revisao_indicador_iniciativa,
+                  expression:
+                    "dadosIndicadorRevisao.txt_justificativa_revisao_indicador_iniciativa"
+                }
+              ],
+              staticClass: "input-medium",
+              attrs: {
+                disabled: "",
+                id: "txt_justificativa_revisao_indicador_iniciativa",
+                name: "txt_justificativa_revisao_indicador_iniciativa",
+                rows: "2"
+              },
+              domProps: {
+                value:
+                  _vm.dadosIndicadorRevisao
+                    .txt_justificativa_revisao_indicador_iniciativa
+              },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.dadosIndicadorRevisao,
+                    "txt_justificativa_revisao_indicador_iniciativa",
+                    $event.target.value
+                  )
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("p", { staticClass: "text-base mt-1" }, [
+              _vm._v(
+                "(Obs.: em caso de atualização decorrente de alteração orçamentária, informar ação(ões) orçamentária(s) - \n                código e título - que financia(m) a meta e a justificativa)"
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col col-xs-12 col-sm-12" }, [
             _c("div", { staticClass: "p-3 text-right" }, [
@@ -122960,6 +123578,63 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
+        _c("div", { staticClass: "row mt-3" }, [
+          _c("div", { staticClass: "col col-xs-12 br-textarea" }, [
+            _c(
+              "label",
+              { attrs: { for: "txt_justificativa_revisao_meta_iniciativa" } },
+              [
+                _vm._v(
+                  "Justificativa para as alterações da Meta do Indicador da Entrega (Obrigatório)"
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value:
+                    _vm.dadosMetaRevisao
+                      .txt_justificativa_revisao_meta_iniciativa,
+                  expression:
+                    "dadosMetaRevisao.txt_justificativa_revisao_meta_iniciativa"
+                }
+              ],
+              staticClass: "input-medium",
+              attrs: {
+                disabled: "",
+                id: "txt_justificativa_revisao_meta_iniciativa",
+                name: "txt_justificativa_revisao_meta_iniciativa",
+                rows: "2"
+              },
+              domProps: {
+                value:
+                  _vm.dadosMetaRevisao.txt_justificativa_revisao_meta_iniciativa
+              },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.dadosMetaRevisao,
+                    "txt_justificativa_revisao_meta_iniciativa",
+                    $event.target.value
+                  )
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("p", { staticClass: "text-base mt-1" }, [
+              _vm._v(
+                "(Obs.: em caso de atualização decorrente de alteração orçamentária, informar ação(ões) orçamentária(s) - \n                código e título - que financia(m) a meta e a justificativa)"
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col col-xs-12 col-sm-12" }, [
             _c("div", { staticClass: "p-3 text-right" }, [
@@ -123346,6 +124021,18 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -123970,6 +124657,10 @@ var render = function() {
           _vm._m(10)
         ]),
         _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _vm._m(11),
+        _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col col-xs-12 col-sm-12" }, [
             _c("div", { staticClass: "p-3 text-right" }, [
@@ -124180,6 +124871,40 @@ var staticRenderFns = [
         }
       })
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row mt-3" }, [
+      _c("div", { staticClass: "col col-xs-12 br-textarea" }, [
+        _c(
+          "label",
+          { attrs: { for: "txt_justificativa_revisao_indicador_iniciativa" } },
+          [
+            _vm._v(
+              "Justificativa para as alterações do Indicador da Entrega (Obrigatório)"
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c("textarea", {
+          staticClass: "input-medium",
+          attrs: {
+            required: "",
+            id: "txt_justificativa_revisao_indicador_iniciativa",
+            name: "txt_justificativa_revisao_indicador_iniciativa",
+            rows: "2"
+          }
+        }),
+        _vm._v(" "),
+        _c("p", { staticClass: "text-base mt-1" }, [
+          _vm._v(
+            "(Obs.: em caso de atualização decorrente de alteração orçamentária, informar ação(ões) orçamentária(s) - \n                código e título - que financia(m) a meta e a justificativa)"
+          )
+        ])
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -124244,6 +124969,18 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -125291,6 +126028,68 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-3" }, [
+          _c("div", { staticClass: "col col-xs-12 br-textarea" }, [
+            _c(
+              "label",
+              {
+                attrs: { for: "txt_justificativa_revisao_indicador_iniciativa" }
+              },
+              [
+                _vm._v(
+                  "Justificativa para as alterações do Indicador da Entrega (Obrigatório)"
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value:
+                    _vm.dadosIndicadorIniciativaRevisao
+                      .txt_justificativa_revisao_indicador_iniciativa,
+                  expression:
+                    "dadosIndicadorIniciativaRevisao.txt_justificativa_revisao_indicador_iniciativa"
+                }
+              ],
+              staticClass: "input-medium",
+              attrs: {
+                required: "",
+                id: "txt_justificativa_revisao_indicador_iniciativa",
+                name: "txt_justificativa_revisao_indicador_iniciativa",
+                rows: "2"
+              },
+              domProps: {
+                value:
+                  _vm.dadosIndicadorIniciativaRevisao
+                    .txt_justificativa_revisao_indicador_iniciativa
+              },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.dadosIndicadorIniciativaRevisao,
+                    "txt_justificativa_revisao_indicador_iniciativa",
+                    $event.target.value
+                  )
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("p", { staticClass: "text-base mt-1" }, [
+              _vm._v(
+                "(Obs.: em caso de atualização decorrente de alteração orçamentária, informar ação(ões) orçamentária(s) - \n                código e título - que financia(m) a meta e a justificativa)"
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col col-xs-12 col-sm-12" }, [
             _c("div", { staticClass: "p-3 text-right" }, [
@@ -125396,6 +126195,18 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -125806,6 +126617,10 @@ var render = function() {
           _vm._m(4)
         ]),
         _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _vm._m(5),
+        _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col col-xs-12 col-sm-12" }, [
             _c("div", { staticClass: "p-3 text-right" }, [
@@ -125815,7 +126630,7 @@ var render = function() {
                   staticClass: "br-button primary mr-3",
                   attrs: { type: "submit" }
                 },
-                [_vm._v("Salvar\n                    ")]
+                [_vm._v("Avançar\n                    ")]
               ),
               _vm._v(" "),
               _c(
@@ -125931,6 +126746,40 @@ var staticRenderFns = [
         }
       })
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row mt-3" }, [
+      _c("div", { staticClass: "col col-xs-12 br-textarea" }, [
+        _c(
+          "label",
+          { attrs: { for: "txt_justificativa_revisao_meta_iniciativa" } },
+          [
+            _vm._v(
+              "Justificativa para as alterações da Meta do Indicador da Entrega (Obrigatório)"
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c("textarea", {
+          staticClass: "input-medium",
+          attrs: {
+            required: "",
+            id: "txt_justificativa_revisao_meta_iniciativa",
+            name: "txt_justificativa_revisao_meta_iniciativa",
+            rows: "2"
+          }
+        }),
+        _vm._v(" "),
+        _c("p", { staticClass: "text-base mt-1" }, [
+          _vm._v(
+            "(Obs.: em caso de atualização decorrente de alteração orçamentária, informar ação(ões) orçamentária(s) - \n                código e título - que financia(m) a meta e a justificativa)"
+          )
+        ])
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -125995,6 +126844,19 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -126614,6 +127476,65 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-3" }, [
+          _c("div", { staticClass: "col col-xs-12 br-textarea" }, [
+            _c(
+              "label",
+              { attrs: { for: "txt_justificativa_revisao_meta_iniciativa" } },
+              [
+                _vm._v(
+                  "Justificativa para as alterações da Meta do Indicador da Entrega (Obrigatório)"
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value:
+                    _vm.dadosMetaRevisao
+                      .txt_justificativa_revisao_meta_iniciativa,
+                  expression:
+                    "dadosMetaRevisao.txt_justificativa_revisao_meta_iniciativa"
+                }
+              ],
+              staticClass: "input-medium",
+              attrs: {
+                required: "",
+                id: "txt_justificativa_revisao_meta_iniciativa",
+                name: "txt_justificativa_revisao_meta_iniciativa",
+                rows: "2"
+              },
+              domProps: {
+                value:
+                  _vm.dadosMetaRevisao.txt_justificativa_revisao_meta_iniciativa
+              },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.dadosMetaRevisao,
+                    "txt_justificativa_revisao_meta_iniciativa",
+                    $event.target.value
+                  )
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("p", { staticClass: "text-base mt-1" }, [
+              _vm._v(
+                "(Obs.: em caso de atualização decorrente de alteração orçamentária, informar ação(ões) orçamentária(s) - \n                código e título - que financia(m) a meta e a justificativa)"
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col col-xs-12 col-sm-12" }, [
             _c("div", { staticClass: "p-3 text-right" }, [
@@ -126623,7 +127544,7 @@ var render = function() {
                   staticClass: "br-button primary mr-3",
                   attrs: { type: "submit" }
                 },
-                [_vm._v("Salvar\n                    ")]
+                [_vm._v("Avançar\n                    ")]
               ),
               _vm._v(" "),
               _c(

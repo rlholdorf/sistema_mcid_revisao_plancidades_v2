@@ -118,6 +118,7 @@ class RevisaoIniciativaController extends Controller
         $dados_iniciativa_revisao->txt_enunciado_iniciativa = $request->txt_enunciado_iniciativa_nova;
         $dados_iniciativa_revisao->dsc_iniciativa = $request->dsc_iniciativa_nova;
         $dados_iniciativa_revisao->bln_pac = $dados_iniciativa_revisao->bln_pac;
+        $dados_iniciativa_revisao->txt_justificativa_revisao_iniciativa = $request->txt_justificativa_revisao_iniciativa;
 
         $dados_iniciativa_revisao->objetivo_estrategico_pei_id = '-';
         $dados_iniciativa_revisao->created_at = date('Y-m-d H:i:s');
@@ -233,6 +234,8 @@ class RevisaoIniciativaController extends Controller
         $dados_iniciativa_revisao->txt_enunciado_iniciativa = $request->txt_enunciado_iniciativa_nova;
         $dados_iniciativa_revisao->dsc_iniciativa = $request->dsc_iniciativa_nova;
         $dados_iniciativa_revisao->bln_pac = $request->bln_pac_nova;
+        $dados_iniciativa_revisao->txt_justificativa_revisao_iniciativa = $request->txt_justificativa_revisao_iniciativa;
+
         //=============
 
         $dados_iniciativa_revisao->objetivo_estrategico_pei_id = $request->objetivo_estrategico_pei_id;

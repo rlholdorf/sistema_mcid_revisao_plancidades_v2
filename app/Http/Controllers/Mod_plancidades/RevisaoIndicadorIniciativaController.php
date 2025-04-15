@@ -123,6 +123,8 @@ class RevisaoIndicadorIniciativaController extends Controller
         $dados_revisao_indicador_iniciativa->txt_fonte_dados_variaveis_calculo = $request->txt_fonte_dados_variaveis_calculo_nova;
         $dados_revisao_indicador_iniciativa->txt_forma_disponibilizacao = $request->txt_forma_disponibilizacao_nova;
         $dados_revisao_indicador_iniciativa->dsc_procedimento_calculo = $request->dsc_procedimento_calculo_nova;
+        $dados_revisao_indicador_iniciativa->txt_justificativa_revisao_indicador_iniciativa = $request->txt_justificativa_revisao_indicador_iniciativa;
+
 
         $dados_revisao_indicador_iniciativa->created_at = date('Y-m-d H:i:s');
         $dados_revisao_indicador_iniciativa->indicador_iniciativa_id = $dados_indicador->id;
@@ -242,6 +244,7 @@ class RevisaoIndicadorIniciativaController extends Controller
         $dados_revisao_indicador_iniciativa->txt_fonte_dados_variaveis_calculo = $request->txt_fonte_dados_variaveis_calculo_nova;
         $dados_revisao_indicador_iniciativa->txt_forma_disponibilizacao = $request->txt_forma_disponibilizacao_nova;
         $dados_revisao_indicador_iniciativa->dsc_procedimento_calculo = $request->dsc_procedimento_calculo_nova;
+        $dados_revisao_indicador_iniciativa->txt_justificativa_revisao_indicador_iniciativa = $request->txt_justificativa_revisao_indicador_iniciativa;
 
         $dados_revisao_indicador_iniciativa->dte_apuracao = $request->dte_apuracao_nova;
         $dados_revisao_indicador_iniciativa->updated_at = date('Y-m-d H:i:s');

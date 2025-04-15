@@ -122,11 +122,23 @@
                 </div>
             </div>
 
+            <hr>
+
+            <div class="row mt-3" >
+                <div class="col col-xs-12 br-textarea">
+                    <label for="txt_justificativa_revisao_meta_iniciativa">Justificativa para as alterações da Meta do Indicador da Entrega (Obrigatório)</label>
+                    <textarea required class="input-medium" id="txt_justificativa_revisao_meta_iniciativa" name="txt_justificativa_revisao_meta_iniciativa" rows="2">
+                    </textarea>
+                    <p class="text-base mt-1">(Obs.: em caso de atualização decorrente de alteração orçamentária, informar ação(ões) orçamentária(s) - 
+                    código e título - que financia(m) a meta e a justificativa)</p>
+                </div>
+            </div>
+
             <!-- Botões Formulário -->
             <div class="row">
                 <div class="col col-xs-12 col-sm-12">
                     <div class="p-3 text-right">
-                        <button class="br-button primary mr-3" type="submit">Salvar
+                        <button class="br-button primary mr-3" type="submit">Avançar
                         </button>
 
                         <a class="br-button danger mr-3" type="button" :href='this.url+"/plancidades/revisao/iniciativa/consulta"'>Voltar

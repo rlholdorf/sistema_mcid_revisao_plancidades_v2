@@ -81,6 +81,17 @@
                 </div>
             </div>
 
+            <div class="row mt-3" >
+                <div class="col col-xs-12 br-textarea">
+                    <label for="txt_justificativa_revisao_iniciativa">Justificativa para as alterações da Entrega (Obrigatório)</label>
+                    <textarea disabled class="input-medium" id="txt_justificativa_revisao_iniciativa" name="txt_justificativa_revisao_iniciativa" rows="2"
+                    v-model="dadosIniciativaRevisao.txt_justificativa_revisao_iniciativa">
+                    </textarea>
+                    <p class="text-base mt-1">(Obs.: em caso de atualização decorrente de alteração orçamentária, informar ação(ões) orçamentária(s) - 
+                    código e título - que financia(m) a meta e a justificativa)</p>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col col-xs-12 col-sm-12">
                     <div class="p-3 text-right">
@@ -268,6 +279,17 @@
                 </div>
             </div>
 
+            <div class="row mt-3" >
+                <div class="col col-xs-12 br-textarea">
+                    <label for="txt_justificativa_revisao_indicador_iniciativa">Justificativa para as alterações do Indicador da Entrega (Obrigatório)</label>
+                    <textarea disabled class="input-medium" id="txt_justificativa_revisao_indicador_iniciativa" name="txt_justificativa_revisao_indicador_iniciativa" rows="2"
+                    v-model="dadosIndicadorRevisao.txt_justificativa_revisao_indicador_iniciativa">
+                    </textarea>
+                    <p class="text-base mt-1">(Obs.: em caso de atualização decorrente de alteração orçamentária, informar ação(ões) orçamentária(s) - 
+                    código e título - que financia(m) a meta e a justificativa)</p>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col col-xs-12 col-sm-12">
                     <div class="p-3 text-right">
@@ -390,6 +412,17 @@
                     <label>Nova Justificativa para não regionalização</label>
                     <textarea class="input-medium" id="dsc_justificativa_ausencia_regionalizacao_nova" name="dsc_justificativa_ausencia_regionalizacao_nova" rows="5" disabled v-model="dadosMetaRevisao.dsc_justificativa_ausencia_regionalizacao">
                     </textarea>
+                </div>
+            </div>
+
+            <div class="row mt-3" >
+                <div class="col col-xs-12 br-textarea">
+                    <label for="txt_justificativa_revisao_meta_iniciativa">Justificativa para as alterações da Meta do Indicador da Entrega (Obrigatório)</label>
+                    <textarea disabled class="input-medium" id="txt_justificativa_revisao_meta_iniciativa" name="txt_justificativa_revisao_meta_iniciativa" rows="2"
+                    v-model="dadosMetaRevisao.txt_justificativa_revisao_meta_iniciativa">
+                    </textarea>
+                    <p class="text-base mt-1">(Obs.: em caso de atualização decorrente de alteração orçamentária, informar ação(ões) orçamentária(s) - 
+                    código e título - que financia(m) a meta e a justificativa)</p>
                 </div>
             </div>
 

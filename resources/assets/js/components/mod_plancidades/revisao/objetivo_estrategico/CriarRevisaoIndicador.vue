@@ -189,6 +189,18 @@
                     </textarea>
                 </div>
             </div>
+
+            <hr>
+
+            <div class="row mt-3" >
+                <div class="col col-xs-12 br-textarea">
+                    <label for="txt_justificativa_revisao_indicador">Justificativa para as alterações do Indicador (Obrigatório)</label>
+                    <textarea required class="input-medium" id="txt_justificativa_revisao_indicador" name="txt_justificativa_revisao_indicador" rows="2">
+                    </textarea>
+                    <p class="text-base mt-1">(Obs.: em caso de atualização decorrente de alteração orçamentária, informar ação(ões) orçamentária(s) - 
+                    código e título - que financia(m) a meta e a justificativa)</p>
+                </div>
+            </div>
             
             <!-- Botões Formulário -->
             <div class="row">

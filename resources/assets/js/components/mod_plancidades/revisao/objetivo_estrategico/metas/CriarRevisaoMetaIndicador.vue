@@ -122,6 +122,18 @@
                 </div>
             </div>
 
+            <hr>
+
+            <div class="row mt-3" >
+                <div class="col col-xs-12 br-textarea">
+                    <label for="txt_justificativa_revisao_meta">Justificativa para as alterações da Meta (Obrigatório)</label>
+                    <textarea required class="input-medium" id="txt_justificativa_revisao_meta" name="txt_justificativa_revisao_meta" rows="2">
+                    </textarea>
+                    <p class="text-base mt-1">(Obs.: em caso de atualização decorrente de alteração orçamentária, informar ação(ões) orçamentária(s) - 
+                    código e título - que financia(m) a meta e a justificativa)</p>
+                </div>
+            </div>
+
             <!-- Botões Formulário -->
             <div class="row">
                 <div class="col col-xs-12 col-sm-12">

@@ -130,6 +130,8 @@ class RevisaoMetaIndicadorIniciativaController extends Controller
         $dados_meta_revisao->vlr_esperado_ano_4 = $request->vlr_esperado_ano_4_nova;
         $dados_meta_revisao->bln_meta_regionalizada = $request->bln_meta_regionalizada_nova ? $request->bln_meta_regionalizada_nova : $dados_meta->bln_meta_regionalizada;
         $dados_meta_revisao->dsc_justificativa_ausencia_regionalizacao = $request->dsc_justificativa_ausencia_regionalizacao_nova;
+        $dados_meta_revisao->txt_justificativa_revisao_meta_iniciativa = $request->txt_justificativa_revisao_meta_iniciativa;
+
         $dados_meta_revisao->created_at = date('Y-m-d H:i:s');
 
 
@@ -269,6 +271,8 @@ class RevisaoMetaIndicadorIniciativaController extends Controller
         $dados_meta_revisao->vlr_esperado_ano_4 = $request->vlr_esperado_ano_4_nova;
         $dados_meta_revisao->bln_meta_regionalizada = $request->bln_meta_regionalizada_nova ? $request->bln_meta_regionalizada_nova : $dados_meta->bln_meta_regionalizada;
         $dados_meta_revisao->dsc_justificativa_ausencia_regionalizacao = $request->dsc_justificativa_ausencia_regionalizacao_nova;
+        $dados_meta_revisao->txt_justificativa_revisao_meta_iniciativa = $request->txt_justificativa_revisao_meta_iniciativa;
+
         $dados_meta_revisao->updated_at = date('Y-m-d H:i:s');
 
 

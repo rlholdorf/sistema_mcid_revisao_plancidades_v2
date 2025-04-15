@@ -137,6 +137,7 @@ class RevisaoIndicadorController extends Controller
         $dados_indicador_revisao->txt_forma_disponibilizacao = $request->txt_forma_disponibilizacao_nova;
         $dados_indicador_revisao->dsc_procedimento_calculo = $request->dsc_procedimento_calculo_nova;
         $dados_indicador_revisao->bln_ppa = $dados_indicador->bln_ppa;
+        $dados_indicador_revisao->txt_justificativa_revisao_indicador = $request->txt_justificativa_revisao_indicador;
 
         $dados_indicador_revisao->objetivo_estrategico_pei_id = '-';
         $dados_indicador_revisao->created_at = date('Y-m-d H:i:s');
@@ -257,6 +258,7 @@ class RevisaoIndicadorController extends Controller
         $dados_indicador_revisao->txt_forma_disponibilizacao = $request->txt_forma_disponibilizacao_nova;
         $dados_indicador_revisao->dsc_procedimento_calculo = $request->dsc_procedimento_calculo_nova;
         $dados_indicador_revisao->bln_ppa = $dados_indicador->bln_ppa;
+        $dados_indicador_revisao->txt_justificativa_revisao_indicador = $request->txt_justificativa_revisao_indicador;
         //=============
 
         $dados_indicador_revisao->objetivo_estrategico_pei_id = '-';
