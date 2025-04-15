@@ -112,7 +112,7 @@ class RevisaoIndicadorIniciativaController extends Controller
         $dados_revisao_indicador_iniciativa->txt_denominacao_indicador = $request->txt_denominacao_indicador_nova;
         $dados_revisao_indicador_iniciativa->txt_sigla_indicador = $request->txt_sigla_indicador_nova;
         $dados_revisao_indicador_iniciativa->vlr_indice_referencia = $request->vlr_indice_referencia_nova;
-        $dados_revisao_indicador_iniciativa->unidade_medida_id = $request->unidade_medida_id_nova;
+        $dados_revisao_indicador_iniciativa->unidade_medida_id = $request->unidade_medida_id_nova ? $request->unidade_medida_id_nova : $dados_indicador->unidade_medida_id;
         $dados_revisao_indicador_iniciativa->dsc_indicador = $request->dsc_indicador_nova;
         $dados_revisao_indicador_iniciativa->txt_periodo_ou_data = $request->txt_periodo_ou_data_nova;
         $dados_revisao_indicador_iniciativa->txt_data_divulgacao_ou_disponibilizacao = $request->txt_data_divulgacao_ou_disponibilizacao_nova;
@@ -222,6 +222,8 @@ class RevisaoIndicadorIniciativaController extends Controller
         
         $dados_revisao = RevisaoIniciativas::find($revisaoId);
         $dados_revisao_indicador_iniciativa = IndicadoresIniciativasRevisao::where('revisao_iniciativa_id', $revisaoId)->first();
+
+        $dados_indicador = IndicadoresIniciativa::where('iniciativa_id', $dados_revisao->iniciativa_id)->first();
         
 
         $dados_revisao_indicador_iniciativa->user_id = $user->id;
@@ -229,7 +231,7 @@ class RevisaoIndicadorIniciativaController extends Controller
         $dados_revisao_indicador_iniciativa->txt_denominacao_indicador = $request->txt_denominacao_indicador_nova;
         $dados_revisao_indicador_iniciativa->txt_sigla_indicador = $request->txt_sigla_indicador_nova;
         $dados_revisao_indicador_iniciativa->vlr_indice_referencia = $request->vlr_indice_referencia_nova;
-        $dados_revisao_indicador_iniciativa->unidade_medida_id = $request->txt_unidade_medida_nova;
+        $dados_revisao_indicador_iniciativa->unidade_medida_id = $request->unidade_medida_id_nova ? $request->unidade_medida_id_nova : $dados_indicador->unidade_medida_id;
         $dados_revisao_indicador_iniciativa->dsc_indicador = $request->dsc_indicador_nova;
         $dados_revisao_indicador_iniciativa->txt_periodo_ou_data = $request->txt_periodo_ou_data_nova;
         $dados_revisao_indicador_iniciativa->txt_data_divulgacao_ou_disponibilizacao = $request->txt_data_divulgacao_ou_disponibilizacao_nova;

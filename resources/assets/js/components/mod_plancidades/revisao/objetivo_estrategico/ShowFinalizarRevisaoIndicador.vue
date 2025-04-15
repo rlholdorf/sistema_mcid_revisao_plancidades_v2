@@ -396,6 +396,7 @@
                             <table>
                                 <thead>
                                     <tr>
+                                        <th>#</th>
                                         <th class="text-center">Nova Meta para 2025</th>
                                         <th class="text-center">Nova Meta para 2026</th>
                                         <th class="text-center">Nova Meta para 2027</th>
@@ -403,9 +404,13 @@
                                 </thead>
                                 <tbody>
                                     <tr v-for="(item, index) in dadosRegionalizacaoRevisao">
-                                        <td class="text-center"><b>{{ item.vlr_esperado_ano_2 }}</b></td>
-                                        <td class="text-center"><b>{{ item.vlr_esperado_ano_3 }}</b></td>
-                                        <td class="text-center"><b>{{ item.vlr_esperado_ano_4 }}</b></td>
+                                        <td>{{ (index+1) }}</td>
+                                        <td class="text-center" v-if="item.vlr_esperado_ano_2"><b>{{ item.vlr_esperado_ano_2 }}</b></td>
+                                        <td class="text-center" v-else>Inalterado</td>
+                                        <td class="text-center" v-if="item.vlr_esperado_ano_3"><b>{{ item.vlr_esperado_ano_3 }}</b></td>
+                                        <td class="text-center" v-else>Inalterado</td>
+                                        <td class="text-center" v-if="item.vlr_esperado_ano_4"><b>{{ item.vlr_esperado_ano_4 }}</b></td>
+                                        <td class="text-center" v-else>Inalterado</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -415,7 +420,7 @@
                     <div class="row">
                         <div class="col col-xs-12 col-sm-12">
                             <div class="p-3 text-right">
-                                <button class="br-button primary mr-3" @click="irParaPagina('/plancidades/revisao/regionalizacao/objetivo_estrategico/' + dadosRevisao.id)"
+                                <button class="br-button primary mr-3" @click="IrParaPagina('/plancidades/revisao/regionalizacao/objetivo_estrategico/' + dadosRevisao.id + '/criar')"
                                 :disabled="this.situacao_revisao_id == '3' || this.situacao_revisao_id == '5' || this.situacao_revisao_id == '6'">
                                     Editar
                                 </button>

@@ -67,6 +67,7 @@ class RevisaoRegionalizacaoMetaIndicadorController extends Controller
         $dadosRevisao->bln_regionalizacao = RegionalizacaoMetaObjEstrRevisao::where('revisao_indicador_id', $revisaoId)->first()?true:false;
 
         $dadosIndicador = ViewIndicadoresObjetivosEstrategicosMetas::where('id', $dadosRevisao->indicador_objetivo_estrategico_id)->first();
+        $dadosIndicadorRevisao = IndicadoresObjetivosEstrategicosRevisao::where('revisao_indicador_id', $revisaoId)->first();
         $dadosMeta = MetasObjetivosEstrategicos::where('indicador_objetivo_estrategico_id' , $dadosRevisao->indicador_objetivo_estrategico_id)->first();
         $dadosMetaRevisao = MetasObjetivosEstrategicosRevisao::where('revisao_indicador_id', $revisaoId)->first();
         $dadosRegionalizacao = RegionalizacaoMetaObjEstr::where('meta_objetivos_estrategicos_id', $dadosMeta->id)->with('regionalizacao')->leftJoin('mcid_hom_plancidades.tab_metas_objetivos_estrategicos', 'tab_metas_objetivos_estrategicos.id','=','tab_regionalizacao_metas_objetivos_estrategicos.meta_objetivos_estrategicos_id')->get();
@@ -125,7 +126,7 @@ class RevisaoRegionalizacaoMetaIndicadorController extends Controller
 
             DB::commit();
             flash()->sucesso("Sucesso", "Revisão das regionalizações cadastrada com sucesso!");
-            return Redirect::route("plancidades.revisao.regionalizacao.objetivoEstrategico.editar", ["revisaoId" => $dados_revisao->id]);
+            return Redirect::route("plancidades.revisao.objetivoEstrategico.show", ["revisaoId" => $dados_revisao->id]);
 
         } catch (\Exception $e){
             DB::rollBack();

@@ -24,12 +24,12 @@
                             <tr>
                                 <th>#</th>
                                 <th>Região</th>
-                                <th class="text-center">Meta para 2025</th>
-                                <th class="text-center">Nova Meta para 2025</th>
-                                <th class="text-center">Meta para 2026</th>
-                                <th class="text-center">Nova Meta para 2026</th>
-                                <th class="text-center">Meta para 2027</th>
-                                <th class="text-center">Nova Meta para 2027</th>
+                                <th class="text-center">Meta para 2025{{this.formatarUnidadeMedida(this.dadosIndicadorRevisao.unidade_medida_id)}}</th>
+                                <th class="text-center">Nova Meta para 2025{{this.formatarUnidadeMedida(this.dadosIndicadorRevisao.unidade_medida_id)}}</th>
+                                <th class="text-center">Meta para 2026{{this.formatarUnidadeMedida(this.dadosIndicadorRevisao.unidade_medida_id)}}</th>
+                                <th class="text-center">Nova Meta para 2026{{this.formatarUnidadeMedida(this.dadosIndicadorRevisao.unidade_medida_id)}}</th>
+                                <th class="text-center">Meta para 2027{{this.formatarUnidadeMedida(this.dadosIndicadorRevisao.unidade_medida_id)}}</th>
+                                <th class="text-center">Nova Meta para 2027{{this.formatarUnidadeMedida(this.dadosIndicadorRevisao.unidade_medida_id)}}</th>
                             </tr>
                         </thead>
                         <tbody>

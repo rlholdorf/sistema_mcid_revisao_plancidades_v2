@@ -138,7 +138,7 @@ class RevisaoRegionalizacaoMetaIndicadorIniciativaController extends Controller
 
             DB::commit();
             flash()->sucesso("Sucesso", "Revisão das regionalizações cadastrada com sucesso!");
-            return Redirect::route("plancidades.revisao.regionalizacao.iniciativa.editar", ["revisaoId" => $dados_revisao->id]);
+            return Redirect::route("plancidades.revisao.iniciativa.show", ["revisaoId" => $dados_revisao->id]);
 
         } catch (\Exception $e){
             DB::rollBack();
@@ -178,7 +178,7 @@ class RevisaoRegionalizacaoMetaIndicadorIniciativaController extends Controller
         $dadosIndicadorRevisao = IndicadoresIniciativasRevisao::where('revisao_iniciativa_id' , $revisaoId)->first();
         $dadosMeta = MetasIniciativas::where('iniciativa_id', $dadosRevisao->iniciativa_id)->first();
         $dadosMetaRevisao = MetasIniciativasRevisao::where('revisao_iniciativa_id', $revisaoId)->first();
-        $dadosRegionalizacao = RegionalizacaoMetaIniciativa::where('meta_iniciativa_id', $dadosMeta->id)->leftJoin('mcid_hom_plancidades.tab_metas_iniciativas', 'tab_metas_iniciativas.id','=','tab_regionalizacao_metas_iniciativas.meta_iniciativa_id')->get();
+        $dadosRegionalizacao = RegionalizacaoMetaIniciativa::where('meta_iniciativa_id', $dadosMeta->id)->with('regionalizacao')->leftJoin('mcid_hom_plancidades.tab_metas_iniciativas', 'tab_metas_iniciativas.id','=','tab_regionalizacao_metas_iniciativas.meta_iniciativa_id')->get();
         $dadosRegionalizacaoRevisao = RegionalizacaoMetaIniciativaRevisao::where('revisao_iniciativa_id', $revisaoId)->get();
 
         
@@ -232,7 +232,7 @@ class RevisaoRegionalizacaoMetaIndicadorIniciativaController extends Controller
 
             DB::commit();
             flash()->sucesso("Sucesso", "Revisão das regionalizações atualizada com sucesso!");
-            return Redirect::route("plancidades.revisao.regionalizacao.iniciativa.editar", ["revisaoId" => $dados_revisao->id]);
+            return Redirect::route("plancidades.revisao.iniciativa.show", ["revisaoId" => $dados_revisao->id]);
 
         } catch (\Exception $e){
             DB::rollBack();

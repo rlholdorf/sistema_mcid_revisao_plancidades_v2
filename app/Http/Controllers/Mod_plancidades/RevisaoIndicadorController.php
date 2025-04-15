@@ -127,7 +127,7 @@ class RevisaoIndicadorController extends Controller
         $dados_indicador_revisao->dsc_indicador = $request->dsc_indicador_nova;
         $dados_indicador_revisao->txt_sigla_indicador = $request->txt_sigla_indicador_nova;
         $dados_indicador_revisao->vlr_indice_referencia = $request->vlr_indice_referencia_nova;
-        $dados_indicador_revisao->unidade_medida_id = $request->unidade_medida_id_nova;
+        $dados_indicador_revisao->unidade_medida_id = $request->unidade_medida_id_nova ? $request->unidade_medida_id_nova : $dados_indicador->unidade_medida_id;
         $dados_indicador_revisao->txt_data_divulgacao_ou_disponibilizacao = $request->txt_data_divulgacao_ou_disponibilizacao_nova;
         $dados_indicador_revisao->periodicidades_id = $request->periodicidade_id_nova;
         $dados_indicador_revisao->polaridades_id = $request->polaridade_id_nova;
@@ -246,7 +246,7 @@ class RevisaoIndicadorController extends Controller
         $dados_indicador_revisao->dsc_indicador = $request->dsc_indicador_nova;
         $dados_indicador_revisao->txt_sigla_indicador = $request->txt_sigla_indicador_nova;
         $dados_indicador_revisao->vlr_indice_referencia = $request->vlr_indice_referencia_nova;
-        $dados_indicador_revisao->unidade_medida_id = $request->unidade_medida_id_nova;
+        $dados_indicador_revisao->unidade_medida_id = $request->unidade_medida_id_nova ? $request->unidade_medida_id_nova : $dados_indicador->unidade_medida_id;
         $dados_indicador_revisao->txt_data_divulgacao_ou_disponibilizacao = $request->txt_data_divulgacao_ou_disponibilizacao_nova;
         $dados_indicador_revisao->periodicidades_id = $request->periodicidade_id_nova;
         $dados_indicador_revisao->polaridades_id = $request->polaridade_id_nova;
@@ -382,6 +382,7 @@ class RevisaoIndicadorController extends Controller
         $situacao_revisao_indicadores = new RlcSituacaoRevisaoIndicadores();
         $situacao_revisao_indicadores->revisao_indicador_id = $dados_revisao->id;
         $situacao_revisao_indicadores->situacao_revisao_id = '2';
+        $situacao_revisao_indicadores->txt_observacao = 'Em revisão';
         $situacao_revisao_indicadores->user_id = $user->id;
         $situacao_revisao_indicadores->created_at = date('Y-m-d H:i:s');
         $situacao_revisao_indicadores->indicador_objetivo_estrategico_id = $request->indicador;

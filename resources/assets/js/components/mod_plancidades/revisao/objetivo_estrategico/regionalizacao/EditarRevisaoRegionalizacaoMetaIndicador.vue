@@ -23,7 +23,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Região</th>
+                                <th class="text-center">Região</th>
                                 <th class="text-center">Meta para 2025 {{this.formatarUnidadeMedida(this.dadosIndicador.unidade_medida_id)}}</th>
                                 <th class="text-center">Nova Meta para 2025 {{this.formatarUnidadeMedida(this.dadosIndicadorRevisao.unidade_medida_id)}}</th>
                                 <th class="text-center">Meta para 2026 {{this.formatarUnidadeMedida(this.dadosIndicador.unidade_medida_id)}}</th>
@@ -38,7 +38,7 @@
                                 <input type="hidden" :name="`novaRegionalizacao[${index}][regionalizacao_id]`" v-model="dadosRegionalizacaoRevisao[index].regionalizacao_id">
                                 <input type="hidden" :name="`novaRegionalizacao[${index}][txt_sigla_objetivos_estrategicos_metas_region]`" v-model="dadosRegionalizacaoRevisao[index].txt_sigla_objetivos_estrategicos_metas_region">
                                 <td>{{ (index+1) }}</td>
-                                <td>{{ item.txt_sigla_iniciativas_metas_region }}</td>
+                                <td class="text-center">{{ item.regionalizacao.txt_regionalizacao }}</td>
                                 <td class="text-center">{{ item.vlr_esperado_ano_2 }}</td>
                                 <td class="text-center">
                                     <input style="width: 150px;"

@@ -84,7 +84,8 @@
             <div class="row">
                 <div class="col col-xs-12 col-sm-12">
                     <div class="p-3 text-right">
-                        <button class="br-button primary mr-3" @click="IrParaPagina('/plancidades/revisao/iniciativa/' + dadosRevisao.id + '/criar')">
+                        <button class="br-button primary mr-3" :disabled="this.situacao_revisao_id == '3' || this.situacao_revisao_id == '5' || this.situacao_revisao_id == '6'"
+                        @click="IrParaPagina('/plancidades/revisao/iniciativa/' + dadosRevisao.id + '/criar')">
                             Editar
                         </button>
                     </div>
@@ -207,7 +208,7 @@
                 <div class="column col-6 col-xs-12 br-textarea">
                     <label>Nova Polaridade do Indicador</label>
                     <select id="polaridade_id_nova" class="form-select br-select" name="polaridade_id_nova"
-                    v-model="dadosIndicadorRevisao.polaridade_id" disabled> <!-- Não funcionou-->
+                    v-model="dadosIndicadorRevisao.polaridade_id" disabled>
                         <option value="" v-text="textoEscolhaPolaridade"></option>
                         <option v-for="item in polaridades" v-text="item.txt_polaridade" :value="item.id"
                             :key="item.id"></option>
@@ -270,7 +271,8 @@
             <div class="row">
                 <div class="col col-xs-12 col-sm-12">
                     <div class="p-3 text-right">
-                        <button class="br-button primary mr-3" @click="IrParaPagina('/plancidades/revisao/indicador/iniciativa/' + dadosRevisao.id + '/criar')">
+                        <button class="br-button primary mr-3" :disabled="this.situacao_revisao_id == '3' || this.situacao_revisao_id == '5' || this.situacao_revisao_id == '6'"
+                        @click="IrParaPagina('/plancidades/revisao/indicador/iniciativa/' + dadosRevisao.id + '/criar')">
                             Editar
                         </button>
                     </div>
@@ -282,7 +284,7 @@
             <div class="row mt-3">
                 <div class="column col-6 col-xs-12">
                     <label for="txt_dsc_meta">Denominação da Meta</label>
-                    <p v-text="dadosIniciativa.txt_dsc_meta"></p>
+                    <p v-text="dadosMeta.txt_dsc_meta"></p>
                 </div>
             
                 <div class="column col-6 col-xs-12 br-textarea">
@@ -295,7 +297,7 @@
             <div class="row mt-3">
                 <div class="column col-6 col-xs-12">
                     <label for="bln_meta_cumulativa">Cumulatividade da Meta</label>
-                    <p v-text="dadosIniciativa.bln_meta_cumulativa ? 'Sim': 'Não'"></p>
+                    <p v-text="dadosMeta.bln_meta_cumulativa ? 'Sim': 'Não'"></p>
                 </div>
         
                 <div class="column col-6 col-xs-12 br-textarea">
@@ -310,8 +312,8 @@
 
             <div class="row mt-3">
                 <div class="column col-6 col-xs-12">
-                    <label for="vlr_esperado_ano_2">Meta para 2025 {{dadosIniciativa.unidade_medida_simbolo}}</label>
-                    <p v-text="dadosIniciativa.vlr_esperado_ano_2"></p>
+                    <label for="vlr_esperado_ano_2">Meta para 2025 {{dadosMeta.unidade_medida_simbolo}}</label>
+                    <p v-text="dadosMeta.vlr_esperado_ano_2"></p>
                 </div>
             
                 <div class="column col-6 col-xs-12 br-input">
@@ -328,8 +330,8 @@
 
             <div class="row mt-3">
                 <div class="column col-6 col-xs-12">
-                    <label for="vlr_esperado_ano_3">Meta para 2026 {{dadosIniciativa.unidade_medida_simbolo}}</label>
-                    <p v-text="dadosIniciativa.vlr_esperado_ano_3"></p>
+                    <label for="vlr_esperado_ano_3">Meta para 2026 {{dadosMeta.unidade_medida_simbolo}}</label>
+                    <p v-text="dadosMeta.vlr_esperado_ano_3"></p>
                 </div>
             
                 <div class="column col-6 col-xs-12 br-input">
@@ -346,8 +348,8 @@
 
             <div class="row mt-3">
                 <div class="column col-6 col-xs-12">
-                    <label for="vlr_meta_final_cenario_alternativo">Meta para 2027 {{dadosIniciativa.unidade_medida_simbolo}}</label>
-                    <p v-text="dadosIniciativa.vlr_meta_final_cenario_alternativo"></p>
+                    <label for="vlr_meta_final_cenario_alternativo">Meta para 2027 {{dadosMeta.unidade_medida_simbolo}}</label>
+                    <p v-text="dadosMeta.vlr_meta_final_cenario_alternativo"></p>
                 </div>
             
                 <div class="column col-6 col-xs-12 br-input">
@@ -365,10 +367,10 @@
             <div class="row mt-3">
                 <div class="column col-6 col-xs-12">
                     <label for="bln_meta_regionalizada">A meta é regionalizada?</label>
-                    <p v-text="dadosIniciativa.bln_meta_regionalizada ? 'Sim': 'Não'"></p>
+                    <p v-text="dadosMeta.bln_meta_regionalizada ? 'Sim': 'Não'"></p>
                 </div>
             
-                <div v-if="dadosMeta.bln_meta_regionalizada == false" class="column col-6 col-xs-12 br-textarea">
+                <div class="column col-6 col-xs-12 br-textarea">
                     <label>A meta será regionalizada?</label>
                     <select id="bln_meta_regionalizada_nova" class="form-select br-select" name="bln_meta_regionalizada_nova" disabled v-model="dadosMetaRevisao.bln_meta_regionalizada">
                     <option value="">Selecione se a meta é ou não regionalizada</option>
@@ -381,7 +383,7 @@
             <div v-if="dadosMetaRevisao.bln_meta_regionalizada == false" class="row mt-3">
                 <div class="column col-6 col-xs-12">
                     <label for="dsc_justificativa_ausencia_regionalizacao">Justificativa para não regionalização</label>
-                    <p v-text="dadosIniciativa.dsc_justificativa_ausencia_regionalizacao"></p>
+                    <p v-text="dadosMeta.dsc_justificativa_ausencia_regionalizacao"></p>
                 </div>
             
                 <div class="column col-6 col-xs-12 br-textarea">
@@ -394,7 +396,8 @@
             <div class="row">
                 <div class="col col-xs-12 col-sm-12">
                     <div class="p-3 text-right">
-                        <button class="br-button primary mr-3" @click="IrParaPagina('/plancidades/revisao/meta/iniciativa/' + dadosRevisao.id + '/criar')">
+                        <button class="br-button primary mr-3" :disabled="this.situacao_revisao_id == '3' || this.situacao_revisao_id == '5' || this.situacao_revisao_id == '6'" 
+                        @click="IrParaPagina('/plancidades/revisao/meta/iniciativa/' + dadosRevisao.id + '/criar')">
                             Editar
                         </button>
                     </div>
@@ -404,78 +407,96 @@
             <hr>
 
             <div v-if="dadosMetaRevisao.bln_meta_regionalizada">
-                
-                <div class="mt-5">
+                <div class="row mt-3">
                     <div class="text-center">
                         <span class="fs-5 fw-bold">Metas Regionalizadas</span>
                     </div>
-                    <div class="table-responsive mt-3">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Região</th>
-                                    <th class="text-center">Meta para 2025</th>
-                                    <th class="text-center">Nova Meta para 2025</th>
-                                    <th class="text-center">Meta para 2026</th>
-                                    <th class="text-center">Nova Meta para 2026</th>
-                                    <th class="text-center">Meta para 2027</th>
-                                    <th class="text-center">Nova Meta para 2027</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="(item, index) in dadosRegionalizacao">
-                                    <td>{{ (index+1) }}</td>
-                                    <td>{{ item.txt_sigla_iniciativas_metas_region }}</td>
-                                    <td class="text-center">{{ item.vlr_esperado_ano_2 }}</td>
-                                    <td class="text-center">
-                                        <input style="width: 150px;" id="vlr_esperado_ano_2_nova" 
-                                        type="number" 
-                                        ame="vlr_esperado_ano_2_nova"
-                                        step="0.01"
-                                        ></td>
-                                    <td class="text-center">{{ item.vlr_esperado_ano_3 }}</td>
-                                    <td class="text-center">
-                                        <input id="vlr_esperado_ano_3_nova" 
-                                        type="number" 
-                                        name="vlr_esperado_ano_3_nova"
-                                        step="0.01"
-                                        ></td>
-                                    <td class="text-center">{{ item.vlr_meta_final_cenario_alternativo }}</td>
-                                    <td class="text-center">
-                                        <input id="vlr_meta_final_cenario_alternativo_nova" 
-                                        type="number" 
-                                        name="vlr_meta_final_cenario_alternativo_nova"
-                                        step="0.01"
-                                        ></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="column col-6 col-xs-12">
+                        <div class="text-center">
+                            <p class="fw-bold">Metas Atualmente Cadastradas</p>
+                        </div>
+                        <div class="table-responsive mt-3">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th class="text-center">Região</th>
+                                        <th class="text-center">Meta para 2025</th>
+                                        <th class="text-center">Meta para 2026</th>
+                                        <th class="text-center">Meta para 2027</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(item, index) in dadosRegionalizacao">
+                                        <td>{{ (index+1) }}</td>
+                                        <td class="text-center">{{ item.regionalizacao.txt_regionalizacao }}</td>
+                                        <td class="text-center"><i>{{ item.vlr_esperado_ano_2 }}</i></td>
+                                        <td class="text-center"><i>{{ item.vlr_esperado_ano_3 }}</i></td>
+                                        <td class="text-center"><i>{{ item.vlr_meta_final_cenario_alternativo }}</i></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="column col-6 col-xs-12">
+                        <div class="text-center">
+                            <p class="fw-bold">Metas Revisadas</p>
+                        </div>
+                        <div class="table-responsive mt-3">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th class="text-center">Nova Meta para 2025</th>
+                                        <th class="text-center">Nova Meta para 2026</th>
+                                        <th class="text-center">Nova Meta para 2027</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(item, index) in dadosRegionalizacaoRevisao">
+                                        <td>{{ (index+1) }}</td>
+                                        <td class="text-center" v-if="item.vlr_esperado_ano_2"><b>{{ item.vlr_esperado_ano_2 }}</b></td>
+                                        <td class="text-center" v-else>Inalterado</td>
+                                        <td class="text-center" v-if="item.vlr_esperado_ano_3"><b>{{ item.vlr_esperado_ano_3 }}</b></td>
+                                        <td class="text-center" v-else>Inalterado</td>
+                                        <td class="text-center" v-if="item.vlr_esperado_ano_4"><b>{{ item.vlr_esperado_ano_4 }}</b></td>
+                                        <td class="text-center" v-else>Inalterado</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
                     <div class="row">
                         <div class="col col-xs-12 col-sm-12">
                             <div class="p-3 text-right">
-                                <button class="br-button primary mr-3" @click="irParaPagina('/plancidades/revisao/regionalizacao/iniciativa/' + dadosRevisao.id)">
+                                <button class="br-button primary mr-3" @click="IrParaPagina('/plancidades/revisao/regionalizacao/iniciativa/' + dadosRevisao.id + '/criar')"
+                                :disabled="this.situacao_revisao_id == '3' || this.situacao_revisao_id == '5' || this.situacao_revisao_id == '6'">
                                     Editar
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
+                
                 <hr>
-            </div>
-
             
+            </div>          
 
 
     <!-- Botões Formulário -->
             <div class="row">
                 <div class="col col-xs-12 col-sm-12">
                     <div class="p-3 text-right">
-                        <button class="br-button success mr-3" :disabled="this.situacao_revisao_id == '3' || this.situacao_revisao_id == '5' || this.situacao_revisao_id == '6'" >
+                        <button class="br-button success mr-3" :disabled="this.situacao_revisao_id == '3' || this.situacao_revisao_id == '5' || this.situacao_revisao_id == '6'" 
+                        @click="IrParaFinalizacao(dadosRevisao.id)">
                         Finalizar
                         </button>
+                        
+                        <a class="br-button danger mr-3" type="button"
+                        :href="'/plancidades/revisao/iniciativa/listar/' + this.dadosIniciativa.iniciativa_id">Voltar
+                        </a>
                     </div>
                 </div>
             </div>
@@ -485,7 +506,7 @@
 
 <script>
 export default {
-    props: ['url', 'dadosIniciativa', 'dadosRevisao','dadosIniciativaRevisao', 'dadosIndicadorRevisao', 'dadosMetaRevisao', 'dadosMeta', 'dadosRegionalizacao'],
+    props: ['url', 'dadosIniciativa', 'dadosRevisao','dadosIniciativaRevisao', 'dadosIndicadorRevisao', 'dadosMetaRevisao', 'dadosMeta', 'dadosRegionalizacao', 'dadosRegionalizacaoRevisao', 'situacaoRevisao'],
     data() {
         return {
         //----Campos Select
@@ -538,8 +559,8 @@ export default {
             window.location.href = this.url + destino;
         },
 
-        IrParaEdicao(revisaoId){
-            window.location.href = "/plancidades/revisao/iniciativa/"+revisaoId+"/editar";
+        IrParaFinalizacao(revisaoId){
+            window.location.href = "/plancidades/revisao/iniciativa/finalizar"+revisaoId;
         }
         
     },
@@ -574,6 +595,7 @@ export default {
             this.situacao_revisao_observacao = '';
         };
 
+        console.log(this.dadosMeta);
     }
 }
 </script>

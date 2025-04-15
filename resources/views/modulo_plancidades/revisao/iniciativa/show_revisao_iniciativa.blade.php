@@ -23,7 +23,7 @@
 
     <div class="main-content pl-sm-3 mt-5 container-fluid" id="main-content">
         
-        <cabecalho-relatorios :botaoEditar='false' titulo="{{$dadosIniciativa->id}} - {{$dadosIniciativa->txt_enunciado_iniciativa}}"
+        <cabecalho-relatorios :botaoEditar='false' titulo="{{$dadosIniciativa->iniciativa_id}} - {{$dadosIniciativa->txt_enunciado_iniciativa}}"
             :linkcompartilhar="'{{ url("/") }}'"
             :barracompartilhar="false">
         </cabecalho-relatorios>
@@ -33,8 +33,6 @@
         
         <hr>
 
-        <form role="form" method="POST" action='{{ route("plancidades.revisao.iniciativa.finalizarRevisao",['revisaoId'=> $dadosRevisao->id]) }}'>
-            @csrf
             <show-finalizar-revisao-iniciativa 
             :url="'{{ url('/') }}'"
             :dados-revisao="{{json_encode($dadosRevisao)}}"
@@ -44,9 +42,10 @@
             :dados-meta="{{json_encode($dadosMeta)}}"
             :dados-meta-revisao="{{json_encode($dadosMetaRevisao)}}"
             :dados-regionalizacao-revisao="{{json_encode($dadosRegionalizacaoRevisao)}}"
+            :dados-regionalizacao="{{json_encode($dadosRegionalizacao)}}"
+            :situacao-revisao="{{json_encode($situacaoRevisao)}}"
             >
             </show-finalizar-revisao-iniciativa>
             <span class="br-divider sm my-3"></span>
-        </form>
     </div>
 @endsection
