@@ -47,7 +47,7 @@ class RevisaoRegionalizacaoMetaIndicadorIniciativaController extends Controller
     {
         $revisoes = ViewRevisaoIniciativas::where('view_revisao_iniciativas.iniciativa_id', $iniciativaId)
         ->orderBy('view_revisao_iniciativas.revisao_iniciativa_id', 'DESC')
-        ->leftJoin('mcid_hom_plancidades.view_validacao_revisao_iniciativas','view_validacao_revisao_iniciativas.revisao_iniciativa_id','=','view_revisao_iniciativas.revisao_iniciativa_id')
+        ->leftJoin('mcid_plancidades.view_validacao_revisao_iniciativas','view_validacao_revisao_iniciativas.revisao_iniciativa_id','=','view_revisao_iniciativas.revisao_iniciativa_id')
         ->select('view_revisao_iniciativas.*','view_validacao_revisao_iniciativas.situacao_revisao_id','view_validacao_revisao_iniciativas.txt_situacao_revisao')
         ->get();
 
@@ -82,7 +82,7 @@ class RevisaoRegionalizacaoMetaIndicadorIniciativaController extends Controller
         $dadosIniciativa = ViewIndicadoresIniciativas::where('iniciativa_id' , $dadosRevisao->iniciativa_id)->first();
         $dadosMeta = MetasIniciativas::where('iniciativa_id', $dadosRevisao->iniciativa_id)->first();
         $dadosMetaRevisao = MetasIniciativasRevisao::where('revisao_iniciativa_id', $revisaoId)->first();
-        $dadosRegionalizacao = RegionalizacaoMetaIniciativa::where('meta_iniciativa_id', $dadosMeta->id)->with('regionalizacao')->leftJoin('mcid_hom_plancidades.tab_metas_iniciativas', 'tab_metas_iniciativas.id','=','tab_regionalizacao_metas_iniciativas.meta_iniciativa_id')->get();
+        $dadosRegionalizacao = RegionalizacaoMetaIniciativa::where('meta_iniciativa_id', $dadosMeta->id)->with('regionalizacao')->leftJoin('mcid_plancidades.tab_metas_iniciativas', 'tab_metas_iniciativas.id','=','tab_regionalizacao_metas_iniciativas.meta_iniciativa_id')->get();
         
         return view('modulo_plancidades.revisao.iniciativa.regionalizacao.criar_revisao_regionalizacao_meta_indicador_iniciativa', compact('dadosIniciativa', 'dadosMetaRevisao', 'revisaoCadastrada', 'dadosRevisao', 'dadosRegionalizacao'));
     }
@@ -178,7 +178,7 @@ class RevisaoRegionalizacaoMetaIndicadorIniciativaController extends Controller
         $dadosIndicadorRevisao = IndicadoresIniciativasRevisao::where('revisao_iniciativa_id' , $revisaoId)->first();
         $dadosMeta = MetasIniciativas::where('iniciativa_id', $dadosRevisao->iniciativa_id)->first();
         $dadosMetaRevisao = MetasIniciativasRevisao::where('revisao_iniciativa_id', $revisaoId)->first();
-        $dadosRegionalizacao = RegionalizacaoMetaIniciativa::where('meta_iniciativa_id', $dadosMeta->id)->with('regionalizacao')->leftJoin('mcid_hom_plancidades.tab_metas_iniciativas', 'tab_metas_iniciativas.id','=','tab_regionalizacao_metas_iniciativas.meta_iniciativa_id')->get();
+        $dadosRegionalizacao = RegionalizacaoMetaIniciativa::where('meta_iniciativa_id', $dadosMeta->id)->with('regionalizacao')->leftJoin('mcid_plancidades.tab_metas_iniciativas', 'tab_metas_iniciativas.id','=','tab_regionalizacao_metas_iniciativas.meta_iniciativa_id')->get();
         $dadosRegionalizacaoRevisao = RegionalizacaoMetaIniciativaRevisao::where('revisao_iniciativa_id', $revisaoId)->get();
 
         
