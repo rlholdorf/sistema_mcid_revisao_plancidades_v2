@@ -51,7 +51,7 @@ class RevisaoIndicadorController extends Controller
     {
         $revisoes = ViewRevisaoIndicadoresObjEstrategicos::where('view_revisao_indicadores.indicador_objetivo_estrategico_id', $indicadorId)
         ->orderBy('view_revisao_indicadores.revisao_indicador_id', 'DESC')
-        ->leftJoin('mcid_plancidades.view_validacao_revisao_indicadores','view_validacao_revisao_indicadores.revisao_indicador_id','=','view_revisao_indicadores.revisao_indicador_id')
+        ->leftJoin('mcid_hom_plancidades.view_validacao_revisao_indicadores','view_validacao_revisao_indicadores.revisao_indicador_id','=','view_revisao_indicadores.revisao_indicador_id')
         ->select('view_revisao_indicadores.*','view_validacao_revisao_indicadores.situacao_revisao_id','view_validacao_revisao_indicadores.txt_situacao_revisao')
         ->get();
 
