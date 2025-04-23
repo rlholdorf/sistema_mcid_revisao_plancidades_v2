@@ -24,12 +24,12 @@
                             <tr>
                                 <th>#</th>
                                 <th class="text-center">Região</th>
-                                <th class="text-center">Meta para 2025{{this.formatarUnidadeMedida(this.dadosIndicador.unidade_medida_id)}}</th>
-                                <th class="text-center">Nova Meta para 2025{{this.formatarUnidadeMedida(this.dadosIndicadorRevisao.unidade_medida_id)}}</th>
-                                <th class="text-center">Meta para 2026{{this.formatarUnidadeMedida(this.dadosIndicador.unidade_medida_id)}}</th>
-                                <th class="text-center">Nova Meta para 2026{{this.formatarUnidadeMedida(this.dadosIndicadorRevisao.unidade_medida_id)}}</th>
-                                <th class="text-center">Meta para 2027{{this.formatarUnidadeMedida(this.dadosIndicador.unidade_medida_id)}}</th>
-                                <th class="text-center">Nova Meta para 2027{{this.formatarUnidadeMedida(this.dadosIndicadorRevisao.unidade_medida_id)}}</th>
+                                <th class="text-center">Meta para 2025 {{this.formatarUnidadeMedida(this.dadosIndicador.unidade_medida_id)}}</th>
+                                <th class="text-center">Nova Meta para 2025 {{this.formatarUnidadeMedida(this.dadosIndicadorRevisao.unidade_medida_id)}}</th>
+                                <th class="text-center">Meta para 2026 {{this.formatarUnidadeMedida(this.dadosIndicador.unidade_medida_id)}}</th>
+                                <th class="text-center">Nova Meta para 2026 {{this.formatarUnidadeMedida(this.dadosIndicadorRevisao.unidade_medida_id)}}</th>
+                                <th class="text-center">Meta para 2027 {{this.formatarUnidadeMedida(this.dadosIndicador.unidade_medida_id)}}</th>
+                                <th class="text-center">Nova Meta para 2027 {{this.formatarUnidadeMedida(this.dadosIndicadorRevisao.unidade_medida_id)}}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -164,6 +164,8 @@ export default {
         }).catch(error=>{
             console.log(error);
         });
+
+        console.log(this.dadosRegionalizacao);
     }
 }
 </script>

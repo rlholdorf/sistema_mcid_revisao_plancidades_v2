@@ -44,7 +44,7 @@
                                 <td class="text-center">{{($revisao->dsc_periodo_monitoramento	 != null ) ? ($revisao->dsc_periodo_monitoramento	)."/".($revisao->num_ano_periodo_revisao) : 'Não monitorado'}}</td>
                                 <td class="text-center">{{($revisao->txt_situacao_revisao != null ) ? ($revisao->txt_situacao_revisao) : ''}}</td>
                                 <td class="text-center">{{($revisao->created_at) ? date('d/m/Y',strtotime($revisao->created_at)) : ''}}</td>
-                                <td class="acao"><a class="br-button circle primary small"
+                                <td class="acao" {{(($revisao->situacao_revisao_id == null ) || ($revisao->situacao_revisao_id == '1' )) ? 'disabled' : '' }}><a class="br-button circle primary small"
                                     href='{{ route("plancidades.revisao.iniciativa.show", ['revisaoId' => $revisao->revisao_iniciativa_id]) }}'><i
                                         class="fas fa-eye"></i></a></td>
                                 <td class="acao" {{(($revisao->situacao_revisao_id == '3' ) || ($revisao->situacao_revisao_id == '5' ) || ($revisao->situacao_revisao_id == '6')) ? 'disabled' : '' }}><a class="br-button circle primary small"
