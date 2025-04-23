@@ -199,6 +199,7 @@ Route::get('/plancidades/programas', 'ApiController@buscarProgramasPlacidades');
 Route::get('/plancidades/perspectivasPEI', 'ApiController@buscarPerspectivas');
 Route::get('/plancidades/anos_monitoramento', 'ApiController@buscarAnosMonitoramentos');
 Route::get('/plancidades/situacao_monitoramento', 'ApiController@buscarSituacoesMonitoramentos');
+Route::get('/plancidades/situacao_revisao', 'ApiController@buscarSituacoesRevisoes');
 
 Route::get('/plancidades/objetivosPPA/programa/{programa}', 'ApiController@buscarObjetivosPPAPrograma');
 Route::get('/plancidades/objetivosPPA/perspectiva/{perspectiva}', 'ApiController@buscarObjetivosPPAPerspectiva');

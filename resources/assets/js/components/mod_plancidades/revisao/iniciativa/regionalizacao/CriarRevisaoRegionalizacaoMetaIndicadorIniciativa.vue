@@ -12,12 +12,12 @@
         
 
         <div class="form-group">
-            <div class="mt-5">
+            <div v-if="this.dadosRegionalizacao != false" class="mt-5">
                 <div class="text-center">
                     <span class="fs-5 fw-bold">Metas Regionalizadas</span>
                 </div>
 
-                <div class="table-responsive mt-3">
+                <div v-if="this.dadosRegionalizacao != false" class="table-responsive mt-3">
                     
                     <table>
                         <thead>
@@ -93,7 +93,7 @@
 <script>
 
 export default {
-    props: ['url', 'dadosRevisao', 'dadosIniciativa', 'dadosRegionalizacao', 'revisaoCadastrada', 'dadosMetaRevisao'],
+    props: ['url', 'dadosRevisao', 'dadosIniciativa', 'dadosRegionalizacao', 'revisaoCadastrada', 'dadosMetaRevisao', 'dadosIndicadorRevisao'],
     data() {
         return {
         //----Campos Select

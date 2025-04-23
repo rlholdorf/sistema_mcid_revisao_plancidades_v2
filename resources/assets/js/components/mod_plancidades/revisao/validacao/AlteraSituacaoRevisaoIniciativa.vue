@@ -1,16 +1,5 @@
 <template>
-    <div>
-        <progresso-revisao-iniciativa
-        :url="url"
-        :dados-revisao="dadosRevisao"
-        :active="'finalizar'"
-        :dados-meta-revisao="dadosMetaRevisao"
-        >
-        </progresso-revisao-iniciativa>
-        
-        <hr>
-
-        <div class="form-group">
+    <div class="form-group">
             <p class="text-center"><b>Informações da Revisão</b></p>
             <div class="row mt-3">
                 <div class="column col-xs-12 col-sm-3">
@@ -25,12 +14,12 @@
 
                 <div class="column col-xs-12 col-sm-3">
                     <label for="situacaoRevisao">Situação da Revisão</label>
-                    <p v-text="txt_situacao_revisao"></p>
+                    <p v-text="revisoes.txt_situacao_revisao"></p>
                 </div>
 
-                <div v-if="situacao_revisao_observacao" class="column col-xs-12 col-sm-12">
-                    <label for="observacaoRevisao">Observações CGPI sobre a Revisão</label>
-                    <p v-text="situacao_revisao_observacao"></p>
+                <div class="column col-xs-12 col-sm-12">
+                    <label for="usuarioRevisao">Responsável pela Revisão</label>
+                    <p v-text="usuarioPreenchimento.name"></p>
                 </div>
             </div><!-- div row -->
 
@@ -89,17 +78,6 @@
                     </textarea>
                     <p class="text-base mt-1">(Obs.: em caso de atualização decorrente de alteração orçamentária, informar ação(ões) orçamentária(s) - 
                     código e título - que financia(m) a meta e a justificativa)</p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col col-xs-12 col-sm-12">
-                    <div class="p-3 text-right">
-                        <button class="br-button primary mr-3" :disabled="this.situacao_revisao_id == '3' || this.situacao_revisao_id == '5' || this.situacao_revisao_id == '6'"
-                        @click="IrParaPagina('/plancidades/revisao/iniciativa/' + dadosRevisao.id + '/criar')">
-                            Editar
-                        </button>
-                    </div>
                 </div>
             </div>
 
@@ -290,16 +268,6 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col col-xs-12 col-sm-12">
-                    <div class="p-3 text-right">
-                        <button class="br-button primary mr-3" :disabled="this.situacao_revisao_id == '3' || this.situacao_revisao_id == '5' || this.situacao_revisao_id == '6'"
-                        @click="IrParaPagina('/plancidades/revisao/indicador/iniciativa/' + dadosRevisao.id + '/criar')">
-                            Editar
-                        </button>
-                    </div>
-                </div>
-            </div>
             <hr>
 
             <p class="text-center"><b>Detalhamento da Meta do Indicador da Iniciativa</b></p>
@@ -402,16 +370,6 @@
                 </div>
             </div>
 
-            <div class="row mt-3">
-                <label for="txt_regionalizacao_nova">Escreva abaixo eventuais novas regionalizações</label>
-                <textarea disabled class="input-medium" id="txt_regionalizacao_nova" name="txt_regionalizacao_nova" rows="5" v-model="dadosMetaRevisao.txt_regionalizacao_nova" placeholder=
-"Exemplo: 
-Centro-Oeste: Meta para 2025: 65 - Meta para 2026: 75 - Meta para 2027: 88
-Nordeste: Meta para 2025: 103 - Meta para 2026: 88 - Meta para 2027: 43">
-                </textarea>
-                <p class="text-base mt-1">(Obs.: lembre-se de identificar a região, o ano e o valor da meta para aquele ano (Ex.: Centro-Oeste: Meta para 2025: 65 - Meta para 2026: 75 - Meta para 2027: 88))</p>
-            </div>
-
             <div v-if="dadosMetaRevisao.bln_meta_regionalizada == false" class="row mt-3">
                 <div class="column col-6 col-xs-12">
                     <label for="dsc_justificativa_ausencia_regionalizacao">Justificativa para não regionalização</label>
@@ -433,17 +391,6 @@ Nordeste: Meta para 2025: 103 - Meta para 2026: 88 - Meta para 2027: 43">
                     </textarea>
                     <p class="text-base mt-1">(Obs.: em caso de atualização decorrente de alteração orçamentária, informar ação(ões) orçamentária(s) - 
                     código e título - que financia(m) a meta e a justificativa)</p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col col-xs-12 col-sm-12">
-                    <div class="p-3 text-right">
-                        <button class="br-button primary mr-3" :disabled="this.situacao_revisao_id == '3' || this.situacao_revisao_id == '5' || this.situacao_revisao_id == '6'" 
-                        @click="IrParaPagina('/plancidades/revisao/meta/iniciativa/' + dadosRevisao.id + '/criar')">
-                            Editar
-                        </button>
-                    </div>
                 </div>
             </div>
             
@@ -511,45 +458,62 @@ Nordeste: Meta para 2025: 103 - Meta para 2026: 88 - Meta para 2027: 43">
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col col-xs-12 col-sm-12">
-                            <div class="p-3 text-right">
-                                <button class="br-button primary mr-3" @click="IrParaPagina('/plancidades/revisao/regionalizacao/iniciativa/' + dadosRevisao.id + '/criar')"
-                                :disabled="this.situacao_revisao_id == '3' || this.situacao_revisao_id == '5' || this.situacao_revisao_id == '6'">
-                                    Editar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 
                 <hr>
             
-            </div>          
+            </div>
 
-
-    <!-- Botões Formulário -->
+            <!-- Botões Formulário -->
             <div class="row">
-                <div class="col col-xs-12 col-sm-12">
-                    <div class="p-3 text-right">
-                        <button class="br-button success mr-3" :disabled="this.situacao_revisao_id == '3' || this.situacao_revisao_id == '5' || this.situacao_revisao_id == '6'" 
-                        @click="IrParaFinalizacao(dadosRevisao.id)">
-                        Finalizar
-                        </button>
-                        
-                        <a class="br-button danger mr-3" type="button"
-                        :href="'/plancidades/revisao/iniciativa/listar/' + this.dadosIniciativa.iniciativa_id">Voltar
-                        </a>
-                    </div>
+            <div class="titulo">
+                <h3>Análise da Revisão</h3> 
+            </div>
+            <div class="column col-xs-12 col-sm-6">
+                <label for="situacao_revisao">Situação Atual da Revisão</label>
+                <p v-text="revisoes.txt_situacao_revisao"></p>
+            </div>
+            <div class="column col-xs-12 col-sm-6">
+                <label for="situacao_revisao_id">Situação da Revisão após Análise</label>
+                <select id="situacao_revisao_id"
+                    @change="situacaoRevisao" class="form-select br-select" name="situacao_revisao_id" required>
+                    <option value="" v-text="textoEscolhaSituacao"></option>
+                    <option v-for="item in situacoesRevisao" v-text="item.txt_situacao_revisao" :value="item.id"
+                    :key="item.id"></option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-xs-12 br-textarea">
+                <label for="observacao_revisao">Observações de Análise da Revisão</label>
+                <textarea class="input-medium" id="txt_observacao" name="txt_observacao"
+                          rows="5" v-model="revisoes.txt_observacao" required>
+                </textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div  class="col col-xs-12 col-sm-6">                    
+            </div>
+
+            <div class="col col-xs-12 col-sm-6">
+                <div class="p-3 text-right">
+                    <button class="br-button primary mr-3" type="submit" name="botao_salvar" :value="true">Salvar
+                    </button>
+                    
+                    <button class="br-button danger mr-3" type="button"
+                    onclick="javascript:window.history.go(-1)">Voltar
+                    </button>
                 </div>
             </div>
         </div>
-    </div>
+    </div>  
 </template>
 
 <script>
+
 export default {
-    props: ['url', 'dadosIniciativa', 'dadosRevisao','dadosIniciativaRevisao', 'dadosIndicadorRevisao', 'dadosMetaRevisao', 'dadosMeta', 'dadosRegionalizacao', 'dadosRegionalizacaoRevisao', 'situacaoRevisao'],
+    props: ['url', 'dadosIniciativa', 'dadosRevisao','dadosIniciativaRevisao', 'dadosIndicadorRevisao', 'dadosMetaRevisao', 'dadosMeta', 'dadosRegionalizacao', 'dadosRegionalizacaoRevisao', 'revisoes', 'usuarioPreenchimento'],
     data() {
         return {
         //----Campos Select
@@ -571,6 +535,10 @@ export default {
             textoEscolhaUnidadeMedida: "Escolha uma nova Unidade de Medida:",
             textoEscolhaPeriodicidade: "Escolha uma nova Periodicidade:",
             textoEscolhaPolaridade: "Escolha uma nova Polaridade:",
+
+            situacoesRevisao:'',
+            situacaoRevisao:'',
+            textoEscolhaSituacao: "Escolha a nova situação da Revisão",
         }
     },
     methods: {
@@ -588,18 +556,8 @@ export default {
                 return '(UN)';
             default:
                 return '';
-        }
-        },
-
-        IrParaPagina(destino){
-            console.log('entrou');
-            window.location.href = this.url + destino;
-        },
-
-        IrParaFinalizacao(revisaoId){
-            window.location.href = "/plancidades/revisao/iniciativa/finalizar"+revisaoId;
-        }
-        
+            }
+        },        
     },
     mounted() {
         console.log(this.dadosIndicadorRevisao);
@@ -621,18 +579,11 @@ export default {
             console.log(error);
         });
 
-        if (this.situacaoRevisao != null){
-            this.situacao_revisao_id = this.situacaoRevisao.situacao_revisao_id;
-            this.txt_situacao_revisao = this.situacaoRevisao.txt_situacao_revisao;
-            this.situacao_revisao_observacao = this.situacaoRevisao.situacao_revisao_observacao;
-        }
-        else {
-            this.situacao_revisao_id = '';
-            this.txt_situacao_revisao = 'Em revisão';
-            this.situacao_revisao_observacao = '';
-        };
-
-        console.log(this.dadosMeta);
+        axios.get(this.url + '/api/plancidades/situacao_revisao').then(resposta=>{
+            this.situacoesRevisao = resposta.data;
+            }).catch(error=>{
+            console.log(error);
+        });
     }
 }
 </script>

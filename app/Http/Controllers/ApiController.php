@@ -147,6 +147,7 @@ use App\Mod_plancidades\RevisaoIniciativas;
 use App\Mod_plancidades\RlcMonitoramentoEtapasProjetos;
 use App\Mod_plancidades\SituacoesEtapasProjetos;
 use App\Mod_plancidades\SituacoesMonitoramentos;
+use App\Mod_plancidades\SituacoesRevisoes;
 use App\Mod_plancidades\TipoPeriodicidades;
 use App\Mod_plancidades\ViewIndicadoresIniciativa;
 use App\Mod_plancidades\ViewIndicadoresIniciativas;
@@ -982,6 +983,11 @@ class ApiController extends Controller
     public function buscarSituacoesMonitoramentos()
     {
         return SituacoesMonitoramentos::orderBy('id')->get();
+    }
+
+    public function buscarSituacoesRevisoes()
+    {
+        return SituacoesRevisoes::orderBy('id')->get();
     }
 
     public function buscarObjetivosGerais()

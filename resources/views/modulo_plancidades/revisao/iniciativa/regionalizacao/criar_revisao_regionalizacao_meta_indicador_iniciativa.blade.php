@@ -44,6 +44,7 @@
             :dados-regionalizacao="{{json_encode($dadosRegionalizacao)}}"
             :revisao-cadastrada="{{json_encode($revisaoCadastrada)}}"
             v-bind:dados-meta-revisao="{{json_encode($dadosMetaRevisao)}}"
+            :dados-indicador-revisao="{{json_encode($dadosIndicadorRevisao)}}"
             >
             </criar-revisao-regionalizacao-meta-indicador-iniciativa>
             <span class="br-divider sm my-3"></span>

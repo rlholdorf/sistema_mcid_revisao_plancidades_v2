@@ -606,7 +606,22 @@ Vue.component(
   require("./components/mod_plancidades/revisao/projeto/EditarRevisaoProjeto.vue")
 );
 
+// Validação Revisão
+  
+Vue.component(
+  "altera-situacao-revisao-indicador",
+  require("./components/mod_plancidades/revisao/validacao/AlteraSituacaoRevisaoIndicador.vue")
+);
 
+Vue.component(
+  "altera-situacao-revisao-iniciativa",
+  require("./components/mod_plancidades/revisao/validacao/AlteraSituacaoRevisaoIniciativa.vue")
+);
+
+// Vue.component(
+//   "altera-situacao-monitoramento-projeto",
+//   require("./components/mod_plancidades/validacao_monitoramento/AlteraSituacaoMonitoramentoProjeto.vue")
+// );
 
 
 

@@ -110,6 +110,16 @@
             </div>
 
             <div class="row mt-3">
+                <label for="txt_regionalizacao_nova">Escreva abaixo eventuais novas regionalizações</label>
+                <textarea class="input-medium" id="txt_regionalizacao_nova" name="txt_regionalizacao_nova" rows="5" placeholder=
+"Exemplo: 
+Centro-Oeste: Meta para 2025: 65 - Meta para 2026: 75 - Meta para 2027: 88
+Nordeste: Meta para 2025: 103 - Meta para 2026: 88 - Meta para 2027: 43">
+                </textarea>
+                <p class="text-base mt-1">(Obs.: lembre-se de identificar a região, o ano e o valor da meta para aquele ano (Ex.: Centro-Oeste: Meta para 2025: 65 - Meta para 2026: 75 - Meta para 2027: 88))</p>
+            </div>
+
+            <div class="row mt-3">
                 <div class="column col-6 col-xs-12">
                     <label for="dsc_justificativa_ausencia_regionalizacao">Justificativa para não regionalização</label>
                     <p v-text="dadosMeta.dsc_justificativa_ausencia_regionalizacao"></p>

@@ -128,6 +128,8 @@ class RevisaoMetaIndicadorController extends Controller
         $dados_meta_revisao->bln_meta_regionalizada = $request->bln_meta_regionalizada_nova ? $request->bln_meta_regionalizada_nova : $dados_meta->bln_meta_regionalizada;
         $dados_meta_revisao->dsc_justificativa_ausencia_regionalizacao = $request->dsc_justificativa_ausencia_regionalizacao_nova;
         $dados_meta_revisao->txt_justificativa_revisao_meta = $request->txt_justificativa_revisao_meta;
+        $dados_meta_revisao->txt_regionalizacao_nova = $request->txt_regionalizacao_nova;
+
         $dados_meta_revisao->created_at = date('Y-m-d H:i:s');
 
         $dados_salvos = $dados_meta_revisao->save();
@@ -144,7 +146,7 @@ class RevisaoMetaIndicadorController extends Controller
 
             DB::commit();
             flash()->sucesso("Sucesso", "Revisão da meta do Indicador cadastrada com sucesso!");
-            if($dados_meta_revisao->bln_meta_regionalizada == 'true'){
+            if($dados_meta->bln_meta_regionalizada == 'true'){
                 return Redirect::route("plancidades.revisao.regionalizacao.objetivoEstrategico.criar", ["revisaoId" => $revisaoId]);
             }
             else{
@@ -275,6 +277,8 @@ class RevisaoMetaIndicadorController extends Controller
         $dados_meta_revisao->bln_meta_regionalizada = $request->bln_meta_regionalizada_nova ? $request->bln_meta_regionalizada_nova : $dados_meta->bln_meta_regionalizada;
         $dados_meta_revisao->dsc_justificativa_ausencia_regionalizacao = $request->dsc_justificativa_ausencia_regionalizacao_nova;
         $dados_meta_revisao->txt_justificativa_revisao_meta = $request->txt_justificativa_revisao_meta;
+        $dados_meta_revisao->txt_regionalizacao_nova = $request->txt_regionalizacao_nova;
+
         $dados_meta_revisao->updated_at = date('Y-m-d H:i:s');
 
         //return $dados_meta_revisao;
@@ -283,7 +287,7 @@ class RevisaoMetaIndicadorController extends Controller
         if ($dados_salvos) {
             DB::commit();
             flash()->sucesso("Sucesso", "Revisão da meta do Indicador atualizada com sucesso!");
-            if($dados_meta_revisao->bln_meta_regionalizada == 'true'){
+            if($dados_meta->bln_meta_regionalizada == 'true'){
                 return Redirect::route("plancidades.revisao.regionalizacao.objetivoEstrategico.criar", ["revisaoId" => $revisaoId]);
             }
             else{

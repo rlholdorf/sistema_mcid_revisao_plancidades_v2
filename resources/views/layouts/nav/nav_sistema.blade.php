@@ -256,7 +256,7 @@
                 <i class="fas fa-window-restore"></i></span><span class="content">Revisão de Projetos</span>
               </a>
               
-              <a class="menu-item" href="#"><span class="icon">
+              <a class="menu-item" href="{{ route('plancidades.revisao.validacao.consultar') }}"><span class="icon">
                 <i class="fas fa-window-restore"></i></span><span class="content">Análise de Revisão CGPI</span>
               </a>
               

@@ -11,9 +11,9 @@
         <hr>
         
 
-        <div class="form-group">
+        <div v-if="this.dadosRegionalizacao != false" class="form-group">
             <div class="mt-5">
-                <div class="text-center">
+                <div v-if="this.dadosRegionalizacao != false" class="text-center">
                     <span class="fs-5 fw-bold">Metas Regionalizadas</span>
                 </div>
 

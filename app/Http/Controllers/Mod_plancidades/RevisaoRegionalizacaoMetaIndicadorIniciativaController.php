@@ -78,13 +78,14 @@ class RevisaoRegionalizacaoMetaIndicadorIniciativaController extends Controller
         $dadosRevisao->bln_indicador = IndicadoresIniciativasRevisao::where('revisao_iniciativa_id', $revisaoId)->first()?true:false;
         $dadosRevisao->bln_metas = MetasIniciativasRevisao::where('revisao_iniciativa_id', $revisaoId)->first()?true:false;
         $dadosRevisao->bln_regionalizacao = RegionalizacaoMetaIniciativaRevisao::where('revisao_iniciativa_id', $revisaoId)->first()?true:false;
-
+        $dadosIndicadorRevisao = IndicadoresIniciativasRevisao::where('revisao_iniciativa_id' , $revisaoId)->first();
         $dadosIniciativa = ViewIndicadoresIniciativas::where('iniciativa_id' , $dadosRevisao->iniciativa_id)->first();
+
         $dadosMeta = MetasIniciativas::where('iniciativa_id', $dadosRevisao->iniciativa_id)->first();
         $dadosMetaRevisao = MetasIniciativasRevisao::where('revisao_iniciativa_id', $revisaoId)->first();
         $dadosRegionalizacao = RegionalizacaoMetaIniciativa::where('meta_iniciativa_id', $dadosMeta->id)->with('regionalizacao')->leftJoin('mcid_hom_plancidades.tab_metas_iniciativas', 'tab_metas_iniciativas.id','=','tab_regionalizacao_metas_iniciativas.meta_iniciativa_id')->get();
         
-        return view('modulo_plancidades.revisao.iniciativa.regionalizacao.criar_revisao_regionalizacao_meta_indicador_iniciativa', compact('dadosIniciativa', 'dadosMetaRevisao', 'revisaoCadastrada', 'dadosRevisao', 'dadosRegionalizacao'));
+        return view('modulo_plancidades.revisao.iniciativa.regionalizacao.criar_revisao_regionalizacao_meta_indicador_iniciativa', compact('dadosIniciativa', 'dadosMetaRevisao', 'revisaoCadastrada', 'dadosRevisao', 'dadosRegionalizacao', 'dadosIndicadorRevisao'));
     }
 
     /**
@@ -95,7 +96,7 @@ class RevisaoRegionalizacaoMetaIndicadorIniciativaController extends Controller
      */
     public function store(Request $request, $revisaoId)
     {
-        //return $request;
+        // return $request;
 
         $user = Auth()->user();
         DB::beginTransaction();
@@ -134,7 +135,7 @@ class RevisaoRegionalizacaoMetaIndicadorIniciativaController extends Controller
                 if(!$dados_salvos){
                     throw new \Exception('Erro ao salvar a regionalização.');
                 }
-            }
+            }         
 
             DB::commit();
             flash()->sucesso("Sucesso", "Revisão das regionalizações cadastrada com sucesso!");
@@ -181,7 +182,8 @@ class RevisaoRegionalizacaoMetaIndicadorIniciativaController extends Controller
         $dadosRegionalizacao = RegionalizacaoMetaIniciativa::where('meta_iniciativa_id', $dadosMeta->id)->with('regionalizacao')->leftJoin('mcid_hom_plancidades.tab_metas_iniciativas', 'tab_metas_iniciativas.id','=','tab_regionalizacao_metas_iniciativas.meta_iniciativa_id')->get();
         $dadosRegionalizacaoRevisao = RegionalizacaoMetaIniciativaRevisao::where('revisao_iniciativa_id', $revisaoId)->get();
 
-        
+        return $dadosIndicadorRevisao;
+
         return view('modulo_plancidades.revisao.iniciativa.regionalizacao.editar_revisao_regionalizacao_meta_indicador_iniciativa', compact('dadosIniciativa', 'dadosIndicadorRevisao', 'dadosMetaRevisao', 'revisaoCadastrada', 'dadosRevisao', 'dadosRegionalizacao', 'dadosRegionalizacaoRevisao'));
     
     }
