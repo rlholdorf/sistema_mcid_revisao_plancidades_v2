@@ -118539,6 +118539,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }).catch(function (error) {
             console.log(error);
         });
+
+        console.log(this.dadosRegionalizacao);
     }
 });
 
@@ -118589,7 +118591,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("th", { staticClass: "text-center" }, [
                         _vm._v(
-                          "Meta para 2025" +
+                          "Meta para 2025 " +
                             _vm._s(
                               this.formatarUnidadeMedida(
                                 this.dadosIndicador.unidade_medida_id
@@ -118600,7 +118602,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("th", { staticClass: "text-center" }, [
                         _vm._v(
-                          "Nova Meta para 2025" +
+                          "Nova Meta para 2025 " +
                             _vm._s(
                               this.formatarUnidadeMedida(
                                 this.dadosIndicadorRevisao.unidade_medida_id
@@ -118611,7 +118613,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("th", { staticClass: "text-center" }, [
                         _vm._v(
-                          "Meta para 2026" +
+                          "Meta para 2026 " +
                             _vm._s(
                               this.formatarUnidadeMedida(
                                 this.dadosIndicador.unidade_medida_id
@@ -118622,7 +118624,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("th", { staticClass: "text-center" }, [
                         _vm._v(
-                          "Nova Meta para 2026" +
+                          "Nova Meta para 2026 " +
                             _vm._s(
                               this.formatarUnidadeMedida(
                                 this.dadosIndicadorRevisao.unidade_medida_id
@@ -118633,7 +118635,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("th", { staticClass: "text-center" }, [
                         _vm._v(
-                          "Meta para 2027" +
+                          "Meta para 2027 " +
                             _vm._s(
                               this.formatarUnidadeMedida(
                                 this.dadosIndicador.unidade_medida_id
@@ -118644,7 +118646,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("th", { staticClass: "text-center" }, [
                         _vm._v(
-                          "Nova Meta para 2027" +
+                          "Nova Meta para 2027 " +
                             _vm._s(
                               this.formatarUnidadeMedida(
                                 this.dadosIndicadorRevisao.unidade_medida_id
