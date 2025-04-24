@@ -671,7 +671,7 @@ Route::post('/plancidades/revisao/regionalizacao/iniciativa/{revisaoId}/atualiza
 
 //Revisão da Regionalização (Finalizar)
 Route::get('/plancidades/revisao/iniciativa/exibir/{revisaoId}', 'Mod_plancidades\RevisaoIniciativaController@show')->name('plancidades.revisao.iniciativa.show');
-Route::get('/plancidades/revisao/iniciativa/finalizar/{revisaoId}', 'Mod_plancidades\RevisaoIniciativaController@finalizar')->name('plancidades.revisao.iniciativa.finalizar');
+Route::get('/plancidades/revisao/iniciativa/finalizar/{revisaoId}', 'Mod_plancidades\RevisaoIniciativaController@finalizarRevisao')->name('plancidades.revisao.iniciativa.finalizar');
 
 
 

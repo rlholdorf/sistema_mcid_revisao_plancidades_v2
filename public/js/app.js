@@ -122105,7 +122105,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             window.location.href = this.url + destino;
         },
         IrParaFinalizacao: function IrParaFinalizacao(revisaoId) {
-            window.location.href = "/plancidades/revisao/iniciativa/finalizar" + revisaoId;
+            window.location.href = "/plancidades/revisao/iniciativa/finalizar/" + revisaoId;
         }
     },
     mounted: function mounted() {

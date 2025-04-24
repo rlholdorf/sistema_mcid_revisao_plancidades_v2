@@ -597,7 +597,7 @@ export default {
         },
 
         IrParaFinalizacao(revisaoId){
-            window.location.href = "/plancidades/revisao/iniciativa/finalizar"+revisaoId;
+            window.location.href = "/plancidades/revisao/iniciativa/finalizar/"+revisaoId;
         }
         
     },

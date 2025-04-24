@@ -129,7 +129,7 @@ class RevisaoIniciativaController extends Controller
         
         $situacao_revisao_iniciativas = new RlcSituacaoRevisaoIniciativas();
         $situacao_revisao_iniciativas->revisao_iniciativa_id = $dados_revisao->id;
-        $situacao_revisao_iniciativas->situacao_revisao_id = '2';
+        $situacao_revisao_iniciativas->situacao_revisao_id = '1';
         $situacao_revisao_iniciativas->user_id = $user->id;
         $situacao_revisao_iniciativas->updated_at = date('Y-m-d H:i:s');
         $situacao_revisao_iniciativas->iniciativa_id = $request->iniciativa;
@@ -244,15 +244,7 @@ class RevisaoIniciativaController extends Controller
         
         
         //Não há necessidade de tabela de relação entre Revisão e Situação. A situação da revisão pode ser salva diretamente na tab da revisão
-        if ($dados_salvos) {
-            $situacao_revisao_indicadores = new RlcSituacaoRevisaoIniciativas();
-            $situacao_revisao_indicadores->revisao_iniciativa_id = $revisaoId;
-            $situacao_revisao_indicadores->user_id = $user->id;
-            $situacao_revisao_indicadores->situacao_revisao_id = '2';
-            $situacao_revisao_indicadores->updated_at = date('Y-m-d H:i:s');
-            $situacao_revisao_indicadores->iniciativa_id = $request->iniciativa_id;
-            $situacao_revisao_indicadores->update();
-        
+        if ($dados_salvos) {        
 
             DB::commit();
             flash()->sucesso("Sucesso", "Revisão da iniciativa atualizada com sucesso!");
@@ -334,7 +326,7 @@ class RevisaoIniciativaController extends Controller
         
         $situacao_revisao_iniciativas = new RlcSituacaoRevisaoIniciativas();
         $situacao_revisao_iniciativas->revisao_iniciativa_id = $dados_revisao->id;
-        $situacao_revisao_iniciativas->situacao_revisao_id = '2';
+        $situacao_revisao_iniciativas->situacao_revisao_id = '1';
         $situacao_revisao_iniciativas->txt_observacao = 'Em revisão';
         $situacao_revisao_iniciativas->user_id = $user->id;
         $situacao_revisao_iniciativas->created_at = date('Y-m-d H:i:s');

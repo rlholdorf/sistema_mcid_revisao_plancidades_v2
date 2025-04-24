@@ -139,6 +139,16 @@ class RevisaoMetaIndicadorIniciativaController extends Controller
         $dados_salvos = $dados_meta_revisao->save();
 
         if ($dados_salvos) {
+
+        $situacao_revisao_iniciativas = new RlcSituacaoRevisaoIniciativas();
+        $situacao_revisao_iniciativas->revisao_iniciativa_id = $dados_revisao->id;
+        $situacao_revisao_iniciativas->situacao_revisao_id = '2';
+        $situacao_revisao_iniciativas->txt_observacao = 'Em revisão';
+        $situacao_revisao_iniciativas->user_id = $user->id;
+        $situacao_revisao_iniciativas->created_at = date('Y-m-d H:i:s');
+        $situacao_revisao_iniciativas->iniciativa_id = $request->iniciativa;
+        $situacao_revisao_iniciativas->save();
+            
             DB::commit();
             flash()->sucesso("Sucesso", "Revisão da meta da Iniciativa cadastrada com sucesso!");
             if($dados_meta->bln_meta_regionalizada  == 'true'){
