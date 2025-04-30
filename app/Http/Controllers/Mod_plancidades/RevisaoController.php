@@ -19,6 +19,7 @@ use App\Mod_plancidades\ViewMonitoramentoIndicadoresObjEstrategicos;
 use App\Mod_plancidades\ViewIndicadoresIniciativasRevisao;
 use App\Mod_plancidades\ViewResumoApuracaoMetaIndicador;
 use App\Mod_plancidades\ViewIndicadoresObjetivosEstrategicosRevisao;
+use App\Mod_plancidades\ViewProjetos;
 use Illuminate\Support\Facades\DB;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegrationAssertPostConditionsForV7AndPrevious;
 
@@ -29,7 +30,6 @@ class RevisaoController extends Controller
     {
         $this->middleware('auth');
         //$this->middleware('redirecionar'); 
-
 
     }
     /**
@@ -169,7 +169,7 @@ class RevisaoController extends Controller
     public function listarProjetos(Request $request)
     {   
         
-        //return ($request);
+        // return ($request);
 
         $where = [];
 

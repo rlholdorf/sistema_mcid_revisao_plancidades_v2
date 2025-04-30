@@ -46,7 +46,7 @@ class RevisaoProjetoController extends Controller
     {
         $monitoramentos = ViewMonitoramentoIndicadoresObjEstrategicos::where('view_monitoramento_indicadores.indicador_objetivo_estrategico_id', $indicadorId)
         ->orderBy('view_monitoramento_indicadores.monitoramento_indicador_id', 'DESC')
-        ->leftJoin('mcid_plancidades.view_validacao_monitoramento_indicadores','view_validacao_monitoramento_indicadores.monitoramento_indicador_id','=','view_monitoramento_indicadores.monitoramento_indicador_id')
+        ->leftJoin('mcid_hom_plancidades.view_validacao_monitoramento_indicadores','view_validacao_monitoramento_indicadores.monitoramento_indicador_id','=','view_monitoramento_indicadores.monitoramento_indicador_id')
         ->select('view_monitoramento_indicadores.*','view_validacao_monitoramento_indicadores.situacao_monitoramento_id','view_validacao_monitoramento_indicadores.txt_situacao_monitoramento')
         ->get();
 
@@ -186,7 +186,7 @@ class RevisaoProjetoController extends Controller
         $metaIndicador = MetasObjetivosEstrategicos::where('indicador_objetivo_estrategico_id', $dados_monitoramento->indicador_objetivo_estrategico_id)->first();
 
         $regionalizacaoMetas = RegionalizacaoMetaObjEstr::where('meta_objetivos_estrategicos_id', $metaIndicador->id)
-            ->leftJoin('mcid_plancidades.rlc_metas_monitoramento_indicadores','rlc_metas_monitoramento_indicadores.regionalizacao_meta_indicador_id','=','tab_regionalizacao_metas_objetivos_estrategicos.id')
+            ->leftJoin('mcid_hom_plancidades.rlc_metas_monitoramento_indicadores','rlc_metas_monitoramento_indicadores.regionalizacao_meta_indicador_id','=','tab_regionalizacao_metas_objetivos_estrategicos.id')
             ->where('rlc_metas_monitoramento_indicadores.monitoramento_indicador_id',$id)
             ->orderBy('tab_regionalizacao_metas_objetivos_estrategicos.id')
             ->get();
@@ -255,7 +255,7 @@ class RevisaoProjetoController extends Controller
             $metaIndicador = MetasObjetivosEstrategicos::where('indicador_objetivo_estrategico_id', $dados_monitoramento->indicador_objetivo_estrategico_id)->first();
 
             $regionalizacaoMetas = RegionalizacaoMetaObjEstr::where('meta_objetivos_estrategicos_id', $metaIndicador->id)
-                ->leftJoin('mcid_plancidades.rlc_metas_monitoramento_indicadores','rlc_metas_monitoramento_indicadores.regionalizacao_meta_indicador_id','=','tab_regionalizacao_metas_objetivos_estrategicos.id')
+                ->leftJoin('mcid_hom_plancidades.rlc_metas_monitoramento_indicadores','rlc_metas_monitoramento_indicadores.regionalizacao_meta_indicador_id','=','tab_regionalizacao_metas_objetivos_estrategicos.id')
                 ->where('rlc_metas_monitoramento_indicadores.monitoramento_indicador_id',$id)
                 ->orderBy('tab_regionalizacao_metas_objetivos_estrategicos.id')
                 ->get();
@@ -449,9 +449,9 @@ class RevisaoProjetoController extends Controller
         }
     }
 
-    public function teste(Request $request)
-    {
-        return ($request);
-    }
+    // public function teste(Request $request)
+    // {
+    //     return ($request);
+    // }
 
 }

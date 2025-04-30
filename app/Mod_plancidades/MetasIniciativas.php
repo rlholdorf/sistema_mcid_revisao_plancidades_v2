@@ -11,7 +11,7 @@ class MetasIniciativas extends Model
 
    protected $keyType = 'string';
 
-   protected $table = 'mcid_plancidades.tab_metas_iniciativas';
+   protected $table = 'mcid_hom_plancidades.tab_metas_iniciativas';
 
    public $timestamps = true; // tabela possui coluna de data de criação/atualização
 

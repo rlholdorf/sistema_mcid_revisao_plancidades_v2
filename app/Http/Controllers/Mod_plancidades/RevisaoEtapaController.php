@@ -10,23 +10,26 @@ use App\Mod_plancidades\MetasObjetivosEstrategicos;
 use App\Mod_plancidades\MonitoramentoIndicadores;
 use App\Mod_plancidades\MonitoramentoIndicadoresObjEspecificos;
 use App\Mod_plancidades\RegionalizacaoMetaObjEstr;
+use App\Mod_plancidades\RevisaoIndicadores;
 use App\Mod_plancidades\RlcMonitoramentoObjEspecificos;
 use App\Mod_plancidades\RlcRestricaoMetaMonitoramentoIndic;
+use App\Mod_plancidades\RlcSituacaoRevisaoIndicadores;
 use App\Mod_plancidades\ViewApuracaoMetaIndicador;
 use App\Mod_plancidades\ViewMonitoramentoIndicadoresObjEstrategicos;
+use App\Mod_plancidades\ViewIndicadoresIniciativasRevisao;
 use App\Mod_plancidades\ViewResumoApuracaoMetaIndicador;
-use App\Mod_plancidades\ViewIndicadoresObjetivosEstrategicos;
+use App\Mod_plancidades\ViewIndicadoresObjetivosEstrategicosRevisao;
+use App\Mod_plancidades\ViewProjetos;
 use Illuminate\Support\Facades\DB;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegrationAssertPostConditionsForV7AndPrevious;
 
-class IndicadorObjEstrController extends Controller
+class RevisaoController extends Controller
 {
 
     public function __construct()
     {
         $this->middleware('auth');
         //$this->middleware('redirecionar'); 
-
 
     }
     /**
@@ -107,6 +110,32 @@ class IndicadorObjEstrController extends Controller
 
     public function listarIndicadores(Request $request)
     {
+        $where = [];
+
+        if ($request->orgaoResponsavel){
+            $where[] = ['orgao_pei_id', $request->orgaoResponsavel];
+        }
+
+        if ($request->objetivoEstrategico){
+            $where[] = ['objetivo_estrategico_pei_id', $request->objetivoEstrategico];
+        }
+
+        if ($request->bln_ppa){
+            $where[] = ['bln_ppa', true];
+        }
+
+        $indicadores = ViewIndicadoresObjetivosEstrategicosRevisao::where($where)->orderBy('txt_titulo_objetivo_estrategico_pei')->get();
+
+        if(count($indicadores)){
+            return view("modulo_plancidades.revisao.objetivo_estrategico.listar_indicadores_revisao", compact('indicadores'));
+        }else{
+            flash()->erro("Erro", "Nenhum indicador encontrado...");
+            return back();
+        }
+    }
+    
+    public function listarIniciativas(Request $request)
+    {
     
         $where = [];
 
@@ -122,23 +151,51 @@ class IndicadorObjEstrController extends Controller
             $where[] = ['bln_ppa', true];
         }
 
-       // return $where;
+        $where[] = ['bln_meta_iniciativa_individualizada', false];
 
-        // $indicadores = IndicadoresObjetivosEstrategicos::join('mcid_hom_plancidades.opc_unidades_responsaveis', 'opc_unidades_responsaveis.id', '=', 'unidade_responsavel_id')
-        //     ->join('mcid_hom_plancidades.opc_orgao_pei', 'opc_orgao_pei.id','=','opc_unidades_responsaveis.orgao_pei_id')
-        //     ->join('mcid_hom_plancidades.opc_objetivos_estrategicos_pei', 'opc_objetivos_estrategicos_pei.id', '=', 'objetivo_estrategico_pei_id')
-        //     ->select('tab_indicadores_objetivos_estrategicos.*', 'opc_unidades_responsaveis.id as unidade_responsavel_id','opc_unidades_responsaveis.txt_unidade_responsavel','opc_orgao_pei.id as orgao_pei_id', 'opc_orgao_pei.txt_sigla_orgao', 'opc_objetivos_estrategicos_pei.id as objetivos_estrategicos_pei_id', 'opc_objetivos_estrategicos_pei.txt_titulo_objetivo_estrategico_pei')
-        //     ->where($where)->orderBy('txt_titulo_objetivo_estrategico_pei')->get();
+        $iniciativas = ViewIndicadoresIniciativasRevisao::where($where)->orderBy('iniciativa_id')->get();
 
-        $indicadores = ViewIndicadoresObjetivosEstrategicos::where($where)->orderBy('txt_titulo_objetivo_estrategico_pei')->get();
+        // return ($iniciativas);
 
-        // return ($indicadores);
-
-        if(count($indicadores) > 0){
-            return view("modulo_plancidades.objetivo_estrategico.listar_indicadores", compact('indicadores'));
+        if(count($iniciativas)){
+            return view("modulo_plancidades.revisao.iniciativa.listar_iniciativas_revisao", compact('iniciativas'));
         }else{
-            flash()->erro("Erro", "Nenhum indicador encontrado...");
+            flash()->erro("Erro", "Nenhuma iniciativa encontrada...");
             return back();
         }
     }
+
+    public function listarProjetos(Request $request)
+    {   
+        
+        // return ($request);
+
+        $where = [];
+
+        if($request->orgaoResponsavel){
+            $where[] = ['orgao_pei_id', $request->orgaoResponsavel];
+        }
+
+        if($request->objetivoEstrategico){
+            $where[] = ['objetivo_estrategico_pei_id', $request->objetivoEstrategico];
+        }
+
+        if ($request->bln_ppa){
+            $where[] = ['bln_ppa', true];
+        }
+        
+        //return ($where);
+
+        $projetos = ViewProjetos::where($where)->orderBy('projeto_id')->get();
+
+        //return ($projetos);
+
+        if(count($projetos) > 0){
+            return view("modulo_plancidades.revisao.projeto.listar_projetos_revisao", compact('projetos'));
+        }else{
+            flash()->erro("Erro", "Nenhum projeto encontrado...");
+            return back();
+        }
+    }
+
 }

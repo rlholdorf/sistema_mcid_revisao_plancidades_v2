@@ -34,16 +34,21 @@
         </p>
         
         <hr>
-        <form role="form" method="POST" action='{{ route("plancidades.revisao.projeto.salvar") }}'>
-            @csrf
-            <editar-revisao-projeto 
+        <!-- <form role="form" method="POST" action='{{ route("plancidades.revisao.projeto.salvar") }}'> -->
+            <!-- @csrf -->
+            <editar-revisao-projeto-etapas 
                 :url="'{{ url('/') }}'"
                 :dados-projeto="{{json_encode($dadosProjeto)}}"
                 :dados-etapas="{{json_encode($dadosEtapas)}}"
             >
 
-            </editar-revisao-projeto>
+            <button type="button" class="btn btn-warning btn-block"> <!-- Adicionar modal no estilo data-bs-toggle="modal" data-bs-target="#addRestricao" ?-->
+                Adicionar Etapa
+            </button> <!-- Teria que ver como que apresentaríamos as novas etapas, caso elas existam, porque viriam de duas tabelas diferentes -->
+
+
+            </editar-revisao-projeto-etapas>
             <span class="br-divider sm my-3"></span>
-        </form>
+        <!-- </form> -->
     </div>
 @endsection

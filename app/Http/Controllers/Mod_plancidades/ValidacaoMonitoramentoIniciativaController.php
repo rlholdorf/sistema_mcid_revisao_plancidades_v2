@@ -111,7 +111,7 @@ class ValidacaoMonitoramentoIniciativaController extends Controller
 
         
         $regionalizacaoMetas = RegionalizacaoMetaIniciativa::where('tab_regionalizacao_metas_iniciativas.meta_iniciativa_id', $metaIniciativa->id)
-            ->leftJoin('mcid_plancidades.rlc_metas_monitoramento_iniciativas','rlc_metas_monitoramento_iniciativas.regionalizacao_meta_iniciativa_id','=','tab_regionalizacao_metas_iniciativas.id')
+            ->leftJoin('mcid_hom_plancidades.rlc_metas_monitoramento_iniciativas','rlc_metas_monitoramento_iniciativas.regionalizacao_meta_iniciativa_id','=','tab_regionalizacao_metas_iniciativas.id')
             ->where('rlc_metas_monitoramento_iniciativas.monitoramento_iniciativa_id',$monitoramento_iniciativa_id)
             ->orderBy('tab_regionalizacao_metas_iniciativas.id')
             ->get();

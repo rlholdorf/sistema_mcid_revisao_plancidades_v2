@@ -10,7 +10,7 @@ class ViewIndicadoresObjetivosEstrategicosMetas extends Model
 
    protected $connection   = 'pgsql_corp';
 
-   protected $table = 'mcid_plancidades.view_objetivos_estrategicos_indicadores_metas';
+   protected $table = 'mcid_hom_plancidades.view_objetivos_estrategicos_indicadores_metas';
 
    public $timestamps = false; // tabela possui coluna de data de criação/atualização
 }

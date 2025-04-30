@@ -1,5 +1,14 @@
 <template>
     <div>
+
+        <progresso-revisao-projeto
+        :url="url"
+        :active="'detalhamento'">
+
+        </progresso-revisao-projeto>
+
+        <hr>
+        
         <div class="form-group">
             <p class="text-center"><b>Detalhamento do Projeto</b></p>
             <div class="row mt-3">
@@ -142,51 +151,6 @@
                     <textarea class="input-medium" id="dsc_cargo_nova" name="dsc_cargo_nova" placeholder="Escreva o cargo do novo patrocinador..." rows="1"></textarea>
                     <textarea class="input-medium" id="txt_unidade_responsavel_patrocinador_nova" name="txt_unidade_responsavel_patrocinador_nova" rows="1"></textarea> <!-- Mudar para Select -->
                 </div>
-            </div>
-<!-- Repetir para os demais, caso fique assim -->
-
-            <hr>
-
-            <p class="text-center"><b>Detalhamento das Etapas</b></p>
-
-            <div class="table-responsive mt-3">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Nome da etapa (Produto)</th>
-                            <th>Marco da entrega</th>
-                            <th class="text-center" style="border-left:1px">Peso relativo</th>
-                            <th class="text-center" style="border-left:1px">Data de Início</th>
-                            <th class="text-center">Data de Conclusão</th>
-                            <th class="text-center" style="border-left:1px">Alterar</th>
-                            <th class="text-center" style="border-left:1px">Excluir</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="(item, index) in dadosEtapas">
-                            <td>{{ (index+1) }}</td>
-                            <td>{{ item.dsc_etapa }}</td>
-                            <td>{{ item.dsc_marco }}</td>
-                            <td class="text-center">{{ item.vlr_peso_etapa }}</td>
-                            <td class="text-center">{{ formatarData(item.dte_previsao_inicio_etapa) }}</td>
-                            <td class="text-center">{{ formatarData(item.dte_previsao_conclusao_etapa) }}</td>
-                            <td class="text-center">
-                                <button type="button" class="br-button circle primary small" title="Monitorar etapa" >
-                                    <i class="fa fa-pen"></i>  <!-- Implementar, provavelmente modal -->
-                                </button></td>
-                            <td class="text-center">
-                                <button type="button" class="br-button circle primary small" title="Monitorar etapa" >
-                                    <i class="fa fa-times-circle"></i> <!-- Implementar, provavelmente modal -->
-                                </button></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <slot>
-            
-                </slot>
-
             </div>
 
     <!-- Botões Formulário -->

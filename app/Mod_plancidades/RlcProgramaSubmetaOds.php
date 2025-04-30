@@ -9,7 +9,7 @@ class ProgramaSubmetaOds extends Model
 
    protected $connection   = 'pgsql_corp';
 
-   protected $table = 'mcid_plancidades.rlc_programa_submeta_ods';
+   protected $table = 'mcid_hom_plancidades.rlc_programa_submeta_ods';
 
    public $timestamps = false; // tabela não possui coluna de data de criação/atualização
 

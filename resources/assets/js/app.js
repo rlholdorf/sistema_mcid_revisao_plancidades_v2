@@ -490,6 +490,11 @@ Vue.component(
   require("./components/mod_plancidades/revisao/componentes/ProgressoRevisaoIniciativa.vue")
 );
 
+Vue.component(
+  "progresso-revisao-projeto",
+  require("./components/mod_plancidades/revisao/componentes/ProgressoRevisaoProjeto.vue")
+);
+
 
 // Revisão Objetivo Estrategico
 Vue.component(
