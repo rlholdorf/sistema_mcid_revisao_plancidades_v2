@@ -9,7 +9,7 @@ class SituacoesMonitoramentos extends Model
 
    protected $connection   = 'pgsql_corp';
 
-   protected $table = 'mcid_plancidades.opc_situacao_monitoramento';
+   protected $table = 'mcid_hom_plancidades.opc_situacao_monitoramento';
 
    public $timestamps = false; // tabela possui coluna de data de criação/atualização
 

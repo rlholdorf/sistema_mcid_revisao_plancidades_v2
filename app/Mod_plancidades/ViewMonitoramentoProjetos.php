@@ -12,7 +12,7 @@ class ViewMonitoramentoProjetos extends Model
 
    protected $primaryKey = 'monitoramento_projeto_id';
 
-   protected $table = 'mcid_plancidades.view_monitoramento_projetos';
+   protected $table = 'mcid_hom_plancidades.view_monitoramento_projetos';
 
    public $timestamps = true; // tabela possui coluna de data de criação/atualização
 
