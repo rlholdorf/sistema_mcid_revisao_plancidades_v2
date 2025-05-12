@@ -607,9 +607,26 @@ Vue.component(
 );
 
 Vue.component(
-  "editar-revisao-projeto",
-  require("./components/mod_plancidades/revisao/projeto/EditarRevisaoProjeto.vue")
+  "cadastro-revisao-projeto",
+  require("./components/mod_plancidades/revisao/projeto/CadastroRevisaoProjeto.vue")
 );
+
+// Vue.component(
+//   "editar-revisao-indicador",
+//   require("./components/mod_plancidades/revisao/objetivo_estrategico/EditarRevisaoIndicador.vue")
+// );
+
+// Vue.component(
+//   "show-finalizar-revisao-indicador",
+//   require("./components/mod_plancidades/revisao/objetivo_estrategico/ShowFinalizarRevisaoIndicador.vue")
+// );
+
+Vue.component(
+  "criar-revisao-projeto",
+  require("./components/mod_plancidades/revisao/projeto/CriarRevisaoProjeto.vue")
+);
+
+
 
 // Validação Revisão
   

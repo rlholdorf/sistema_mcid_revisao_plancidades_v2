@@ -5,19 +5,19 @@ namespace App\Http\Controllers\Mod_plancidades;
 use App\Mod_plancidades\MetasIndicadoresObjetivosEstrategicos;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Mod_plancidades\IndicadoresObjetivosEstrategicos;
+use App\Mod_plancidades\ProjetosRevisao;
 use App\Mod_plancidades\EtapasProjeto;
+use App\Mod_plancidades\EtapasProjetoRevisao;
 use App\Mod_plancidades\MetasObjetivosEstrategicos;
-use App\Mod_plancidades\MonitoramentoIndicadores;
+use App\Mod_plancidades\RevisaoProjetos;
 use App\Mod_plancidades\MonitoramentoIndicadoresObjEspecificos;
 use App\Mod_plancidades\RegionalizacaoMetaObjEstr;
 use App\Mod_plancidades\RlcMetasMonitoramentoIndicadores;
 use App\Mod_plancidades\RlcMonitoramentoObjEspecificos;
 use App\Mod_plancidades\RlcRestricaoMetaMonitoramentoIndic;
-use App\Mod_plancidades\RlcSituacaoMonitoramentoIndicadores;
+use App\Mod_plancidades\RlcSituacaoRevisaoProjetos;
 use App\Mod_plancidades\ViewIndicadoresObjetivosEstrategicos;
 use App\Mod_plancidades\ViewApuracaoMetaIndicador;
-use App\Mod_plancidades\ViewIndicadoresObjetivosEstrategicosMetas;
 use App\Mod_plancidades\ViewMonitoramentoIndicadoresObjEstrategicos;
 use App\Mod_plancidades\ViewProjetos;
 use App\Mod_plancidades\ViewResumoApuracaoMetaIndicador;
@@ -63,14 +63,32 @@ class RevisaoProjetoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($projetoId)
+    public function create($revisaoId)
     {   
-               
-        $dadosProjeto = ViewProjetos::where('projeto_id', $projetoId)->first();
+        //Se a revisão do projeto já existe, redireciona para página de edição
+        $projetoExiste = ProjetosRevisao::where('revisao_projeto_id', $revisaoId)->first();
+        if (!empty($projetoExiste)) {
+            session()->reflash();
+            return Redirect::route("plancidades.revisao.projeto.editar", ['revisaoId'=> $revisaoId]);
+        }
 
-        $dadosEtapas = EtapasProjeto::where('projeto_id', $projetoId)->get();
+        $revisaoCadastrada = RlcSituacaoRevisaoProjetos::where('revisao_projeto_id', $revisaoId)->orderBy('created_at', 'desc')->first();
+        $situacoes_nao_editaveis = array(3,5,6);
 
-        return view('modulo_plancidades.revisao.projeto.editar_revisao_projeto', compact('dadosProjeto', 'dadosEtapas'));
+        if (in_array($revisaoCadastrada->situacao_revisao_id, $situacoes_nao_editaveis)) {
+            flash()->erro("Erro", "Não foi possível atualizar a revisao.");
+            return Redirect::route("plancidades.revisao.projeto.listarRevisoes", ['projetoId'=> $revisaoCadastrada->projeto_id]);
+        }
+        else{
+            $dadosRevisao = RevisaoProjetos::find($revisaoId);
+            $dadosRevisao->bln_projeto = ProjetosRevisao::where('revisao_projeto_id', $revisaoId)->first()?true:false;
+            $dadosRevisao->bln_etapas = EtapasProjetoRevisao::where('revisao_projeto_id', $revisaoId)->first()?true:false;
+            
+            $dadosProjeto = ViewProjetos::where('projeto_id', $dadosRevisao->projeto_id)->first();
+            $dadosEtapas = EtapasProjeto::where('projeto_id', $dadosRevisao->projeto_id)->get();
+            return view('modulo_plancidades.revisao.projeto.criar_revisao_projeto', compact('dadosProjeto','revisaoCadastrada', 'dadosRevisao', 'dadosEtapas'));
+        
+        }
     }
 
     /**
@@ -81,74 +99,76 @@ class RevisaoProjetoController extends Controller
      */
     public function store(Request $request)
     {
-        $user = Auth()->user();
+        return $request;
+        
+        // $user = Auth()->user();
 
-        DB::beginTransaction();
-        $where = [];
-        $where[] = ['indicador_objetivo_estrategico_id', $request->indicador];
-        $where[] = ['num_ano_periodo_monitoramento', $request->anoMonitoramento];
-        $where[] = ['periodo_monitoramento_id', $request->periodoMonitoramento];
+        // DB::beginTransaction();
+        // $where = [];
+        // $where[] = ['indicador_objetivo_estrategico_id', $request->indicador];
+        // $where[] = ['num_ano_periodo_monitoramento', $request->anoMonitoramento];
+        // $where[] = ['periodo_monitoramento_id', $request->periodoMonitoramento];
 
 
-        $monitoramentoCadastrado = MonitoramentoIndicadores::where($where)->first();
+        // $monitoramentoCadastrado = MonitoramentoIndicadores::where($where)->first();
 
-        if (!empty($monitoramentoCadastrado)) {
-            DB::rollBack();
-            flash()->erro("Erro", "Já existe um monitoramento para esse período.");
-            return back();
-        }
+        // if (!empty($monitoramentoCadastrado)) {
+        //     DB::rollBack();
+        //     flash()->erro("Erro", "Já existe um monitoramento para esse período.");
+        //     return back();
+        // }
 
         
-        $dados_monitoramento = new MonitoramentoIndicadores();
+        // $dados_monitoramento = new MonitoramentoIndicadores();
 
-        $dados_monitoramento->user_id = $user->id;
-        $dados_monitoramento->indicador_objetivo_estrategico_id = $request->indicador;
-        $dados_monitoramento->dsc_analise_indicador = $request->dsc_analise_indicador;
-        $dados_monitoramento->dsc_causas_impedimentos = $request->dsc_causas_impedimentos_atingimento_meta;
-        $dados_monitoramento->dsc_desafios_proximos_passos = $request->dsc_desafios_proximos_passos;
-        $dados_monitoramento->periodo_monitoramento_id = $request->periodoMonitoramento;
-        $dados_monitoramento->num_ano_periodo_monitoramento = $request->anoMonitoramento;
+        // $dados_monitoramento->user_id = $user->id;
+        // $dados_monitoramento->indicador_objetivo_estrategico_id = $request->indicador;
+        // $dados_monitoramento->dsc_analise_indicador = $request->dsc_analise_indicador;
+        // $dados_monitoramento->dsc_causas_impedimentos = $request->dsc_causas_impedimentos_atingimento_meta;
+        // $dados_monitoramento->dsc_desafios_proximos_passos = $request->dsc_desafios_proximos_passos;
+        // $dados_monitoramento->periodo_monitoramento_id = $request->periodoMonitoramento;
+        // $dados_monitoramento->num_ano_periodo_monitoramento = $request->anoMonitoramento;
         
-        $dados_monitoramento->created_at = date('Y-m-d H:i:s');
+        // $dados_monitoramento->created_at = date('Y-m-d H:i:s');
 
-        $dados_salvos = $dados_monitoramento->save();
+        // $dados_salvos = $dados_monitoramento->save();
 
-        $metaObjetivoEstrategico = MetasObjetivosEstrategicos::where('indicador_objetivo_estrategico_id', $dados_monitoramento->indicador_objetivo_estrategico_id)->first();
+        // $metaObjetivoEstrategico = MetasObjetivosEstrategicos::where('indicador_objetivo_estrategico_id', $dados_monitoramento->indicador_objetivo_estrategico_id)->first();
 
 
-        if($metaObjetivoEstrategico->bln_meta_regionalizada && $dados_salvos){
-            $regionalizacoes = RegionalizacaoMetaObjEstr::where('meta_objetivos_estrategicos_id', $metaObjetivoEstrategico->id)->get();
+        // if($metaObjetivoEstrategico->bln_meta_regionalizada && $dados_salvos){
+        //     $regionalizacoes = RegionalizacaoMetaObjEstr::where('meta_objetivos_estrategicos_id', $metaObjetivoEstrategico->id)->get();
 
-            foreach($regionalizacoes as $regionalizacao){
-                $rlc_metas_monitoramento = new RlcMetasMonitoramentoIndicadores();
+        //     foreach($regionalizacoes as $regionalizacao){
+        //         $rlc_metas_monitoramento = new RlcMetasMonitoramentoIndicadores();
 
-                $rlc_metas_monitoramento->monitoramento_indicador_id = $dados_monitoramento->id;
-                $rlc_metas_monitoramento->meta_indicador_id = $metaObjetivoEstrategico->id;
-                $rlc_metas_monitoramento->regionalizacao_meta_indicador_id = $regionalizacao->id;
-                $rlc_metas_monitoramento->vlr_apurado = null;
-                $rlc_metas_monitoramento->created_at = date('Y-m-d H:i:s');
-                $rlc_metas_monitoramento->save();
-            }
-        }
+        //         $rlc_metas_monitoramento->monitoramento_indicador_id = $dados_monitoramento->id;
+        //         $rlc_metas_monitoramento->meta_indicador_id = $metaObjetivoEstrategico->id;
+        //         $rlc_metas_monitoramento->regionalizacao_meta_indicador_id = $regionalizacao->id;
+        //         $rlc_metas_monitoramento->vlr_apurado = null;
+        //         $rlc_metas_monitoramento->created_at = date('Y-m-d H:i:s');
+        //         $rlc_metas_monitoramento->save();
+        //     }
+        // }
         
-        $situacao_monitoramento_indicadores = new RlcSituacaoMonitoramentoIndicadores();
-        $situacao_monitoramento_indicadores->monitoramento_indicador_id = $dados_monitoramento->id;
-        $situacao_monitoramento_indicadores->situacao_monitoramento_id = '2';
-        $situacao_monitoramento_indicadores->user_id = $user->id;
-        $situacao_monitoramento_indicadores->created_at = date('Y-m-d H:i:s');
-        $situacao_monitoramento_indicadores->indicador_objetivo_estrategico_id = $request->indicador_objetivo_estrategico_id;
-        $situacao_monitoramento_indicadores->save();
+        // $situacao_monitoramento_indicadores = new RlcSituacaoMonitoramentoIndicadores();
+        // $situacao_monitoramento_indicadores->monitoramento_indicador_id = $dados_monitoramento->id;
+        // $situacao_monitoramento_indicadores->situacao_monitoramento_id = '2';
+        // $situacao_monitoramento_indicadores->user_id = $user->id;
+        // $situacao_monitoramento_indicadores->created_at = date('Y-m-d H:i:s');
+        // $situacao_monitoramento_indicadores->indicador_objetivo_estrategico_id = $request->indicador_objetivo_estrategico_id;
+        // $situacao_monitoramento_indicadores->save();
         
-        if ($dados_salvos) {
-            DB::commit();
+        // if ($dados_salvos) {
+        //     DB::commit();
 
-            flash()->sucesso("Sucesso", "Monitoramento do Indicador cadastrado com sucesso!");
-            return Redirect::route("plancidades.monitoramentos.objetivoEstrategico.editar", ["monitoramentoId" => $dados_monitoramento->id]);
-        } else {
-            DB::rollBack();
-            flash()->erro("Erro", "Não foi possível cadastrar o monitoramento.");
-            return back();
-        }
+        //     flash()->sucesso("Sucesso", "Monitoramento do Indicador cadastrado com sucesso!");
+        //     return Redirect::route("plancidades.monitoramentos.objetivoEstrategico.editar", ["monitoramentoId" => $dados_monitoramento->id]);
+        // } else {
+        //     DB::rollBack();
+        //     flash()->erro("Erro", "Não foi possível cadastrar o monitoramento.");
+        //     return back();
+        // }
     }
 
     /**
@@ -417,37 +437,83 @@ class RevisaoProjetoController extends Controller
         //
     }
     
+    public function iniciarRevisao($projetoId)
+    {   
+        $revisaoCadastrada = RlcSituacaoRevisaoProjetos::where('projeto_id', $projetoId)->orderBy('created_at', 'desc')->first();
+
+        $situacoes = array('5', '6', null);
+
+        if (!empty($revisaoCadastrada)) {
+            if(!in_array($revisaoCadastrada->situacao_revisao_id, $situacoes)) {
+                DB::rollBack();
+                flash()->erro("Erro", "Já existe uma revisão em andamento.");
+                return back();
+            }
+        }
+
+        $dadosProjeto = ViewProjetos::where('projeto_id', $projetoId)->first();
+      
+        return view('modulo_plancidades.revisao.projeto.iniciar_revisao_projeto', compact('dadosProjeto'));
+
+    }
+
+    public function salvarRevisao(Request $request)
+    {
+
+        $user = Auth()->user();
+
+        DB::beginTransaction();
+        
+        $where = [];
+        $where[] = ['projeto_id', $request->projeto_id];
+        $where[] = ['num_ano_periodo_revisao', $request->anoRevisao];
+        $where[] = ['periodo_revisao_id', $request->periodoRevisao];
+        
+        $revisaoCadastrada = RevisaoProjetos::where($where)->first();
+
+        if (!empty($revisaoCadastrada)) {
+            DB::rollBack();
+            flash()->erro("Erro", "Já existe uma revisão em andamento.");
+            return back();
+        }   
+
+        $dados_revisao = new RevisaoProjetos();
+
+        $dados_revisao->user_id = $user->id;
+        $dados_revisao->projeto_id = $request->projeto_id;
+        $dados_revisao->periodo_revisao_id = $request->periodoRevisao;
+        $dados_revisao->num_ano_periodo_revisao = $request->anoRevisao;
+        $dados_revisao->created_at = date('Y-m-d H:i:s');
+
+        $dados_salvos = $dados_revisao->save();
+        
+        $situacao_revisao_projetos = new RlcSituacaoRevisaoProjetos();
+        $situacao_revisao_projetos->revisao_projeto_id = $dados_revisao->id;
+        $situacao_revisao_projetos->situacao_revisao_id = '1';
+        $situacao_revisao_projetos->txt_observacao = '';
+        $situacao_revisao_projetos->user_id = $user->id;
+        $situacao_revisao_projetos->created_at = date('Y-m-d H:i:s');
+        $situacao_revisao_projetos->projeto_id = $request->projeto_id;
+        $situacao_revisao_projetos->save();
+        
+        if ($dados_salvos) {
+            DB::commit();
+
+            flash()->sucesso("Sucesso", "Revisão do Projeto cadastrada com sucesso!");
+            return Redirect::route("plancidades.revisao.projeto.criar", ["revisaoId" => $dados_revisao->id]);
+        } else {
+            DB::rollBack();
+            flash()->erro("Erro", "Não foi possível cadastrar a revisão.");
+            return back();
+        }
+    }
 
     public function consultarProjetos()
     {
         return view("modulo_plancidades.revisao.projeto.consultar_projeto");
     }
 
-    public function pesquisarMonitoramento(Request $request)
-    {
-        $where = [];
-
-        if ($request->orgaoResponsavel) {
-            $where[] = ['orgao_pei_id', $request->orgaoResponsavel];
-        }
-
-        if ($request->objetivoEstrategico) {
-            $where[] = ['objetivo_estrategico_pei_id', $request->objetivoEstrategico];
-        }
-
-        if ($request->indicador) {
-            $where[] = ['indicador_objetivo_estrategico_id', $request->indicador];
-        }
-
-        $monitoramentos = ViewMonitoramentoIndicadoresObjEstrategicos::where($where)->orderBy('indicador_objetivo_estrategico_id')->paginate(10);
-
-        if (count($monitoramentos) > 0) {
-            return view("modulo_plancidades.listar_monitoramentos_indicador", compact('monitoramentos'));
-        } else {
-            flash()->erro("Erro", "Nenhum monitoramento encontrado...");
-            return back();
-        }
-    }
+    
 
     // public function teste(Request $request)
     // {

@@ -681,8 +681,15 @@ Route::get('/plancidades/revisao/iniciativa/finalizar/{revisaoId}', 'Mod_plancid
 //--Informações Básicas (indicadores e metas)--//
 Route::get('/plancidades/revisao/projeto/consulta', 'Mod_plancidades\RevisaoProjetoController@consultarProjetos')->name('plancidades.revisao.projeto.consultar');
 Route::get('/plancidades/revisao/projeto/indicadores', 'Mod_plancidades\RevisaoController@listarProjetos')->name('plancidades.revisao.projeto.listarProjetos');
-Route::get('/plancidades/revisao/projeto/{projetoId}/criar', 'Mod_plancidades\RevisaoProjetoController@create')->name('plancidades.revisao.projeto.iniciarRevisao');
-Route::post('/plancidades/revisao/projeto/salvar', 'Mod_plancidades\RevisaoProjetoController@store')->name('plancidades.revisao.projeto.salvar');
+Route::get('/plancidades/revisao/projeto/{projetoId}/iniciarRevisao', 'Mod_plancidades\RevisaoProjetoController@iniciarRevisao')->name('plancidades.revisao.projeto.iniciarRevisao');
+Route::post('/plancidades/revisao/projeto/salvarRevisao', 'Mod_plancidades\RevisaoProjetoController@salvarRevisao')->name('plancidades.revisao.projeto.salvarRevisao');
+Route::get('/plancidades/revisao/projeto/listar/{projetoId}', 'Mod_plancidades\RevisaoProjetoController@index')->name('plancidades.revisao.projeto.listarRevisoes');
+
+//Revisão do Projeto
+Route::get('/plancidades/revisao/projeto/{revisaoId}/criar', 'Mod_plancidades\RevisaoProjetoController@create')->name('plancidades.revisao.projeto.criar');
+Route::post('/plancidades/revisao/objetivo_estrategico/{revisaoId}/salvar', 'Mod_plancidades\RevisaoIndicadorController@store')->name('plancidades.revisao.projeto.salvar');
+// Route::get('/plancidades/revisao/objetivo_estrategico/{revisaoId}/editar', 'Mod_plancidades\RevisaoIndicadorController@edit')->name('plancidades.revisao.objetivoEstrategico.editar');
+// Route::post('/plancidades/revisao/objetivo_estrategico/{revisaoId}/atualizar', 'Mod_plancidades\RevisaoIndicadorController@update')->name('plancidades.revisao.objetivoEstrategico.atualizar');
 
 
 

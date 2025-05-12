@@ -3,6 +3,7 @@
 
         <progresso-revisao-projeto
         :url="url"
+        :dados-revisao="dadosRevisao"
         :active="'detalhamento'">
 
         </progresso-revisao-projeto>
@@ -44,12 +45,12 @@
                 </div>
             
                 <div class="column col-6 col-xs-12 br-textarea">
-                    <label>Nova Objetivo Estratégico Vinculado</label>
+                    <label>Novo Objetivo Estratégico Vinculado</label>
                     <select id="txt_titulo_objetivo_estrategico_pei_nova" class="form-select br-select" name="txt_titulo_objetivo_estrategico_pei_nova" v-model="objetivoEstrategico">
                         <option value="" v-text="textoEscolhaObjetivoEstrategico"></option>
                         <option v-for="item in objetivosEstrategicos" v-text="item.txt_titulo_objetivo_estrategico_pei" :value="item.txt_titulo_objetivo_estrategico_pei" 
                         :key="item.id"></option>
-                    </select> <!-- Teria que reordenar os órgãos, ou algo que o valha, para poder ficar em uma ordem mais inteligível. Estudar apresentar primeiro escolher o órgao e, onchange, escolher a subunidade -->
+                    </select> 
                 </div>
             </div>
 
@@ -77,27 +78,13 @@
             
                 <div class="column col-6 col-xs-12 br-textarea">
                     <label>Nova identificação de Medida Institucional e Normativa do PPA</label>
-                    <select id="bln_ppa_nova" class="form-select br-select" name="bln_ppa_nova"
-                    v-model="boleanoppa"> <!-- É necessário esse v-model? -->
+                    <select id="bln_ppa_nova" class="form-select br-select" name="bln_ppa_nova">
                     <option>Sim</option>
                     <option>Não</option>
                     </select>
                 </div>
             </div>
             
-            <div class="row mt-3" v-if="dadosProjeto.bln_ppa">
-                <div class="column col-6 col-xs-12">
-                    <label for="dsc_min_ppa">Descrição da MIN PPA</label>
-                    <p v-text="dadosProjeto.dsc_min_ppa"></p>
-                </div>
-            
-                <div class="column col-6 col-xs-12 br-textarea">
-                    <label>Nova Descrição da MIN PPA</label>
-                    <textarea class="input-medium" id="dsc_min_ppa_nova" name="dsc_min_ppa_nova" rows="2">
-                    </textarea>
-                </div>
-            </div>
-
             <div class="row mt-3">
                 <div class="column col-6 col-xs-12">
                     <label for="dsc_beneficios">Benefícios do Projeto</label>
@@ -171,7 +158,7 @@
 
 <script>
 export default {
-    props: ['url', 'dadosProjeto', 'dadosEtapas'],
+    props: ['url', 'dadosProjeto', 'dadosEtapas', 'dadosRevisao', 'revisaoCadastrada'],
     data() {
         return {
         //----Campos Select
