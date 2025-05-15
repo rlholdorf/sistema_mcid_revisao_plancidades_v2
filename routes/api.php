@@ -258,6 +258,9 @@ Route::get('/plancidades/etapas/monitoramento_projetos/{monitoramentoProjetoId}'
 
 Route::get('/plancidades/situacoesEtapasProjeto', 'ApiController@buscarSituacoesEtapas');
 
+//Cargos
+Route::get('/plancidades/cargos', 'ApiController@buscarCargos');
+
 
 //Unidades Responsáveis
 Route::get('/plancidades/unidadesResponsaveis', 'ApiController@buscarUnidadesResponsaveis')->name('plancidades.buscarUnidadesResponsaveis');

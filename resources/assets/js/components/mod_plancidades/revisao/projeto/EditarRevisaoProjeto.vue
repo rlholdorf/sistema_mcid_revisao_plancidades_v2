@@ -20,7 +20,8 @@
             
                 <div class="column col-6 col-xs-12 br-textarea">
                     <label>Novo Enunciado do Projeto</label>
-                        <textarea class="input-medium" id="txt_enunciado_projeto_nova" name="txt_enunciado_projeto_nova" rows="2">
+                        <textarea class="input-medium" id="txt_enunciado_projeto_nova" name="txt_enunciado_projeto_nova" rows="2"
+                        v-model="dadosProjetoRevisao.txt_enunciado_projeto">
                         </textarea>
                 </div>
             </div>
@@ -33,7 +34,8 @@
             
                 <div class="column col-6 col-xs-12 br-textarea">
                     <label>Novo Objetivo do Projeto</label>
-                    <textarea class="input-medium" id="dsc_objetivo_projeto_nova" name="dsc_objetivo_projeto_nova" rows="5">
+                    <textarea class="input-medium" id="dsc_objetivo_projeto_nova" name="dsc_objetivo_projeto_nova" rows="5"
+                    v-model="dadosProjetoRevisao.dsc_objetivo_projeto">
                     </textarea>
                 </div>
             </div>
@@ -46,7 +48,8 @@
             
                 <div class="column col-6 col-xs-12 br-textarea">
                     <label>Novo Objetivo Estratégico Vinculado</label>
-                    <select id="objetivo_estrategico_pei_id_nova" class="form-select br-select" name="objetivo_estrategico_pei_id_nova">
+                    <select id="objetivo_estrategico_pei_id_nova" class="form-select br-select" name="objetivo_estrategico_pei_id_nova"
+                    v-model="dadosProjetoRevisao.objetivo_estrategico_pei_id">
                         <option value="" v-text="textoEscolhaObjetivoEstrategico"></option>
                         <option v-for="item in objetivosEstrategicos" v-text="item.txt_titulo_objetivo_estrategico_pei" :value="item.id" 
                         :key="item.id"></option>
@@ -62,7 +65,8 @@
             
                 <div class="column col-6 col-xs-12 br-textarea">
                     <label>Nova Unidade Responsável</label>
-                    <select id="unidade_responsavel_id_nova" class="form-select br-select" name="unidade_responsavel_id_nova">
+                    <select id="unidade_responsavel_id_nova" class="form-select br-select" name="unidade_responsavel_id_nova"
+                    v-model="dadosProjetoRevisao.unidade_responsavel_id">
                         <option value="" v-text="textoEscolhaUnidadeResponsavel"></option>
                         <option v-for="item in unidadesResponsaveis" v-text="item.txt_unidade_responsavel" :value="item.id" 
                         :key="item.id"></option>
@@ -78,7 +82,8 @@
             
                 <div class="column col-6 col-xs-12 br-textarea">
                     <label>Nova identificação de Medida Institucional e Normativa do PPA</label>
-                    <select id="bln_ppa_nova" class="form-select br-select" name="bln_ppa_nova">
+                    <select id="bln_ppa_nova" class="form-select br-select" name="bln_ppa_nova"
+                    v-model="dadosProjetoRevisao.bln_ppa">
                         <option value="">Selecione se o projeto é ou não Medida Institucional e Normativa do PPA</option>
                         <option value="true">Sim</option>
                         <option value="false">Não</option>
@@ -94,7 +99,8 @@
             
                 <div class="column col-6 col-xs-12 br-textarea">
                     <label>Nova Descrição de Benefícios do Projeto</label>
-                    <textarea class="input-medium" id="dsc_beneficios_nova" name="dsc_beneficios_nova" rows="5">
+                    <textarea class="input-medium" id="dsc_beneficios_nova" name="dsc_beneficios_nova" rows="5"
+                    v-model="dadosProjetoRevisao.dsc_beneficios">
                     </textarea>
                 </div>
             </div>            
@@ -107,7 +113,8 @@
             
                 <div class="column col-6 col-xs-12 br-textarea">
                     <label>Nova Descrição de Premissas do Projeto</label>
-                    <textarea class="input-medium" id="dsc_premissas_nova" name="dsc_premissas_nova" rows="2">
+                    <textarea class="input-medium" id="dsc_premissas_nova" name="dsc_premissas_nova" rows="2"
+                    v-model="dadosProjetoRevisao.dsc_premissas">
                     </textarea>
                 </div>
             </div>
@@ -120,7 +127,8 @@
             
                 <div class="column col-6 col-xs-12 br-textarea">
                     <label>Nova Descrição de Restrições do Projeto</label>
-                    <textarea class="input-medium" id="dsc_restricoes_nova" name="dsc_restricoes_nova" rows="2">
+                    <textarea class="input-medium" id="dsc_restricoes_nova" name="dsc_restricoes_nova" rows="2"
+                    v-model="dadosProjetoRevisao.dsc_restricoes">
                     </textarea>
                 </div>
             </div>
@@ -135,13 +143,16 @@
             
                 <div class="column col-6 col-xs-12 br-textarea">
                     <label>Novo(a) Patrocinador(a) do Projeto</label>
-                    <textarea class="input-medium" id="dsc_nome_patrocinador_nova" name="dsc_nome_patrocinador_nova" placeholder="Escreva o nome do novo Patrocinador..." rows="1"></textarea>
-                    <select id="cargo_patrocinador_id_nova" class="form-select br-select mb-1" name="cargo_patrocinador_id_nova">
+                    <textarea class="input-medium" id="dsc_nome_patrocinador_nova" name="dsc_nome_patrocinador_nova" placeholder="Escreva o nome do novo Patrocinador..." rows="1"
+                    v-model="dadosProjetoRevisao.dsc_nome_patrocinador"></textarea>
+                    <select id="cargo_patrocinador_id_nova" class="form-select br-select mb-1" name="cargo_patrocinador_id_nova"
+                    v-model="dadosProjetoRevisao.cargo_patrocinador_id">
                         <option value="" v-text="textoEscolhaCargoPatrocinador"></option>
                         <option v-for="item in cargos" v-text="item.dsc_cargo" :value="item.id" 
                         :key="item.id"></option>
                     </select>
-                    <select id="unidade_patrocinador_id_nova" class="form-select br-select mb-1" name="unidade_patrocinador_id_nova">
+                    <select id="unidade_patrocinador_id_nova" class="form-select br-select mb-1" name="unidade_patrocinador_id_nova"
+                    v-model="dadosProjetoRevisao.unidade_patrocinador_id">
                         <option value="" v-text="textoEscolhaUnidadePatrocinador"></option>
                         <option v-for="item in unidadesResponsaveis" v-text="item.txt_unidade_responsavel" :value="item.id" 
                         :key="item.id"></option>
@@ -159,13 +170,16 @@
             
                 <div class="column col-6 col-xs-12 br-textarea">
                     <label>Novo(a) Gerente(a) do Projeto</label>
-                    <textarea class="input-medium" id="dsc_nome_gerente_nova" name="dsc_nome_gerente_nova" placeholder="Escreva o nome do novo Gerente..." rows="1"></textarea>
-                    <select id="cargo_gerente_id_nova" class="form-select br-select mb-1" name="cargo_gerente_id_nova">
+                    <textarea class="input-medium" id="dsc_nome_gerente_nova" name="dsc_nome_gerente_nova" placeholder="Escreva o nome do novo Gerente..." rows="1"
+                    v-model="dadosProjetoRevisao.dsc_nome_gerente"></textarea>
+                    <select id="cargo_gerente_id_nova" class="form-select br-select mb-1" name="cargo_gerente_id_nova"
+                    v-model="dadosProjetoRevisao.cargo_gerente_id">
                         <option value="" v-text="textoEscolhaCargoGerente"></option>
                         <option v-for="item in cargos" v-text="item.dsc_cargo" :value="item.id" 
                         :key="item.id"></option>
                     </select>
-                    <select id="unidade_gerente_id_nova" class="form-select br-select mb-1" name="unidade_gerente_id_nova">
+                    <select id="unidade_gerente_id_nova" class="form-select br-select mb-1" name="unidade_gerente_id_nova"
+                    v-model="dadosProjetoRevisao.unidade_gerente_id">
                         <option value="" v-text="textoEscolhaUnidadeGerente"></option>
                         <option v-for="item in unidadesResponsaveis" v-text="item.txt_unidade_responsavel" :value="item.id" 
                         :key="item.id"></option>
@@ -183,13 +197,16 @@
             
                 <div class="column col-6 col-xs-12 br-textarea">
                     <label>Novo(a) Patrocinador(a) Substituto do Projeto</label>
-                    <textarea class="input-medium" id="dsc_nome_patrocinador_substituto_nova" name="dsc_nome_patrocinador_substituto_nova" placeholder="Escreva o nome do novo Patrocinador Substituto..." rows="1"></textarea>
-                    <select id="cargo_patrocinador_substituto_id_nova" class="form-select br-select mb-1" name="cargo_patrocinador_substituto_id_nova">
+                    <textarea class="input-medium" id="dsc_nome_patrocinador_substituto_nova" name="dsc_nome_patrocinador_substituto_nova" placeholder="Escreva o nome do novo Patrocinador Substituto..." rows="1"
+                    v-model="dadosProjetoRevisao.dsc_nome_patrocinador_substituto"></textarea>
+                    <select id="cargo_patrocinador_substituto_id_nova" class="form-select br-select mb-1" name="cargo_patrocinador_substituto_id_nova"
+                    v-model="dadosProjetoRevisao.cargo_patrocinador_substituto_id">
                         <option value="" v-text="textoEscolhaCargoPatrocinadorSubstituto"></option>
                         <option v-for="item in cargos" v-text="item.dsc_cargo" :value="item.id" 
                         :key="item.id"></option>
                     </select>
-                    <select id="unidade_patrocinador_substituto_id_nova" class="form-select br-select mb-1" name="unidade_patrocinador_substituto_id_nova">
+                    <select id="unidade_patrocinador_substituto_id_nova" class="form-select br-select mb-1" name="unidade_patrocinador_substituto_id_nova"
+                    v-model="dadosProjetoRevisao.unidade_patrocinador_substituto_id">
                         <option value="" v-text="textoEscolhaUnidadePatrocinadorSubstituto"></option>
                         <option v-for="item in unidadesResponsaveis" v-text="item.txt_unidade_responsavel" :value="item.id" 
                         :key="item.id"></option>
@@ -207,13 +224,16 @@
             
                 <div class="column col-6 col-xs-12 br-textarea">
                     <label>Novo(a) Gerente(a) Substituto do Projeto</label>
-                    <textarea class="input-medium" id="dsc_nome_gerente_substituto_nova" name="dsc_nome_gerente_substituto_nova" placeholder="Escreva o nome do novo Gerente Substituto..." rows="1"></textarea>
-                    <select id="cargo_gerente_substituto_id_nova" class="form-select br-select mb-1" name="cargo_gerente_substituto_id_nova">
+                    <textarea class="input-medium" id="dsc_nome_gerente_substituto_nova" name="dsc_nome_gerente_substituto_nova" placeholder="Escreva o nome do novo Gerente Substituto..." rows="1"
+                    v-model="dadosProjetoRevisao.dsc_nome_gerente_substituto"></textarea>
+                    <select id="cargo_gerente_substituto_id_nova" class="form-select br-select mb-1" name="cargo_gerente_substituto_id_nova"
+                    v-model="dadosProjetoRevisao.cargo_gerente_substituto_id">
                         <option value="" v-text="textoEscolhaCargoGerenteSubstituto"></option>
                         <option v-for="item in cargos" v-text="item.dsc_cargo" :value="item.id" 
                         :key="item.id"></option>
                     </select>
-                    <select id="unidade_gerente_substituto_id_nova" class="form-select br-select mb-1" name="unidade_gerente_substituto_id_nova">
+                    <select id="unidade_gerente_substituto_id_nova" class="form-select br-select mb-1" name="unidade_gerente_substituto_id_nova"
+                    v-model="dadosProjetoRevisao.unidade_gerente_substituto_id">
                         <option value="" v-text="textoEscolhaUnidadeGerenteSubstituto"></option>
                         <option v-for="item in unidadesResponsaveis" v-text="item.txt_unidade_responsavel" :value="item.id" 
                         :key="item.id"></option>
@@ -240,7 +260,7 @@
 
 <script>
 export default {
-    props: ['url', 'dadosProjeto', 'dadosRevisao', 'revisaoCadastrada'],
+    props: ['url', 'dadosProjeto', 'dadosRevisao', 'revisaoCadastrada', 'dadosProjetoRevisao'],
     data() {
         return {
         //----Campos Select

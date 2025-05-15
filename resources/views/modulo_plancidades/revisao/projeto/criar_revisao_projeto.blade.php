@@ -41,7 +41,6 @@
             :url="'{{ url('/') }}'"
             :dados-projeto="{{json_encode($dadosProjeto)}}"
             :dados-revisao="{{json_encode($dadosRevisao)}}"
-            :dados-etapas="{{json_encode($dadosEtapas)}}"
             :revisao-cadastrada="{{json_encode($revisaoCadastrada)}}"
             >
             </criar-revisao-projeto>

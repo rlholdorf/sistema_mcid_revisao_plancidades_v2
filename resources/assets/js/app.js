@@ -611,10 +611,10 @@ Vue.component(
   require("./components/mod_plancidades/revisao/projeto/CadastroRevisaoProjeto.vue")
 );
 
-// Vue.component(
-//   "editar-revisao-indicador",
-//   require("./components/mod_plancidades/revisao/objetivo_estrategico/EditarRevisaoIndicador.vue")
-// );
+Vue.component(
+  "editar-revisao-projeto",
+  require("./components/mod_plancidades/revisao/projeto/EditarRevisaoProjeto.vue")
+);
 
 // Vue.component(
 //   "show-finalizar-revisao-indicador",

@@ -687,9 +687,15 @@ Route::get('/plancidades/revisao/projeto/listar/{projetoId}', 'Mod_plancidades\R
 
 //Revisão do Projeto
 Route::get('/plancidades/revisao/projeto/{revisaoId}/criar', 'Mod_plancidades\RevisaoProjetoController@create')->name('plancidades.revisao.projeto.criar');
-Route::post('/plancidades/revisao/objetivo_estrategico/{revisaoId}/salvar', 'Mod_plancidades\RevisaoIndicadorController@store')->name('plancidades.revisao.projeto.salvar');
-// Route::get('/plancidades/revisao/objetivo_estrategico/{revisaoId}/editar', 'Mod_plancidades\RevisaoIndicadorController@edit')->name('plancidades.revisao.objetivoEstrategico.editar');
-// Route::post('/plancidades/revisao/objetivo_estrategico/{revisaoId}/atualizar', 'Mod_plancidades\RevisaoIndicadorController@update')->name('plancidades.revisao.objetivoEstrategico.atualizar');
+Route::post('/plancidades/revisao/projeto/{revisaoId}/salvar', 'Mod_plancidades\RevisaoProjetoController@store')->name('plancidades.revisao.projeto.salvar');
+Route::get('/plancidades/revisao/projeto/{revisaoId}/editar', 'Mod_plancidades\RevisaoProjetoController@edit')->name('plancidades.revisao.projeto.editar');
+Route::post('/plancidades/revisao/projeto/{revisaoId}/atualizar', 'Mod_plancidades\RevisaoProjetoController@update')->name('plancidades.revisao.projeto.atualizar');
+
+//Revisão de Etapas do Projeto
+Route::get('/plancidades/revisao/etapas/projeto/{revisaoId}/criar', 'Mod_plancidades\RevisaoEtapasProjetoController@create')->name('plancidades.revisao.etapas.projeto.criar');
+Route::post('/plancidades/revisao/etapas/projeto/{revisaoId}/salvar', 'Mod_plancidades\RevisaoEtapasProjetoController@store')->name('plancidades.revisao.etapas.projeto.salvar');
+Route::get('/plancidades/revisao/etapas/projeto/{revisaoId}/editar', 'Mod_plancidades\RevisaoEtapasProjetoController@edit')->name('plancidades.revisao.etapas.projeto.editar');
+Route::post('/plancidades/revisao/etapas/projeto/{revisaoId}/atualizar', 'Mod_plancidades\RevisaoEtapasProjetoController@update')->name('plancidades.revisao.etapas.projeto.atualizar');
 
 
 

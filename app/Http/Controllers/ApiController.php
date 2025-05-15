@@ -1002,6 +1002,11 @@ class ApiController extends Controller
         return OrgaosPEI::orderBy('dsc_orgao')->get();
     }
 
+    public function buscarCargos()
+    {
+        return Cargos::orderBy('dsc_cargo')->get();
+    }
+
     public function buscarUnidadesResponsaveis()
     {
         return UnidadesResponsaveis::orderBy('txt_unidade_responsavel')->get();
