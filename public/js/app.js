@@ -14408,7 +14408,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(13);
-module.exports = __webpack_require__(422);
+module.exports = __webpack_require__(428);
 
 
 /***/ }),
@@ -14669,20 +14669,22 @@ Vue.component("consulta-projeto-revisao", __webpack_require__(380));
 
 Vue.component("cadastro-revisao-projeto", __webpack_require__(383));
 
-Vue.component("editar-revisao-projeto", __webpack_require__(427));
+Vue.component("editar-revisao-projeto", __webpack_require__(386));
 
 // Vue.component(
 //   "show-finalizar-revisao-indicador",
 //   require("./components/mod_plancidades/revisao/objetivo_estrategico/ShowFinalizarRevisaoIndicador.vue")
 // );
 
-Vue.component("criar-revisao-projeto", __webpack_require__(386));
+Vue.component("criar-revisao-projeto", __webpack_require__(389));
+
+Vue.component("criar-revisao-etapas", __webpack_require__(392));
 
 // Validação Revisão
 
-Vue.component("altera-situacao-revisao-indicador", __webpack_require__(389));
+Vue.component("altera-situacao-revisao-indicador", __webpack_require__(395));
 
-Vue.component("altera-situacao-revisao-iniciativa", __webpack_require__(392));
+Vue.component("altera-situacao-revisao-iniciativa", __webpack_require__(398));
 
 // Vue.component(
 //   "altera-situacao-monitoramento-projeto",
@@ -14691,28 +14693,28 @@ Vue.component("altera-situacao-revisao-iniciativa", __webpack_require__(392));
 
 
 //Transferegov - Programas
-Vue.component("registro-programa", __webpack_require__(395));
+Vue.component("registro-programa", __webpack_require__(401));
 
-Vue.component("listar-programas", __webpack_require__(398));
+Vue.component("listar-programas", __webpack_require__(404));
 
-Vue.component("cadastro-destaque", __webpack_require__(401));
+Vue.component("cadastro-destaque", __webpack_require__(407));
 
 //planejamento tarefas
 
 
-Vue.component("cadastro-planejamento-tarefa", __webpack_require__(404));
+Vue.component("cadastro-planejamento-tarefa", __webpack_require__(410));
 
-Vue.component("etapas-planejamanto", __webpack_require__(407));
+Vue.component("etapas-planejamanto", __webpack_require__(413));
 
-Vue.component("tarefa-etapa", __webpack_require__(410));
+Vue.component("tarefa-etapa", __webpack_require__(416));
 
-Vue.component("lista-verificacao-tarefa", __webpack_require__(413));
+Vue.component("lista-verificacao-tarefa", __webpack_require__(419));
 
 //transferênciais especiais
 
-Vue.component("filtro-tansferencias-especiais", __webpack_require__(416));
+Vue.component("filtro-tansferencias-especiais", __webpack_require__(422));
 
-Vue.component("cadastro-analise-plano", __webpack_require__(419));
+Vue.component("cadastro-analise-plano", __webpack_require__(425));
 
 var app = new Vue({
   el: "#app"
@@ -130287,6 +130289,1684 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
+Component.options.__file = "resources/assets/js/components/mod_plancidades/revisao/projeto/EditarRevisaoProjeto.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6f3ab000", Component.options)
+  } else {
+    hotAPI.reload("data-v-6f3ab000", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 387 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['url', 'dadosProjeto', 'dadosRevisao', 'revisaoCadastrada', 'dadosProjetoRevisao'],
+    data: function data() {
+        return {
+            //----Campos Select
+            cargos: '',
+            cargo: '',
+            objetivosEstrategicos: '',
+            objetivoEstrategico: '',
+            unidadesResponsaveis: '',
+            unidadeResponsavel: '',
+            periodicidades: '',
+            periodicidade: '',
+            polaridades: '',
+            polaridade: '',
+
+            //----Textos de Escolhas
+            textoEscolhaObjetivoEstrategico: "Escolha um novo Objetivo Estratégico",
+            textoEscolhaUnidadeResponsavel: "Escolha uma nova Unidade Responsável:",
+            textoEscolhaPeriodicidade: "Escolha uma nova Periodicidade:",
+            textoEscolhaPolaridade: "Escolha uma nova Polaridade:",
+            textoEscolhaCargoPatrocinador: "Escolha o cargo do novo Patrocinador...",
+            textoEscolhaUnidadePatrocinador: "Escolha a Unidade do novo Patrocinador...",
+            textoEscolhaCargoGerente: "Escolha o cargo do novo Gerente...",
+            textoEscolhaUnidadeGerente: "Escolha a Unidade do novo Gerente...",
+            textoEscolhaCargoPatrocinadorSubstituto: "Escolha o cargo do novo Patrocinador Substituto...",
+            textoEscolhaUnidadePatrocinadorSubstituto: "Escolha a Unidade do novo Patrocinador Substituto...",
+            textoEscolhaCargoGerenteSubstituto: "Escolha o cargo do novo Gerente Substituto...",
+            textoEscolhaUnidadeGerenteSubstituto: "Escolha a Unidade do novo Gerente Substituto..."
+        };
+    },
+
+    methods: {
+        formatarData: function formatarData(data) {
+            var dataTemp = data.split("-");
+            var dataFormatada = '';
+
+            for (var i = dataTemp.length - 1; i >= 0; i--) {
+                dataFormatada += String(dataTemp[i]);
+                if (i > 0) {
+                    dataFormatada += '/';
+                }
+            }
+            return dataFormatada;
+        }
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        axios.get(this.url + '/api/plancidades/objetivosEstrategicos').then(function (resposta) {
+            _this.objetivosEstrategicos = resposta.data;
+        }).catch(function (error) {
+            console.log(error);
+        });
+
+        axios.get(this.url + '/api/plancidades/unidadesResponsaveis').then(function (resposta) {
+            _this.unidadesResponsaveis = resposta.data;
+        }).catch(function (error) {
+            console.log(error);
+        });
+
+        axios.get(this.url + '/api/plancidades/periodicidades').then(function (resposta) {
+            _this.periodicidades = resposta.data;
+        }).catch(function (error) {
+            console.log(error);
+        });
+
+        axios.get(this.url + '/api/plancidades/polaridades').then(function (resposta) {
+            _this.polaridades = resposta.data;
+        }).catch(function (error) {
+            console.log(error);
+        });
+
+        axios.get(this.url + '/api/plancidades/cargos').then(function (resposta) {
+            _this.cargos = resposta.data;
+        }).catch(function (error) {
+            console.log(error);
+        });
+    }
+});
+
+/***/ }),
+/* 388 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("progresso-revisao-projeto", {
+        attrs: {
+          url: _vm.url,
+          "dados-revisao": _vm.dadosRevisao,
+          active: "detalhamento"
+        }
+      }),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-3" }, [
+          _c("div", { staticClass: "column col-6 col-xs-12" }, [
+            _c("label", { attrs: { for: "txt_enunciado_projeto" } }, [
+              _vm._v("Enunciado do Projeto")
+            ]),
+            _vm._v(" "),
+            _c("p", {
+              domProps: {
+                textContent: _vm._s(_vm.dadosProjeto.txt_enunciado_projeto)
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "column col-6 col-xs-12 br-textarea" }, [
+            _c("label", [_vm._v("Novo Enunciado do Projeto")]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.dadosProjetoRevisao.txt_enunciado_projeto,
+                  expression: "dadosProjetoRevisao.txt_enunciado_projeto"
+                }
+              ],
+              staticClass: "input-medium",
+              attrs: {
+                id: "txt_enunciado_projeto_nova",
+                name: "txt_enunciado_projeto_nova",
+                rows: "2"
+              },
+              domProps: {
+                value: _vm.dadosProjetoRevisao.txt_enunciado_projeto
+              },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.dadosProjetoRevisao,
+                    "txt_enunciado_projeto",
+                    $event.target.value
+                  )
+                }
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-3" }, [
+          _c("div", { staticClass: "column col-6 col-xs-12" }, [
+            _c("label", { attrs: { for: "dsc_objetivo_projeto" } }, [
+              _vm._v("Objetivo do Projeto")
+            ]),
+            _vm._v(" "),
+            _c("p", {
+              domProps: {
+                textContent: _vm._s(_vm.dadosProjeto.dsc_objetivo_projeto)
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "column col-6 col-xs-12 br-textarea" }, [
+            _c("label", [_vm._v("Novo Objetivo do Projeto")]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.dadosProjetoRevisao.dsc_objetivo_projeto,
+                  expression: "dadosProjetoRevisao.dsc_objetivo_projeto"
+                }
+              ],
+              staticClass: "input-medium",
+              attrs: {
+                id: "dsc_objetivo_projeto_nova",
+                name: "dsc_objetivo_projeto_nova",
+                rows: "5"
+              },
+              domProps: { value: _vm.dadosProjetoRevisao.dsc_objetivo_projeto },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.dadosProjetoRevisao,
+                    "dsc_objetivo_projeto",
+                    $event.target.value
+                  )
+                }
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-3" }, [
+          _c("div", { staticClass: "column col-6 col-xs-12" }, [
+            _c(
+              "label",
+              { attrs: { for: "txt_titulo_objetivo_estrategico_pei" } },
+              [_vm._v("Objetivo Estratégico Vinculado")]
+            ),
+            _vm._v(" "),
+            _c("p", {
+              domProps: {
+                textContent: _vm._s(
+                  _vm.dadosProjeto.txt_titulo_objetivo_estrategico_pei
+                )
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "column col-6 col-xs-12 br-textarea" }, [
+            _c("label", [_vm._v("Novo Objetivo Estratégico Vinculado")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.dadosProjetoRevisao.objetivo_estrategico_pei_id,
+                    expression:
+                      "dadosProjetoRevisao.objetivo_estrategico_pei_id"
+                  }
+                ],
+                staticClass: "form-select br-select",
+                attrs: {
+                  id: "objetivo_estrategico_pei_id_nova",
+                  name: "objetivo_estrategico_pei_id_nova"
+                },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.dadosProjetoRevisao,
+                      "objetivo_estrategico_pei_id",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              [
+                _c("option", {
+                  attrs: { value: "" },
+                  domProps: {
+                    textContent: _vm._s(_vm.textoEscolhaObjetivoEstrategico)
+                  }
+                }),
+                _vm._v(" "),
+                _vm._l(_vm.objetivosEstrategicos, function(item) {
+                  return _c("option", {
+                    key: item.id,
+                    domProps: {
+                      value: item.id,
+                      textContent: _vm._s(
+                        item.txt_titulo_objetivo_estrategico_pei
+                      )
+                    }
+                  })
+                })
+              ],
+              2
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-3" }, [
+          _c("div", { staticClass: "column col-6 col-xs-12" }, [
+            _c("label", { attrs: { for: "txt_unidade_responsavel" } }, [
+              _vm._v("Unidade Responsável")
+            ]),
+            _vm._v(" "),
+            _c("p", {
+              domProps: {
+                textContent: _vm._s(_vm.dadosProjeto.txt_unidade_responsavel)
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "column col-6 col-xs-12 br-textarea" }, [
+            _c("label", [_vm._v("Nova Unidade Responsável")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.dadosProjetoRevisao.unidade_responsavel_id,
+                    expression: "dadosProjetoRevisao.unidade_responsavel_id"
+                  }
+                ],
+                staticClass: "form-select br-select",
+                attrs: {
+                  id: "unidade_responsavel_id_nova",
+                  name: "unidade_responsavel_id_nova"
+                },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.dadosProjetoRevisao,
+                      "unidade_responsavel_id",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              [
+                _c("option", {
+                  attrs: { value: "" },
+                  domProps: {
+                    textContent: _vm._s(_vm.textoEscolhaUnidadeResponsavel)
+                  }
+                }),
+                _vm._v(" "),
+                _vm._l(_vm.unidadesResponsaveis, function(item) {
+                  return _c("option", {
+                    key: item.id,
+                    domProps: {
+                      value: item.id,
+                      textContent: _vm._s(item.txt_unidade_responsavel)
+                    }
+                  })
+                })
+              ],
+              2
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-3" }, [
+          _c("div", { staticClass: "column col-6 col-xs-12" }, [
+            _c("label", { attrs: { for: "bln_ppa" } }, [
+              _vm._v("É Medida Institucional e Normativa do PPA?")
+            ]),
+            _vm._v(" "),
+            _c("p", {
+              domProps: {
+                textContent: _vm._s(_vm.dadosProjeto.bln_ppa ? "Sim" : "Não")
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "column col-6 col-xs-12 br-textarea" }, [
+            _c("label", [
+              _vm._v(
+                "Nova identificação de Medida Institucional e Normativa do PPA"
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.dadosProjetoRevisao.bln_ppa,
+                    expression: "dadosProjetoRevisao.bln_ppa"
+                  }
+                ],
+                staticClass: "form-select br-select",
+                attrs: { id: "bln_ppa_nova", name: "bln_ppa_nova" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.dadosProjetoRevisao,
+                      "bln_ppa",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "" } }, [
+                  _vm._v(
+                    "Selecione se o projeto é ou não Medida Institucional e Normativa do PPA"
+                  )
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "true" } }, [_vm._v("Sim")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "false" } }, [_vm._v("Não")])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-3" }, [
+          _c("div", { staticClass: "column col-6 col-xs-12" }, [
+            _c("label", { attrs: { for: "dsc_beneficios" } }, [
+              _vm._v("Benefícios do Projeto")
+            ]),
+            _vm._v(" "),
+            _c("p", {
+              domProps: { textContent: _vm._s(_vm.dadosProjeto.dsc_beneficios) }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "column col-6 col-xs-12 br-textarea" }, [
+            _c("label", [_vm._v("Nova Descrição de Benefícios do Projeto")]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.dadosProjetoRevisao.dsc_beneficios,
+                  expression: "dadosProjetoRevisao.dsc_beneficios"
+                }
+              ],
+              staticClass: "input-medium",
+              attrs: {
+                id: "dsc_beneficios_nova",
+                name: "dsc_beneficios_nova",
+                rows: "5"
+              },
+              domProps: { value: _vm.dadosProjetoRevisao.dsc_beneficios },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.dadosProjetoRevisao,
+                    "dsc_beneficios",
+                    $event.target.value
+                  )
+                }
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-3" }, [
+          _c("div", { staticClass: "column col-6 col-xs-12" }, [
+            _c("label", { attrs: { for: "dsc_premissas" } }, [
+              _vm._v("Premissas do Projeto")
+            ]),
+            _vm._v(" "),
+            _c("p", {
+              domProps: { textContent: _vm._s(_vm.dadosProjeto.dsc_premissas) }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "column col-6 col-xs-12 br-textarea" }, [
+            _c("label", [_vm._v("Nova Descrição de Premissas do Projeto")]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.dadosProjetoRevisao.dsc_premissas,
+                  expression: "dadosProjetoRevisao.dsc_premissas"
+                }
+              ],
+              staticClass: "input-medium",
+              attrs: {
+                id: "dsc_premissas_nova",
+                name: "dsc_premissas_nova",
+                rows: "2"
+              },
+              domProps: { value: _vm.dadosProjetoRevisao.dsc_premissas },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.dadosProjetoRevisao,
+                    "dsc_premissas",
+                    $event.target.value
+                  )
+                }
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-3" }, [
+          _c("div", { staticClass: "column col-6 col-xs-12" }, [
+            _c("label", { attrs: { for: "dsc_restricoes" } }, [
+              _vm._v("Restrições do Projeto")
+            ]),
+            _vm._v(" "),
+            _c("p", {
+              domProps: { textContent: _vm._s(_vm.dadosProjeto.dsc_restricoes) }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "column col-6 col-xs-12 br-textarea" }, [
+            _c("label", [_vm._v("Nova Descrição de Restrições do Projeto")]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.dadosProjetoRevisao.dsc_restricoes,
+                  expression: "dadosProjetoRevisao.dsc_restricoes"
+                }
+              ],
+              staticClass: "input-medium",
+              attrs: {
+                id: "dsc_restricoes_nova",
+                name: "dsc_restricoes_nova",
+                rows: "2"
+              },
+              domProps: { value: _vm.dadosProjetoRevisao.dsc_restricoes },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.dadosProjetoRevisao,
+                    "dsc_restricoes",
+                    $event.target.value
+                  )
+                }
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-3" }, [
+          _c("div", { staticClass: "column col-6 col-xs-12" }, [
+            _c("label", [_vm._v("Patrocinador(a) do Projeto")]),
+            _vm._v(" "),
+            _c("p", {
+              staticClass: "mt-2",
+              domProps: {
+                textContent: _vm._s(
+                  "Nome: " + _vm.dadosProjeto.dsc_nome_patrocinador
+                )
+              }
+            }),
+            _vm._v(" "),
+            _c("p", {
+              staticClass: "mt-4",
+              domProps: {
+                textContent: _vm._s("Cargo: " + _vm.dadosProjeto.dsc_cargo)
+              }
+            }),
+            _vm._v(" "),
+            _c("p", {
+              staticClass: "mt-3",
+              domProps: {
+                textContent: _vm._s(
+                  "Unidade: " +
+                    _vm.dadosProjeto.txt_unidade_responsavel_patrocinador
+                )
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "column col-6 col-xs-12 br-textarea" }, [
+            _c("label", [_vm._v("Novo(a) Patrocinador(a) do Projeto")]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.dadosProjetoRevisao.dsc_nome_patrocinador,
+                  expression: "dadosProjetoRevisao.dsc_nome_patrocinador"
+                }
+              ],
+              staticClass: "input-medium",
+              attrs: {
+                id: "dsc_nome_patrocinador_nova",
+                name: "dsc_nome_patrocinador_nova",
+                placeholder: "Escreva o nome do novo Patrocinador...",
+                rows: "1"
+              },
+              domProps: {
+                value: _vm.dadosProjetoRevisao.dsc_nome_patrocinador
+              },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.dadosProjetoRevisao,
+                    "dsc_nome_patrocinador",
+                    $event.target.value
+                  )
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.dadosProjetoRevisao.cargo_patrocinador_id,
+                    expression: "dadosProjetoRevisao.cargo_patrocinador_id"
+                  }
+                ],
+                staticClass: "form-select br-select mb-1",
+                attrs: {
+                  id: "cargo_patrocinador_id_nova",
+                  name: "cargo_patrocinador_id_nova"
+                },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.dadosProjetoRevisao,
+                      "cargo_patrocinador_id",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              [
+                _c("option", {
+                  attrs: { value: "" },
+                  domProps: {
+                    textContent: _vm._s(_vm.textoEscolhaCargoPatrocinador)
+                  }
+                }),
+                _vm._v(" "),
+                _vm._l(_vm.cargos, function(item) {
+                  return _c("option", {
+                    key: item.id,
+                    domProps: {
+                      value: item.id,
+                      textContent: _vm._s(item.dsc_cargo)
+                    }
+                  })
+                })
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.dadosProjetoRevisao.unidade_patrocinador_id,
+                    expression: "dadosProjetoRevisao.unidade_patrocinador_id"
+                  }
+                ],
+                staticClass: "form-select br-select mb-1",
+                attrs: {
+                  id: "unidade_patrocinador_id_nova",
+                  name: "unidade_patrocinador_id_nova"
+                },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.dadosProjetoRevisao,
+                      "unidade_patrocinador_id",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              [
+                _c("option", {
+                  attrs: { value: "" },
+                  domProps: {
+                    textContent: _vm._s(_vm.textoEscolhaUnidadePatrocinador)
+                  }
+                }),
+                _vm._v(" "),
+                _vm._l(_vm.unidadesResponsaveis, function(item) {
+                  return _c("option", {
+                    key: item.id,
+                    domProps: {
+                      value: item.id,
+                      textContent: _vm._s(item.txt_unidade_responsavel)
+                    }
+                  })
+                })
+              ],
+              2
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-3" }, [
+          _c("div", { staticClass: "column col-6 col-xs-12" }, [
+            _c("label", [_vm._v("Gerente(a) do Projeto")]),
+            _vm._v(" "),
+            _c("p", {
+              staticClass: "mt-2",
+              domProps: {
+                textContent: _vm._s(
+                  "Nome: " + _vm.dadosProjeto.dsc_nome_gerente
+                )
+              }
+            }),
+            _vm._v(" "),
+            _c("p", {
+              staticClass: "mt-4",
+              domProps: {
+                textContent: _vm._s(
+                  "Cargo: " + _vm.dadosProjeto.dsc_cargo_gerente
+                )
+              }
+            }),
+            _vm._v(" "),
+            _c("p", {
+              staticClass: "mt-3",
+              domProps: {
+                textContent: _vm._s(
+                  "Unidade: " + _vm.dadosProjeto.txt_unidade_responsavel_gerente
+                )
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "column col-6 col-xs-12 br-textarea" }, [
+            _c("label", [_vm._v("Novo(a) Gerente(a) do Projeto")]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.dadosProjetoRevisao.dsc_nome_gerente,
+                  expression: "dadosProjetoRevisao.dsc_nome_gerente"
+                }
+              ],
+              staticClass: "input-medium",
+              attrs: {
+                id: "dsc_nome_gerente_nova",
+                name: "dsc_nome_gerente_nova",
+                placeholder: "Escreva o nome do novo Gerente...",
+                rows: "1"
+              },
+              domProps: { value: _vm.dadosProjetoRevisao.dsc_nome_gerente },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.dadosProjetoRevisao,
+                    "dsc_nome_gerente",
+                    $event.target.value
+                  )
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.dadosProjetoRevisao.cargo_gerente_id,
+                    expression: "dadosProjetoRevisao.cargo_gerente_id"
+                  }
+                ],
+                staticClass: "form-select br-select mb-1",
+                attrs: {
+                  id: "cargo_gerente_id_nova",
+                  name: "cargo_gerente_id_nova"
+                },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.dadosProjetoRevisao,
+                      "cargo_gerente_id",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              [
+                _c("option", {
+                  attrs: { value: "" },
+                  domProps: {
+                    textContent: _vm._s(_vm.textoEscolhaCargoGerente)
+                  }
+                }),
+                _vm._v(" "),
+                _vm._l(_vm.cargos, function(item) {
+                  return _c("option", {
+                    key: item.id,
+                    domProps: {
+                      value: item.id,
+                      textContent: _vm._s(item.dsc_cargo)
+                    }
+                  })
+                })
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.dadosProjetoRevisao.unidade_gerente_id,
+                    expression: "dadosProjetoRevisao.unidade_gerente_id"
+                  }
+                ],
+                staticClass: "form-select br-select mb-1",
+                attrs: {
+                  id: "unidade_gerente_id_nova",
+                  name: "unidade_gerente_id_nova"
+                },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.dadosProjetoRevisao,
+                      "unidade_gerente_id",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              [
+                _c("option", {
+                  attrs: { value: "" },
+                  domProps: {
+                    textContent: _vm._s(_vm.textoEscolhaUnidadeGerente)
+                  }
+                }),
+                _vm._v(" "),
+                _vm._l(_vm.unidadesResponsaveis, function(item) {
+                  return _c("option", {
+                    key: item.id,
+                    domProps: {
+                      value: item.id,
+                      textContent: _vm._s(item.txt_unidade_responsavel)
+                    }
+                  })
+                })
+              ],
+              2
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-3" }, [
+          _c("div", { staticClass: "column col-6 col-xs-12" }, [
+            _c("label", [_vm._v("Patrocinador(a) Substituto do Projeto")]),
+            _vm._v(" "),
+            _c("p", {
+              staticClass: "mt-2",
+              domProps: {
+                textContent: _vm._s(
+                  _vm.dadosProjeto.dsc_nome_patrocinador_substututo
+                    ? "Nome: " +
+                        _vm.dadosProjeto.dsc_nome_patrocinador_substututo
+                    : "Sem patrocinador substituto definido"
+                )
+              }
+            }),
+            _vm._v(" "),
+            _c("p", {
+              staticClass: "mt-4",
+              domProps: {
+                textContent: _vm._s(
+                  _vm.dadosProjeto.dsc_cargo_substututo
+                    ? "Cargo: " + _vm.dadosProjeto.dsc_cargo_substututo
+                    : ""
+                )
+              }
+            }),
+            _vm._v(" "),
+            _c("p", {
+              staticClass: "mt-3",
+              domProps: {
+                textContent: _vm._s(
+                  _vm.dadosProjeto
+                    .txt_unidade_responsavel_patrocinador_substututo
+                    ? "Unidade: " +
+                        _vm.dadosProjeto
+                          .txt_unidade_responsavel_patrocinador_substututo
+                    : ""
+                )
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "column col-6 col-xs-12 br-textarea" }, [
+            _c("label", [
+              _vm._v("Novo(a) Patrocinador(a) Substituto do Projeto")
+            ]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value:
+                    _vm.dadosProjetoRevisao.dsc_nome_patrocinador_substituto,
+                  expression:
+                    "dadosProjetoRevisao.dsc_nome_patrocinador_substituto"
+                }
+              ],
+              staticClass: "input-medium",
+              attrs: {
+                id: "dsc_nome_patrocinador_substituto_nova",
+                name: "dsc_nome_patrocinador_substituto_nova",
+                placeholder:
+                  "Escreva o nome do novo Patrocinador Substituto...",
+                rows: "1"
+              },
+              domProps: {
+                value: _vm.dadosProjetoRevisao.dsc_nome_patrocinador_substituto
+              },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.dadosProjetoRevisao,
+                    "dsc_nome_patrocinador_substituto",
+                    $event.target.value
+                  )
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value:
+                      _vm.dadosProjetoRevisao.cargo_patrocinador_substituto_id,
+                    expression:
+                      "dadosProjetoRevisao.cargo_patrocinador_substituto_id"
+                  }
+                ],
+                staticClass: "form-select br-select mb-1",
+                attrs: {
+                  id: "cargo_patrocinador_substituto_id_nova",
+                  name: "cargo_patrocinador_substituto_id_nova"
+                },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.dadosProjetoRevisao,
+                      "cargo_patrocinador_substituto_id",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              [
+                _c("option", {
+                  attrs: { value: "" },
+                  domProps: {
+                    textContent: _vm._s(
+                      _vm.textoEscolhaCargoPatrocinadorSubstituto
+                    )
+                  }
+                }),
+                _vm._v(" "),
+                _vm._l(_vm.cargos, function(item) {
+                  return _c("option", {
+                    key: item.id,
+                    domProps: {
+                      value: item.id,
+                      textContent: _vm._s(item.dsc_cargo)
+                    }
+                  })
+                })
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value:
+                      _vm.dadosProjetoRevisao
+                        .unidade_patrocinador_substituto_id,
+                    expression:
+                      "dadosProjetoRevisao.unidade_patrocinador_substituto_id"
+                  }
+                ],
+                staticClass: "form-select br-select mb-1",
+                attrs: {
+                  id: "unidade_patrocinador_substituto_id_nova",
+                  name: "unidade_patrocinador_substituto_id_nova"
+                },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.dadosProjetoRevisao,
+                      "unidade_patrocinador_substituto_id",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              [
+                _c("option", {
+                  attrs: { value: "" },
+                  domProps: {
+                    textContent: _vm._s(
+                      _vm.textoEscolhaUnidadePatrocinadorSubstituto
+                    )
+                  }
+                }),
+                _vm._v(" "),
+                _vm._l(_vm.unidadesResponsaveis, function(item) {
+                  return _c("option", {
+                    key: item.id,
+                    domProps: {
+                      value: item.id,
+                      textContent: _vm._s(item.txt_unidade_responsavel)
+                    }
+                  })
+                })
+              ],
+              2
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row mt-3" }, [
+          _c("div", { staticClass: "column col-6 col-xs-12" }, [
+            _c("label", [_vm._v("Gerente(a) Substituto do Projeto")]),
+            _vm._v(" "),
+            _c("p", {
+              staticClass: "mt-2",
+              domProps: {
+                textContent: _vm._s(
+                  _vm.dadosProjeto.dsc_nome_gerente_substituto
+                    ? "Nome: " + _vm.dadosProjeto.dsc_nome_gerente_substituto
+                    : "Sem gerente substituto definido"
+                )
+              }
+            }),
+            _vm._v(" "),
+            _c("p", {
+              staticClass: "mt-4",
+              domProps: {
+                textContent: _vm._s(
+                  _vm.dadosProjeto.dsc_cargo_gerente_substututo
+                    ? "Cargo: " + _vm.dadosProjeto.dsc_cargo_gerente_substututo
+                    : ""
+                )
+              }
+            }),
+            _vm._v(" "),
+            _c("p", {
+              staticClass: "mt-3",
+              domProps: {
+                textContent: _vm._s(
+                  _vm.dadosProjeto.txt_unidade_responsavel_gerente_substututo
+                    ? "Unidade: " +
+                        _vm.dadosProjeto
+                          .txt_unidade_responsavel_gerente_substututo
+                    : ""
+                )
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "column col-6 col-xs-12 br-textarea" }, [
+            _c("label", [_vm._v("Novo(a) Gerente(a) Substituto do Projeto")]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.dadosProjetoRevisao.dsc_nome_gerente_substituto,
+                  expression: "dadosProjetoRevisao.dsc_nome_gerente_substituto"
+                }
+              ],
+              staticClass: "input-medium",
+              attrs: {
+                id: "dsc_nome_gerente_substituto_nova",
+                name: "dsc_nome_gerente_substituto_nova",
+                placeholder: "Escreva o nome do novo Gerente Substituto...",
+                rows: "1"
+              },
+              domProps: {
+                value: _vm.dadosProjetoRevisao.dsc_nome_gerente_substituto
+              },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.dadosProjetoRevisao,
+                    "dsc_nome_gerente_substituto",
+                    $event.target.value
+                  )
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.dadosProjetoRevisao.cargo_gerente_substituto_id,
+                    expression:
+                      "dadosProjetoRevisao.cargo_gerente_substituto_id"
+                  }
+                ],
+                staticClass: "form-select br-select mb-1",
+                attrs: {
+                  id: "cargo_gerente_substituto_id_nova",
+                  name: "cargo_gerente_substituto_id_nova"
+                },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.dadosProjetoRevisao,
+                      "cargo_gerente_substituto_id",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              [
+                _c("option", {
+                  attrs: { value: "" },
+                  domProps: {
+                    textContent: _vm._s(_vm.textoEscolhaCargoGerenteSubstituto)
+                  }
+                }),
+                _vm._v(" "),
+                _vm._l(_vm.cargos, function(item) {
+                  return _c("option", {
+                    key: item.id,
+                    domProps: {
+                      value: item.id,
+                      textContent: _vm._s(item.dsc_cargo)
+                    }
+                  })
+                })
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value:
+                      _vm.dadosProjetoRevisao.unidade_gerente_substituto_id,
+                    expression:
+                      "dadosProjetoRevisao.unidade_gerente_substituto_id"
+                  }
+                ],
+                staticClass: "form-select br-select mb-1",
+                attrs: {
+                  id: "unidade_gerente_substituto_id_nova",
+                  name: "unidade_gerente_substituto_id_nova"
+                },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.dadosProjetoRevisao,
+                      "unidade_gerente_substituto_id",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              [
+                _c("option", {
+                  attrs: { value: "" },
+                  domProps: {
+                    textContent: _vm._s(
+                      _vm.textoEscolhaUnidadeGerenteSubstituto
+                    )
+                  }
+                }),
+                _vm._v(" "),
+                _vm._l(_vm.unidadesResponsaveis, function(item) {
+                  return _c("option", {
+                    key: item.id,
+                    domProps: {
+                      value: item.id,
+                      textContent: _vm._s(item.txt_unidade_responsavel)
+                    }
+                  })
+                })
+              ],
+              2
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col col-xs-12 col-sm-12" }, [
+            _c("div", { staticClass: "p-3 text-right" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "br-button primary mr-3",
+                  attrs: { type: "submit", name: "salvar_revisão", value: true }
+                },
+                [_vm._v("Salvar Revisão\n                    ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "br-button danger mr-3",
+                  attrs: {
+                    type: "button",
+                    href: this.url + "/plancidades/revisao/projeto/consulta"
+                  }
+                },
+                [_vm._v("Voltar\n                    ")]
+              )
+            ])
+          ])
+        ])
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "text-center" }, [
+      _c("b", [_vm._v("Detalhamento do Projeto")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6f3ab000", module.exports)
+  }
+}
+
+/***/ }),
+/* 389 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(390)
+/* template */
+var __vue_template__ = __webpack_require__(391)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
 Component.options.__file = "resources/assets/js/components/mod_plancidades/revisao/projeto/CriarRevisaoProjeto.vue"
 
 /* hot reload */
@@ -130309,7 +131989,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 387 */
+/* 390 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -130637,7 +132317,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 388 */
+/* 391 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -131471,15 +133151,375 @@ if (false) {
 }
 
 /***/ }),
-/* 389 */
+/* 392 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(390)
+var __vue_script__ = __webpack_require__(393)
 /* template */
-var __vue_template__ = __webpack_require__(391)
+var __vue_template__ = __webpack_require__(394)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/mod_plancidades/revisao/projeto/etapas/CriarRevisaoEtapas.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5488a352", Component.options)
+  } else {
+    hotAPI.reload("data-v-5488a352", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 393 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['url', 'dadosProjeto', 'dadosProjetoRevisao', 'dadosEtapas', 'revisaoCadastrada', 'dadosRevisao', 'dadosEtapasRevisao'],
+    data: function data() {
+        return {
+            //----Campos Select
+            objetivosEstrategicos: '',
+            objetivoEstrategico: '',
+            unidadesResponsaveis: '',
+            unidadeResponsavel: '',
+            periodicidades: '',
+            periodicidade: '',
+            polaridades: '',
+            polaridade: '',
+
+            //----Textos de Escolhas
+            textoEscolhaObjetivoEstrategico: "Escolha um novo Objetivo Estratégico",
+            textoEscolhaUnidadeResponsavel: "Escolha uma nova Unidade Responsável:",
+            textoEscolhaPeriodicidade: "Escolha uma nova Periodicidade:",
+            textoEscolhaPolaridade: "Escolha uma nova Polaridade:"
+        };
+    },
+
+    methods: {
+        formatarData: function formatarData(data) {
+            var dataTemp = data.split("-");
+            var dataFormatada = '';
+
+            for (var i = dataTemp.length - 1; i >= 0; i--) {
+                dataFormatada += String(dataTemp[i]);
+                if (i > 0) {
+                    dataFormatada += '/';
+                }
+            }
+            return dataFormatada;
+        }
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        axios.get(this.url + '/api/plancidades/objetivosEstrategicos').then(function (resposta) {
+            _this.objetivosEstrategicos = resposta.data;
+        }).catch(function (error) {
+            console.log(error);
+        });
+
+        axios.get(this.url + '/api/plancidades/unidadesResponsaveis').then(function (resposta) {
+            _this.unidadesResponsaveis = resposta.data;
+        }).catch(function (error) {
+            console.log(error);
+        });
+
+        axios.get(this.url + '/api/plancidades/periodicidades').then(function (resposta) {
+            _this.periodicidades = resposta.data;
+        }).catch(function (error) {
+            console.log(error);
+        });
+
+        axios.get(this.url + '/api/plancidades/polaridades').then(function (resposta) {
+            _this.polaridades = resposta.data;
+        }).catch(function (error) {
+            console.log(error);
+        });
+    }
+});
+
+/***/ }),
+/* 394 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "form-group" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "table-responsive mt-3" },
+        [
+          _c("table", [
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.dadosEtapas, function(item, index) {
+                return _c("tr", [
+                  _c("td", [_vm._v(_vm._s(index + 1))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(item.dsc_etapa))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(item.dsc_marco))]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-center" }, [
+                    _vm._v(_vm._s(item.vlr_peso_etapa))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-center" }, [
+                    _vm._v(
+                      _vm._s(_vm.formatarData(item.dte_previsao_inicio_etapa))
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "text-center" }, [
+                    _vm._v(
+                      _vm._s(
+                        _vm.formatarData(item.dte_previsao_conclusao_etapa)
+                      )
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(2, true),
+                  _vm._v(" "),
+                  _vm._m(3, true)
+                ])
+              }),
+              0
+            )
+          ]),
+          _vm._v(" "),
+          _vm._t("default")
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col col-xs-12 col-sm-12" }, [
+          _c("div", { staticClass: "p-3 text-right" }, [
+            _c(
+              "button",
+              {
+                staticClass: "br-button primary mr-3",
+                attrs: { type: "submit", name: "salvar_revisão", value: true }
+              },
+              [_vm._v("Salvar Revisão\n                    ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "br-button danger mr-3",
+                attrs: {
+                  type: "button",
+                  href: this.url + "/plancidades/revisao/projeto/consulta"
+                }
+              },
+              [_vm._v("Voltar\n                    ")]
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "text-center" }, [
+      _c("b", [_vm._v("Detalhamento das Etapas")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Nome da etapa (Produto)")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Marco da entrega")]),
+        _vm._v(" "),
+        _c(
+          "th",
+          { staticClass: "text-center", staticStyle: { "border-left": "1px" } },
+          [_vm._v("Peso relativo")]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          { staticClass: "text-center", staticStyle: { "border-left": "1px" } },
+          [_vm._v("Data de Início")]
+        ),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-center" }, [_vm._v("Data de Conclusão")]),
+        _vm._v(" "),
+        _c(
+          "th",
+          { staticClass: "text-center", staticStyle: { "border-left": "1px" } },
+          [_vm._v("Alterar")]
+        ),
+        _vm._v(" "),
+        _c(
+          "th",
+          { staticClass: "text-center", staticStyle: { "border-left": "1px" } },
+          [_vm._v("Excluir")]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "text-center" }, [
+      _c(
+        "button",
+        {
+          staticClass: "br-button circle primary small",
+          attrs: { type: "button", title: "Monitorar etapa" }
+        },
+        [_c("i", { staticClass: "fa fa-pen" })]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "text-center" }, [
+      _c(
+        "button",
+        {
+          staticClass: "br-button circle primary small",
+          attrs: { type: "button", title: "Monitorar etapa" }
+        },
+        [_c("i", { staticClass: "fa fa-times-circle" })]
+      )
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5488a352", module.exports)
+  }
+}
+
+/***/ }),
+/* 395 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(396)
+/* template */
+var __vue_template__ = __webpack_require__(397)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -131518,7 +133558,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 390 */
+/* 396 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -132061,7 +134101,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 391 */
+/* 397 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -133664,15 +135704,15 @@ if (false) {
 }
 
 /***/ }),
-/* 392 */
+/* 398 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(393)
+var __vue_script__ = __webpack_require__(399)
 /* template */
-var __vue_template__ = __webpack_require__(394)
+var __vue_template__ = __webpack_require__(400)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -133711,7 +135751,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 393 */
+/* 399 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -134309,7 +136349,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 394 */
+/* 400 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -136153,15 +138193,15 @@ if (false) {
 }
 
 /***/ }),
-/* 395 */
+/* 401 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(396)
+var __vue_script__ = __webpack_require__(402)
 /* template */
-var __vue_template__ = __webpack_require__(397)
+var __vue_template__ = __webpack_require__(403)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -136200,7 +138240,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 396 */
+/* 402 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -136474,7 +138514,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 397 */
+/* 403 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -137053,15 +139093,15 @@ if (false) {
 }
 
 /***/ }),
-/* 398 */
+/* 404 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(399)
+var __vue_script__ = __webpack_require__(405)
 /* template */
-var __vue_template__ = __webpack_require__(400)
+var __vue_template__ = __webpack_require__(406)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -137100,7 +139140,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 399 */
+/* 405 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -137459,7 +139499,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 400 */
+/* 406 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -138323,15 +140363,15 @@ if (false) {
 }
 
 /***/ }),
-/* 401 */
+/* 407 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(402)
+var __vue_script__ = __webpack_require__(408)
 /* template */
-var __vue_template__ = __webpack_require__(403)
+var __vue_template__ = __webpack_require__(409)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -138370,7 +140410,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 402 */
+/* 408 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -138543,7 +140583,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 403 */
+/* 409 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -138840,15 +140880,15 @@ if (false) {
 }
 
 /***/ }),
-/* 404 */
+/* 410 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(405)
+var __vue_script__ = __webpack_require__(411)
 /* template */
-var __vue_template__ = __webpack_require__(406)
+var __vue_template__ = __webpack_require__(412)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -138887,7 +140927,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 405 */
+/* 411 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -138965,7 +141005,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 406 */
+/* 412 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -139122,15 +141162,15 @@ if (false) {
 }
 
 /***/ }),
-/* 407 */
+/* 413 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(408)
+var __vue_script__ = __webpack_require__(414)
 /* template */
-var __vue_template__ = __webpack_require__(409)
+var __vue_template__ = __webpack_require__(415)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -139169,7 +141209,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 408 */
+/* 414 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -139305,7 +141345,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 409 */
+/* 415 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -139525,15 +141565,15 @@ if (false) {
 }
 
 /***/ }),
-/* 410 */
+/* 416 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(411)
+var __vue_script__ = __webpack_require__(417)
 /* template */
-var __vue_template__ = __webpack_require__(412)
+var __vue_template__ = __webpack_require__(418)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -139572,7 +141612,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 411 */
+/* 417 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -139747,7 +141787,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 412 */
+/* 418 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -140114,15 +142154,15 @@ if (false) {
 }
 
 /***/ }),
-/* 413 */
+/* 419 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(414)
+var __vue_script__ = __webpack_require__(420)
 /* template */
-var __vue_template__ = __webpack_require__(415)
+var __vue_template__ = __webpack_require__(421)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -140161,7 +142201,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 414 */
+/* 420 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -140336,7 +142376,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 415 */
+/* 421 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -140703,15 +142743,15 @@ if (false) {
 }
 
 /***/ }),
-/* 416 */
+/* 422 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(417)
+var __vue_script__ = __webpack_require__(423)
 /* template */
-var __vue_template__ = __webpack_require__(418)
+var __vue_template__ = __webpack_require__(424)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -140750,7 +142790,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 417 */
+/* 423 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -140867,7 +142907,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 418 */
+/* 424 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -141037,15 +143077,15 @@ if (false) {
 }
 
 /***/ }),
-/* 419 */
+/* 425 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(420)
+var __vue_script__ = __webpack_require__(426)
 /* template */
-var __vue_template__ = __webpack_require__(421)
+var __vue_template__ = __webpack_require__(427)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -141084,7 +143124,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 420 */
+/* 426 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -141194,7 +143234,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 421 */
+/* 427 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -141454,1692 +143494,10 @@ if (false) {
 }
 
 /***/ }),
-/* 422 */
+/* 428 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 423 */,
-/* 424 */,
-/* 425 */,
-/* 426 */,
-/* 427 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(428)
-/* template */
-var __vue_template__ = __webpack_require__(429)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/mod_plancidades/revisao/projeto/EditarRevisaoProjeto.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-6f3ab000", Component.options)
-  } else {
-    hotAPI.reload("data-v-6f3ab000", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 428 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['url', 'dadosProjeto', 'dadosRevisao', 'revisaoCadastrada', 'dadosProjetoRevisao'],
-    data: function data() {
-        return {
-            //----Campos Select
-            cargos: '',
-            cargo: '',
-            objetivosEstrategicos: '',
-            objetivoEstrategico: '',
-            unidadesResponsaveis: '',
-            unidadeResponsavel: '',
-            periodicidades: '',
-            periodicidade: '',
-            polaridades: '',
-            polaridade: '',
-
-            //----Textos de Escolhas
-            textoEscolhaObjetivoEstrategico: "Escolha um novo Objetivo Estratégico",
-            textoEscolhaUnidadeResponsavel: "Escolha uma nova Unidade Responsável:",
-            textoEscolhaPeriodicidade: "Escolha uma nova Periodicidade:",
-            textoEscolhaPolaridade: "Escolha uma nova Polaridade:",
-            textoEscolhaCargoPatrocinador: "Escolha o cargo do novo Patrocinador...",
-            textoEscolhaUnidadePatrocinador: "Escolha a Unidade do novo Patrocinador...",
-            textoEscolhaCargoGerente: "Escolha o cargo do novo Gerente...",
-            textoEscolhaUnidadeGerente: "Escolha a Unidade do novo Gerente...",
-            textoEscolhaCargoPatrocinadorSubstituto: "Escolha o cargo do novo Patrocinador Substituto...",
-            textoEscolhaUnidadePatrocinadorSubstituto: "Escolha a Unidade do novo Patrocinador Substituto...",
-            textoEscolhaCargoGerenteSubstituto: "Escolha o cargo do novo Gerente Substituto...",
-            textoEscolhaUnidadeGerenteSubstituto: "Escolha a Unidade do novo Gerente Substituto..."
-        };
-    },
-
-    methods: {
-        formatarData: function formatarData(data) {
-            var dataTemp = data.split("-");
-            var dataFormatada = '';
-
-            for (var i = dataTemp.length - 1; i >= 0; i--) {
-                dataFormatada += String(dataTemp[i]);
-                if (i > 0) {
-                    dataFormatada += '/';
-                }
-            }
-            return dataFormatada;
-        }
-    },
-    mounted: function mounted() {
-        var _this = this;
-
-        axios.get(this.url + '/api/plancidades/objetivosEstrategicos').then(function (resposta) {
-            _this.objetivosEstrategicos = resposta.data;
-        }).catch(function (error) {
-            console.log(error);
-        });
-
-        axios.get(this.url + '/api/plancidades/unidadesResponsaveis').then(function (resposta) {
-            _this.unidadesResponsaveis = resposta.data;
-        }).catch(function (error) {
-            console.log(error);
-        });
-
-        axios.get(this.url + '/api/plancidades/periodicidades').then(function (resposta) {
-            _this.periodicidades = resposta.data;
-        }).catch(function (error) {
-            console.log(error);
-        });
-
-        axios.get(this.url + '/api/plancidades/polaridades').then(function (resposta) {
-            _this.polaridades = resposta.data;
-        }).catch(function (error) {
-            console.log(error);
-        });
-
-        axios.get(this.url + '/api/plancidades/cargos').then(function (resposta) {
-            _this.cargos = resposta.data;
-        }).catch(function (error) {
-            console.log(error);
-        });
-    }
-});
-
-/***/ }),
-/* 429 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("progresso-revisao-projeto", {
-        attrs: {
-          url: _vm.url,
-          "dados-revisao": _vm.dadosRevisao,
-          active: "detalhamento"
-        }
-      }),
-      _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("div", { staticClass: "row mt-3" }, [
-          _c("div", { staticClass: "column col-6 col-xs-12" }, [
-            _c("label", { attrs: { for: "txt_enunciado_projeto" } }, [
-              _vm._v("Enunciado do Projeto")
-            ]),
-            _vm._v(" "),
-            _c("p", {
-              domProps: {
-                textContent: _vm._s(_vm.dadosProjeto.txt_enunciado_projeto)
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "column col-6 col-xs-12 br-textarea" }, [
-            _c("label", [_vm._v("Novo Enunciado do Projeto")]),
-            _vm._v(" "),
-            _c("textarea", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.dadosProjetoRevisao.txt_enunciado_projeto,
-                  expression: "dadosProjetoRevisao.txt_enunciado_projeto"
-                }
-              ],
-              staticClass: "input-medium",
-              attrs: {
-                id: "txt_enunciado_projeto_nova",
-                name: "txt_enunciado_projeto_nova",
-                rows: "2"
-              },
-              domProps: {
-                value: _vm.dadosProjetoRevisao.txt_enunciado_projeto
-              },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(
-                    _vm.dadosProjetoRevisao,
-                    "txt_enunciado_projeto",
-                    $event.target.value
-                  )
-                }
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row mt-3" }, [
-          _c("div", { staticClass: "column col-6 col-xs-12" }, [
-            _c("label", { attrs: { for: "dsc_objetivo_projeto" } }, [
-              _vm._v("Objetivo do Projeto")
-            ]),
-            _vm._v(" "),
-            _c("p", {
-              domProps: {
-                textContent: _vm._s(_vm.dadosProjeto.dsc_objetivo_projeto)
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "column col-6 col-xs-12 br-textarea" }, [
-            _c("label", [_vm._v("Novo Objetivo do Projeto")]),
-            _vm._v(" "),
-            _c("textarea", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.dadosProjetoRevisao.dsc_objetivo_projeto,
-                  expression: "dadosProjetoRevisao.dsc_objetivo_projeto"
-                }
-              ],
-              staticClass: "input-medium",
-              attrs: {
-                id: "dsc_objetivo_projeto_nova",
-                name: "dsc_objetivo_projeto_nova",
-                rows: "5"
-              },
-              domProps: { value: _vm.dadosProjetoRevisao.dsc_objetivo_projeto },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(
-                    _vm.dadosProjetoRevisao,
-                    "dsc_objetivo_projeto",
-                    $event.target.value
-                  )
-                }
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row mt-3" }, [
-          _c("div", { staticClass: "column col-6 col-xs-12" }, [
-            _c(
-              "label",
-              { attrs: { for: "txt_titulo_objetivo_estrategico_pei" } },
-              [_vm._v("Objetivo Estratégico Vinculado")]
-            ),
-            _vm._v(" "),
-            _c("p", {
-              domProps: {
-                textContent: _vm._s(
-                  _vm.dadosProjeto.txt_titulo_objetivo_estrategico_pei
-                )
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "column col-6 col-xs-12 br-textarea" }, [
-            _c("label", [_vm._v("Novo Objetivo Estratégico Vinculado")]),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.dadosProjetoRevisao.objetivo_estrategico_pei_id,
-                    expression:
-                      "dadosProjetoRevisao.objetivo_estrategico_pei_id"
-                  }
-                ],
-                staticClass: "form-select br-select",
-                attrs: {
-                  id: "objetivo_estrategico_pei_id_nova",
-                  name: "objetivo_estrategico_pei_id_nova"
-                },
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.$set(
-                      _vm.dadosProjetoRevisao,
-                      "objetivo_estrategico_pei_id",
-                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                    )
-                  }
-                }
-              },
-              [
-                _c("option", {
-                  attrs: { value: "" },
-                  domProps: {
-                    textContent: _vm._s(_vm.textoEscolhaObjetivoEstrategico)
-                  }
-                }),
-                _vm._v(" "),
-                _vm._l(_vm.objetivosEstrategicos, function(item) {
-                  return _c("option", {
-                    key: item.id,
-                    domProps: {
-                      value: item.id,
-                      textContent: _vm._s(
-                        item.txt_titulo_objetivo_estrategico_pei
-                      )
-                    }
-                  })
-                })
-              ],
-              2
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row mt-3" }, [
-          _c("div", { staticClass: "column col-6 col-xs-12" }, [
-            _c("label", { attrs: { for: "txt_unidade_responsavel" } }, [
-              _vm._v("Unidade Responsável")
-            ]),
-            _vm._v(" "),
-            _c("p", {
-              domProps: {
-                textContent: _vm._s(_vm.dadosProjeto.txt_unidade_responsavel)
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "column col-6 col-xs-12 br-textarea" }, [
-            _c("label", [_vm._v("Nova Unidade Responsável")]),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.dadosProjetoRevisao.unidade_responsavel_id,
-                    expression: "dadosProjetoRevisao.unidade_responsavel_id"
-                  }
-                ],
-                staticClass: "form-select br-select",
-                attrs: {
-                  id: "unidade_responsavel_id_nova",
-                  name: "unidade_responsavel_id_nova"
-                },
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.$set(
-                      _vm.dadosProjetoRevisao,
-                      "unidade_responsavel_id",
-                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                    )
-                  }
-                }
-              },
-              [
-                _c("option", {
-                  attrs: { value: "" },
-                  domProps: {
-                    textContent: _vm._s(_vm.textoEscolhaUnidadeResponsavel)
-                  }
-                }),
-                _vm._v(" "),
-                _vm._l(_vm.unidadesResponsaveis, function(item) {
-                  return _c("option", {
-                    key: item.id,
-                    domProps: {
-                      value: item.id,
-                      textContent: _vm._s(item.txt_unidade_responsavel)
-                    }
-                  })
-                })
-              ],
-              2
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row mt-3" }, [
-          _c("div", { staticClass: "column col-6 col-xs-12" }, [
-            _c("label", { attrs: { for: "bln_ppa" } }, [
-              _vm._v("É Medida Institucional e Normativa do PPA?")
-            ]),
-            _vm._v(" "),
-            _c("p", {
-              domProps: {
-                textContent: _vm._s(_vm.dadosProjeto.bln_ppa ? "Sim" : "Não")
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "column col-6 col-xs-12 br-textarea" }, [
-            _c("label", [
-              _vm._v(
-                "Nova identificação de Medida Institucional e Normativa do PPA"
-              )
-            ]),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.dadosProjetoRevisao.bln_ppa,
-                    expression: "dadosProjetoRevisao.bln_ppa"
-                  }
-                ],
-                staticClass: "form-select br-select",
-                attrs: { id: "bln_ppa_nova", name: "bln_ppa_nova" },
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.$set(
-                      _vm.dadosProjetoRevisao,
-                      "bln_ppa",
-                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                    )
-                  }
-                }
-              },
-              [
-                _c("option", { attrs: { value: "" } }, [
-                  _vm._v(
-                    "Selecione se o projeto é ou não Medida Institucional e Normativa do PPA"
-                  )
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "true" } }, [_vm._v("Sim")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "false" } }, [_vm._v("Não")])
-              ]
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row mt-3" }, [
-          _c("div", { staticClass: "column col-6 col-xs-12" }, [
-            _c("label", { attrs: { for: "dsc_beneficios" } }, [
-              _vm._v("Benefícios do Projeto")
-            ]),
-            _vm._v(" "),
-            _c("p", {
-              domProps: { textContent: _vm._s(_vm.dadosProjeto.dsc_beneficios) }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "column col-6 col-xs-12 br-textarea" }, [
-            _c("label", [_vm._v("Nova Descrição de Benefícios do Projeto")]),
-            _vm._v(" "),
-            _c("textarea", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.dadosProjetoRevisao.dsc_beneficios,
-                  expression: "dadosProjetoRevisao.dsc_beneficios"
-                }
-              ],
-              staticClass: "input-medium",
-              attrs: {
-                id: "dsc_beneficios_nova",
-                name: "dsc_beneficios_nova",
-                rows: "5"
-              },
-              domProps: { value: _vm.dadosProjetoRevisao.dsc_beneficios },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(
-                    _vm.dadosProjetoRevisao,
-                    "dsc_beneficios",
-                    $event.target.value
-                  )
-                }
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row mt-3" }, [
-          _c("div", { staticClass: "column col-6 col-xs-12" }, [
-            _c("label", { attrs: { for: "dsc_premissas" } }, [
-              _vm._v("Premissas do Projeto")
-            ]),
-            _vm._v(" "),
-            _c("p", {
-              domProps: { textContent: _vm._s(_vm.dadosProjeto.dsc_premissas) }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "column col-6 col-xs-12 br-textarea" }, [
-            _c("label", [_vm._v("Nova Descrição de Premissas do Projeto")]),
-            _vm._v(" "),
-            _c("textarea", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.dadosProjetoRevisao.dsc_premissas,
-                  expression: "dadosProjetoRevisao.dsc_premissas"
-                }
-              ],
-              staticClass: "input-medium",
-              attrs: {
-                id: "dsc_premissas_nova",
-                name: "dsc_premissas_nova",
-                rows: "2"
-              },
-              domProps: { value: _vm.dadosProjetoRevisao.dsc_premissas },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(
-                    _vm.dadosProjetoRevisao,
-                    "dsc_premissas",
-                    $event.target.value
-                  )
-                }
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row mt-3" }, [
-          _c("div", { staticClass: "column col-6 col-xs-12" }, [
-            _c("label", { attrs: { for: "dsc_restricoes" } }, [
-              _vm._v("Restrições do Projeto")
-            ]),
-            _vm._v(" "),
-            _c("p", {
-              domProps: { textContent: _vm._s(_vm.dadosProjeto.dsc_restricoes) }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "column col-6 col-xs-12 br-textarea" }, [
-            _c("label", [_vm._v("Nova Descrição de Restrições do Projeto")]),
-            _vm._v(" "),
-            _c("textarea", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.dadosProjetoRevisao.dsc_restricoes,
-                  expression: "dadosProjetoRevisao.dsc_restricoes"
-                }
-              ],
-              staticClass: "input-medium",
-              attrs: {
-                id: "dsc_restricoes_nova",
-                name: "dsc_restricoes_nova",
-                rows: "2"
-              },
-              domProps: { value: _vm.dadosProjetoRevisao.dsc_restricoes },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(
-                    _vm.dadosProjetoRevisao,
-                    "dsc_restricoes",
-                    $event.target.value
-                  )
-                }
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row mt-3" }, [
-          _c("div", { staticClass: "column col-6 col-xs-12" }, [
-            _c("label", [_vm._v("Patrocinador(a) do Projeto")]),
-            _vm._v(" "),
-            _c("p", {
-              staticClass: "mt-2",
-              domProps: {
-                textContent: _vm._s(
-                  "Nome: " + _vm.dadosProjeto.dsc_nome_patrocinador
-                )
-              }
-            }),
-            _vm._v(" "),
-            _c("p", {
-              staticClass: "mt-4",
-              domProps: {
-                textContent: _vm._s("Cargo: " + _vm.dadosProjeto.dsc_cargo)
-              }
-            }),
-            _vm._v(" "),
-            _c("p", {
-              staticClass: "mt-3",
-              domProps: {
-                textContent: _vm._s(
-                  "Unidade: " +
-                    _vm.dadosProjeto.txt_unidade_responsavel_patrocinador
-                )
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "column col-6 col-xs-12 br-textarea" }, [
-            _c("label", [_vm._v("Novo(a) Patrocinador(a) do Projeto")]),
-            _vm._v(" "),
-            _c("textarea", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.dadosProjetoRevisao.dsc_nome_patrocinador,
-                  expression: "dadosProjetoRevisao.dsc_nome_patrocinador"
-                }
-              ],
-              staticClass: "input-medium",
-              attrs: {
-                id: "dsc_nome_patrocinador_nova",
-                name: "dsc_nome_patrocinador_nova",
-                placeholder: "Escreva o nome do novo Patrocinador...",
-                rows: "1"
-              },
-              domProps: {
-                value: _vm.dadosProjetoRevisao.dsc_nome_patrocinador
-              },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(
-                    _vm.dadosProjetoRevisao,
-                    "dsc_nome_patrocinador",
-                    $event.target.value
-                  )
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.dadosProjetoRevisao.cargo_patrocinador_id,
-                    expression: "dadosProjetoRevisao.cargo_patrocinador_id"
-                  }
-                ],
-                staticClass: "form-select br-select mb-1",
-                attrs: {
-                  id: "cargo_patrocinador_id_nova",
-                  name: "cargo_patrocinador_id_nova"
-                },
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.$set(
-                      _vm.dadosProjetoRevisao,
-                      "cargo_patrocinador_id",
-                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                    )
-                  }
-                }
-              },
-              [
-                _c("option", {
-                  attrs: { value: "" },
-                  domProps: {
-                    textContent: _vm._s(_vm.textoEscolhaCargoPatrocinador)
-                  }
-                }),
-                _vm._v(" "),
-                _vm._l(_vm.cargos, function(item) {
-                  return _c("option", {
-                    key: item.id,
-                    domProps: {
-                      value: item.id,
-                      textContent: _vm._s(item.dsc_cargo)
-                    }
-                  })
-                })
-              ],
-              2
-            ),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.dadosProjetoRevisao.unidade_patrocinador_id,
-                    expression: "dadosProjetoRevisao.unidade_patrocinador_id"
-                  }
-                ],
-                staticClass: "form-select br-select mb-1",
-                attrs: {
-                  id: "unidade_patrocinador_id_nova",
-                  name: "unidade_patrocinador_id_nova"
-                },
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.$set(
-                      _vm.dadosProjetoRevisao,
-                      "unidade_patrocinador_id",
-                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                    )
-                  }
-                }
-              },
-              [
-                _c("option", {
-                  attrs: { value: "" },
-                  domProps: {
-                    textContent: _vm._s(_vm.textoEscolhaUnidadePatrocinador)
-                  }
-                }),
-                _vm._v(" "),
-                _vm._l(_vm.unidadesResponsaveis, function(item) {
-                  return _c("option", {
-                    key: item.id,
-                    domProps: {
-                      value: item.id,
-                      textContent: _vm._s(item.txt_unidade_responsavel)
-                    }
-                  })
-                })
-              ],
-              2
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row mt-3" }, [
-          _c("div", { staticClass: "column col-6 col-xs-12" }, [
-            _c("label", [_vm._v("Gerente(a) do Projeto")]),
-            _vm._v(" "),
-            _c("p", {
-              staticClass: "mt-2",
-              domProps: {
-                textContent: _vm._s(
-                  "Nome: " + _vm.dadosProjeto.dsc_nome_gerente
-                )
-              }
-            }),
-            _vm._v(" "),
-            _c("p", {
-              staticClass: "mt-4",
-              domProps: {
-                textContent: _vm._s(
-                  "Cargo: " + _vm.dadosProjeto.dsc_cargo_gerente
-                )
-              }
-            }),
-            _vm._v(" "),
-            _c("p", {
-              staticClass: "mt-3",
-              domProps: {
-                textContent: _vm._s(
-                  "Unidade: " + _vm.dadosProjeto.txt_unidade_responsavel_gerente
-                )
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "column col-6 col-xs-12 br-textarea" }, [
-            _c("label", [_vm._v("Novo(a) Gerente(a) do Projeto")]),
-            _vm._v(" "),
-            _c("textarea", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.dadosProjetoRevisao.dsc_nome_gerente,
-                  expression: "dadosProjetoRevisao.dsc_nome_gerente"
-                }
-              ],
-              staticClass: "input-medium",
-              attrs: {
-                id: "dsc_nome_gerente_nova",
-                name: "dsc_nome_gerente_nova",
-                placeholder: "Escreva o nome do novo Gerente...",
-                rows: "1"
-              },
-              domProps: { value: _vm.dadosProjetoRevisao.dsc_nome_gerente },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(
-                    _vm.dadosProjetoRevisao,
-                    "dsc_nome_gerente",
-                    $event.target.value
-                  )
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.dadosProjetoRevisao.cargo_gerente_id,
-                    expression: "dadosProjetoRevisao.cargo_gerente_id"
-                  }
-                ],
-                staticClass: "form-select br-select mb-1",
-                attrs: {
-                  id: "cargo_gerente_id_nova",
-                  name: "cargo_gerente_id_nova"
-                },
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.$set(
-                      _vm.dadosProjetoRevisao,
-                      "cargo_gerente_id",
-                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                    )
-                  }
-                }
-              },
-              [
-                _c("option", {
-                  attrs: { value: "" },
-                  domProps: {
-                    textContent: _vm._s(_vm.textoEscolhaCargoGerente)
-                  }
-                }),
-                _vm._v(" "),
-                _vm._l(_vm.cargos, function(item) {
-                  return _c("option", {
-                    key: item.id,
-                    domProps: {
-                      value: item.id,
-                      textContent: _vm._s(item.dsc_cargo)
-                    }
-                  })
-                })
-              ],
-              2
-            ),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.dadosProjetoRevisao.unidade_gerente_id,
-                    expression: "dadosProjetoRevisao.unidade_gerente_id"
-                  }
-                ],
-                staticClass: "form-select br-select mb-1",
-                attrs: {
-                  id: "unidade_gerente_id_nova",
-                  name: "unidade_gerente_id_nova"
-                },
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.$set(
-                      _vm.dadosProjetoRevisao,
-                      "unidade_gerente_id",
-                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                    )
-                  }
-                }
-              },
-              [
-                _c("option", {
-                  attrs: { value: "" },
-                  domProps: {
-                    textContent: _vm._s(_vm.textoEscolhaUnidadeGerente)
-                  }
-                }),
-                _vm._v(" "),
-                _vm._l(_vm.unidadesResponsaveis, function(item) {
-                  return _c("option", {
-                    key: item.id,
-                    domProps: {
-                      value: item.id,
-                      textContent: _vm._s(item.txt_unidade_responsavel)
-                    }
-                  })
-                })
-              ],
-              2
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row mt-3" }, [
-          _c("div", { staticClass: "column col-6 col-xs-12" }, [
-            _c("label", [_vm._v("Patrocinador(a) Substituto do Projeto")]),
-            _vm._v(" "),
-            _c("p", {
-              staticClass: "mt-2",
-              domProps: {
-                textContent: _vm._s(
-                  _vm.dadosProjeto.dsc_nome_patrocinador_substututo
-                    ? "Nome: " +
-                        _vm.dadosProjeto.dsc_nome_patrocinador_substututo
-                    : "Sem patrocinador substituto definido"
-                )
-              }
-            }),
-            _vm._v(" "),
-            _c("p", {
-              staticClass: "mt-4",
-              domProps: {
-                textContent: _vm._s(
-                  _vm.dadosProjeto.dsc_cargo_substututo
-                    ? "Cargo: " + _vm.dadosProjeto.dsc_cargo_substututo
-                    : ""
-                )
-              }
-            }),
-            _vm._v(" "),
-            _c("p", {
-              staticClass: "mt-3",
-              domProps: {
-                textContent: _vm._s(
-                  _vm.dadosProjeto
-                    .txt_unidade_responsavel_patrocinador_substututo
-                    ? "Unidade: " +
-                        _vm.dadosProjeto
-                          .txt_unidade_responsavel_patrocinador_substututo
-                    : ""
-                )
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "column col-6 col-xs-12 br-textarea" }, [
-            _c("label", [
-              _vm._v("Novo(a) Patrocinador(a) Substituto do Projeto")
-            ]),
-            _vm._v(" "),
-            _c("textarea", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value:
-                    _vm.dadosProjetoRevisao.dsc_nome_patrocinador_substituto,
-                  expression:
-                    "dadosProjetoRevisao.dsc_nome_patrocinador_substituto"
-                }
-              ],
-              staticClass: "input-medium",
-              attrs: {
-                id: "dsc_nome_patrocinador_substituto_nova",
-                name: "dsc_nome_patrocinador_substituto_nova",
-                placeholder:
-                  "Escreva o nome do novo Patrocinador Substituto...",
-                rows: "1"
-              },
-              domProps: {
-                value: _vm.dadosProjetoRevisao.dsc_nome_patrocinador_substituto
-              },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(
-                    _vm.dadosProjetoRevisao,
-                    "dsc_nome_patrocinador_substituto",
-                    $event.target.value
-                  )
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value:
-                      _vm.dadosProjetoRevisao.cargo_patrocinador_substituto_id,
-                    expression:
-                      "dadosProjetoRevisao.cargo_patrocinador_substituto_id"
-                  }
-                ],
-                staticClass: "form-select br-select mb-1",
-                attrs: {
-                  id: "cargo_patrocinador_substituto_id_nova",
-                  name: "cargo_patrocinador_substituto_id_nova"
-                },
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.$set(
-                      _vm.dadosProjetoRevisao,
-                      "cargo_patrocinador_substituto_id",
-                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                    )
-                  }
-                }
-              },
-              [
-                _c("option", {
-                  attrs: { value: "" },
-                  domProps: {
-                    textContent: _vm._s(
-                      _vm.textoEscolhaCargoPatrocinadorSubstituto
-                    )
-                  }
-                }),
-                _vm._v(" "),
-                _vm._l(_vm.cargos, function(item) {
-                  return _c("option", {
-                    key: item.id,
-                    domProps: {
-                      value: item.id,
-                      textContent: _vm._s(item.dsc_cargo)
-                    }
-                  })
-                })
-              ],
-              2
-            ),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value:
-                      _vm.dadosProjetoRevisao
-                        .unidade_patrocinador_substituto_id,
-                    expression:
-                      "dadosProjetoRevisao.unidade_patrocinador_substituto_id"
-                  }
-                ],
-                staticClass: "form-select br-select mb-1",
-                attrs: {
-                  id: "unidade_patrocinador_substituto_id_nova",
-                  name: "unidade_patrocinador_substituto_id_nova"
-                },
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.$set(
-                      _vm.dadosProjetoRevisao,
-                      "unidade_patrocinador_substituto_id",
-                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                    )
-                  }
-                }
-              },
-              [
-                _c("option", {
-                  attrs: { value: "" },
-                  domProps: {
-                    textContent: _vm._s(
-                      _vm.textoEscolhaUnidadePatrocinadorSubstituto
-                    )
-                  }
-                }),
-                _vm._v(" "),
-                _vm._l(_vm.unidadesResponsaveis, function(item) {
-                  return _c("option", {
-                    key: item.id,
-                    domProps: {
-                      value: item.id,
-                      textContent: _vm._s(item.txt_unidade_responsavel)
-                    }
-                  })
-                })
-              ],
-              2
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row mt-3" }, [
-          _c("div", { staticClass: "column col-6 col-xs-12" }, [
-            _c("label", [_vm._v("Gerente(a) Substituto do Projeto")]),
-            _vm._v(" "),
-            _c("p", {
-              staticClass: "mt-2",
-              domProps: {
-                textContent: _vm._s(
-                  _vm.dadosProjeto.dsc_nome_gerente_substituto
-                    ? "Nome: " + _vm.dadosProjeto.dsc_nome_gerente_substituto
-                    : "Sem gerente substituto definido"
-                )
-              }
-            }),
-            _vm._v(" "),
-            _c("p", {
-              staticClass: "mt-4",
-              domProps: {
-                textContent: _vm._s(
-                  _vm.dadosProjeto.dsc_cargo_gerente_substututo
-                    ? "Cargo: " + _vm.dadosProjeto.dsc_cargo_gerente_substututo
-                    : ""
-                )
-              }
-            }),
-            _vm._v(" "),
-            _c("p", {
-              staticClass: "mt-3",
-              domProps: {
-                textContent: _vm._s(
-                  _vm.dadosProjeto.txt_unidade_responsavel_gerente_substututo
-                    ? "Unidade: " +
-                        _vm.dadosProjeto
-                          .txt_unidade_responsavel_gerente_substututo
-                    : ""
-                )
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "column col-6 col-xs-12 br-textarea" }, [
-            _c("label", [_vm._v("Novo(a) Gerente(a) Substituto do Projeto")]),
-            _vm._v(" "),
-            _c("textarea", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.dadosProjetoRevisao.dsc_nome_gerente_substituto,
-                  expression: "dadosProjetoRevisao.dsc_nome_gerente_substituto"
-                }
-              ],
-              staticClass: "input-medium",
-              attrs: {
-                id: "dsc_nome_gerente_substituto_nova",
-                name: "dsc_nome_gerente_substituto_nova",
-                placeholder: "Escreva o nome do novo Gerente Substituto...",
-                rows: "1"
-              },
-              domProps: {
-                value: _vm.dadosProjetoRevisao.dsc_nome_gerente_substituto
-              },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(
-                    _vm.dadosProjetoRevisao,
-                    "dsc_nome_gerente_substituto",
-                    $event.target.value
-                  )
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.dadosProjetoRevisao.cargo_gerente_substituto_id,
-                    expression:
-                      "dadosProjetoRevisao.cargo_gerente_substituto_id"
-                  }
-                ],
-                staticClass: "form-select br-select mb-1",
-                attrs: {
-                  id: "cargo_gerente_substituto_id_nova",
-                  name: "cargo_gerente_substituto_id_nova"
-                },
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.$set(
-                      _vm.dadosProjetoRevisao,
-                      "cargo_gerente_substituto_id",
-                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                    )
-                  }
-                }
-              },
-              [
-                _c("option", {
-                  attrs: { value: "" },
-                  domProps: {
-                    textContent: _vm._s(_vm.textoEscolhaCargoGerenteSubstituto)
-                  }
-                }),
-                _vm._v(" "),
-                _vm._l(_vm.cargos, function(item) {
-                  return _c("option", {
-                    key: item.id,
-                    domProps: {
-                      value: item.id,
-                      textContent: _vm._s(item.dsc_cargo)
-                    }
-                  })
-                })
-              ],
-              2
-            ),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value:
-                      _vm.dadosProjetoRevisao.unidade_gerente_substituto_id,
-                    expression:
-                      "dadosProjetoRevisao.unidade_gerente_substituto_id"
-                  }
-                ],
-                staticClass: "form-select br-select mb-1",
-                attrs: {
-                  id: "unidade_gerente_substituto_id_nova",
-                  name: "unidade_gerente_substituto_id_nova"
-                },
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.$set(
-                      _vm.dadosProjetoRevisao,
-                      "unidade_gerente_substituto_id",
-                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                    )
-                  }
-                }
-              },
-              [
-                _c("option", {
-                  attrs: { value: "" },
-                  domProps: {
-                    textContent: _vm._s(
-                      _vm.textoEscolhaUnidadeGerenteSubstituto
-                    )
-                  }
-                }),
-                _vm._v(" "),
-                _vm._l(_vm.unidadesResponsaveis, function(item) {
-                  return _c("option", {
-                    key: item.id,
-                    domProps: {
-                      value: item.id,
-                      textContent: _vm._s(item.txt_unidade_responsavel)
-                    }
-                  })
-                })
-              ],
-              2
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col col-xs-12 col-sm-12" }, [
-            _c("div", { staticClass: "p-3 text-right" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "br-button primary mr-3",
-                  attrs: { type: "submit", name: "salvar_revisão", value: true }
-                },
-                [_vm._v("Salvar Revisão\n                    ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass: "br-button danger mr-3",
-                  attrs: {
-                    type: "button",
-                    href: this.url + "/plancidades/revisao/projeto/consulta"
-                  }
-                },
-                [_vm._v("Voltar\n                    ")]
-              )
-            ])
-          ])
-        ])
-      ])
-    ],
-    1
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "text-center" }, [
-      _c("b", [_vm._v("Detalhamento do Projeto")])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-6f3ab000", module.exports)
-  }
-}
 
 /***/ })
 /******/ ]);

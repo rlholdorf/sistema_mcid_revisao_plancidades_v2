@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Mod_plancidades;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Mod_plancidades\EtapasProjeto;
+use App\Mod_plancidades\EtapasProjetoRevisao;
+use App\Mod_plancidades\ProjetosRevisao;
+use App\Mod_plancidades\RevisaoProjetos;
+use App\Mod_plancidades\RlcSituacaoRevisaoProjetos;
 use App\Mod_plancidades\ViewProjetos;
 use Illuminate\Support\Facades\DB;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegrationAssertPostConditionsForV7AndPrevious;
@@ -32,9 +37,26 @@ class RevisaoEtapasProjetoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($revisaoId)
     {
-        //
+        $etapaRevisaoExiste = EtapasProjetoRevisao::where('revisao_projeto_id', $revisaoId)->first();
+        if(!empty($etapaRevisaoExiste)){
+            return Redirect::route("plancidades.revisao.etapas.projeto.editar", ["revisaoId" => $revisaoId]);
+        }
+
+        $revisaoCadastrada = RlcSituacaoRevisaoProjetos::where('revisao_projeto_id', $revisaoId)->orderBy('created_at', 'desc')->first();
+
+        $dadosRevisao = RevisaoProjetos::find($revisaoId);
+            $dadosRevisao->bln_projeto = ProjetosRevisao::where('revisao_projeto_id', $revisaoId)->first()?true:false;
+            $dadosRevisao->bln_etapas = EtapasProjetoRevisao::where('revisao_projeto_id', $revisaoId)->first()?true:false;
+
+        $dadosProjeto = ViewProjetos::where('projeto_id', $dadosRevisao->projeto_id)->first();
+        $dadosProjetoRevisao = ProjetosRevisao::where('revisao_projeto_id', $revisaoId)->first();
+        $dadosEtapas = EtapasProjeto::where('projeto_id' , $dadosRevisao->projeto_id)->get();
+        $dadosEtapasRevisao = EtapasProjetoRevisao::where('revisao_projeto_id', $revisaoId)->first();
+        
+        return view('modulo_plancidades.revisao.projeto.etapas.criar_revisao_etapas', compact('dadosProjeto', 'dadosProjetoRevisao', 'dadosEtapas', 'revisaoCadastrada', 'dadosRevisao', 'dadosEtapasRevisao'));
+
     }
 
     /**
@@ -45,7 +67,7 @@ class RevisaoEtapasProjetoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return "store";
     }
 
     /**
@@ -67,7 +89,7 @@ class RevisaoEtapasProjetoController extends Controller
      */
     public function edit($id)
     {
-        //
+        return "edit";
     }
 
     /**
@@ -79,7 +101,7 @@ class RevisaoEtapasProjetoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return "update";
     }
 
     /**

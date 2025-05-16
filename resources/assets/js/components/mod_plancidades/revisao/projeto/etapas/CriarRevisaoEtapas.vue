@@ -62,7 +62,7 @@
 
 <script>
 export default {
-    props: ['url', 'dadosProjeto', 'dadosEtapas'],
+    props: ['url', 'dadosProjeto', 'dadosProjetoRevisao', 'dadosEtapas', 'revisaoCadastrada', 'dadosRevisao', 'dadosEtapasRevisao'],
     data() {
         return {
         //----Campos Select

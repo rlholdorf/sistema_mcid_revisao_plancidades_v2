@@ -626,6 +626,11 @@ Vue.component(
   require("./components/mod_plancidades/revisao/projeto/CriarRevisaoProjeto.vue")
 );
 
+Vue.component(
+  "criar-revisao-etapas",
+  require("./components/mod_plancidades/revisao/projeto/etapas/CriarRevisaoEtapas.vue")
+);
+
 
 
 // Validação Revisão

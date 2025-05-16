@@ -155,7 +155,7 @@ class RevisaoProjetoController extends Controller
         if ($dados_salvos) {
             DB::commit();
             flash()->sucesso("Sucesso", "Revisão do Indicador de Objetivo Estratégico cadastrada com sucesso!");
-            return Redirect::route("plancidades.revisao.projeto.editar", ["revisaoId" => $revisaoId]);
+            return Redirect::route("plancidades.revisao.etapas.projeto.criar", ["revisaoId" => $revisaoId]);
         } else {
             DB::rollBack();
             flash()->erro("Erro", "Não foi possível cadastrar a revisão.");
@@ -302,7 +302,7 @@ class RevisaoProjetoController extends Controller
 
             DB::commit();
             flash()->sucesso("Sucesso", "Revisão do Projeto atualizada com sucesso!");
-            return Redirect::route("plancidades.revisao.projeto.editar", ['revisaoId'=> $revisaoId]);
+            return Redirect::route("plancidades.revisao.etapas.projeto.criar", ['revisaoId'=> $revisaoId]);
         
         } else {
             DB::rollBack();
