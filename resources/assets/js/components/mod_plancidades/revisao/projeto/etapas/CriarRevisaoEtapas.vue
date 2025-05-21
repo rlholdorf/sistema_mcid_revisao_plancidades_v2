@@ -1,8 +1,18 @@
 <template>
     <div>
+        
+        <progresso-revisao-projeto
+        :url="url"
+        :dados-revisao="dadosRevisao"
+        :active="'etapas'">
+
+        </progresso-revisao-projeto>
+
+        <hr>
+
         <div class="form-group">
 
-            <p class="text-center"><b>Detalhamento das Etapas</b></p>
+            <p class="text-center"><b>Detalhamento das Etapas Situação Atual</b></p>
 
             <div class="table-responsive mt-3">
                 <table>
@@ -14,8 +24,7 @@
                             <th class="text-center" style="border-left:1px">Peso relativo</th>
                             <th class="text-center" style="border-left:1px">Data de Início</th>
                             <th class="text-center">Data de Conclusão</th>
-                            <th class="text-center" style="border-left:1px">Alterar</th>
-                            <th class="text-center" style="border-left:1px">Excluir</th>
+                            <th class="text-center" style="border-left:1px">Situação da Etapa</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -24,23 +33,12 @@
                             <td>{{ item.dsc_etapa }}</td>
                             <td>{{ item.dsc_marco }}</td>
                             <td class="text-center">{{ item.vlr_peso_etapa }}</td>
-                            <td class="text-center">{{ formatarData(item.dte_previsao_inicio_etapa) }}</td>
-                            <td class="text-center">{{ formatarData(item.dte_previsao_conclusao_etapa) }}</td>
-                            <td class="text-center">
-                                <button type="button" class="br-button circle primary small" title="Monitorar etapa" >
-                                    <i class="fa fa-pen"></i>  <!-- Implementar, provavelmente modal -->
-                                </button></td>
-                            <td class="text-center">
-                                <button type="button" class="br-button circle primary small" title="Monitorar etapa" >
-                                    <i class="fa fa-times-circle"></i> <!-- Implementar, provavelmente modal -->
-                                </button></td>
+                            <td class="text-center">{{ item.dte_efetiva_inicio_etapa ? formatarData(item.dte_efetiva_inicio_etapa) : formatarData(item.dte_previsao_inicio_etapa) }}</td>
+                            <td class="text-center">{{ item.dte_efetiva_conclusao_etapa ? formatarData(item.dte_efetiva_conclusao_etapa) : formatarData(item.dte_previsao_conclusao_etapa) }}</td>
+                            <td class="text-center">{{ item.situacao ? item.situacao.txt_nome_situacao : 'Não Monitorado' }}</td>
                         </tr>
                     </tbody>
                 </table>
-
-                <slot>
-            
-                </slot>
 
             </div>
 
@@ -48,7 +46,10 @@
             <div class="row">
                 <div class="col col-xs-12 col-sm-12">
                     <div class="p-3 text-right">
-                        <button class="br-button primary mr-3" type="submit" name="salvar_revisão" :value="true">Salvar Revisão
+                        <button class="br-button success mr-3" type="submit" name="avancar_sem_alteracao" :value="true">Avançar
+                        </button>
+
+                        <button class="br-button primary mr-3" type="submit" name="revisar_etapas" :value="true">Revisar Etapas
                         </button>
 
                         <a class="br-button danger mr-3" type="button" :href='this.url+"/plancidades/revisao/projeto/consulta"'>Voltar
@@ -99,29 +100,6 @@ export default {
     },
     mounted() {
         
-        axios.get(this.url + '/api/plancidades/objetivosEstrategicos').then(resposta=>{
-            this.objetivosEstrategicos = resposta.data;
-        }).catch(error=>{
-            console.log(error);
-        });
-        
-        axios.get(this.url + '/api/plancidades/unidadesResponsaveis').then(resposta=>{
-            this.unidadesResponsaveis = resposta.data;
-        }).catch(error=>{
-            console.log(error);
-        });
-
-        axios.get(this.url + '/api/plancidades/periodicidades').then(resposta=>{
-            this.periodicidades = resposta.data;
-        }).catch(error=>{
-            console.log(error);
-        });
-
-        axios.get(this.url + '/api/plancidades/polaridades').then(resposta=>{
-            this.polaridades = resposta.data;
-        }).catch(error=>{
-            console.log(error);
-        });
     }
 }
 </script>

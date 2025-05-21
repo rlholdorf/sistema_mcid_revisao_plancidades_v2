@@ -678,9 +678,9 @@ Route::get('/plancidades/revisao/iniciativa/finalizar/{revisaoId}', 'Mod_plancid
 
 //--------Projetos---------//
 
-//--Informações Básicas (indicadores e metas)--//
+//--Informações Básicas--//
 Route::get('/plancidades/revisao/projeto/consulta', 'Mod_plancidades\RevisaoProjetoController@consultarProjetos')->name('plancidades.revisao.projeto.consultar');
-Route::get('/plancidades/revisao/projeto/indicadores', 'Mod_plancidades\RevisaoController@listarProjetos')->name('plancidades.revisao.projeto.listarProjetos');
+Route::get('/plancidades/revisao/projeto', 'Mod_plancidades\RevisaoController@listarProjetos')->name('plancidades.revisao.projeto.listarProjetos');
 Route::get('/plancidades/revisao/projeto/{projetoId}/iniciarRevisao', 'Mod_plancidades\RevisaoProjetoController@iniciarRevisao')->name('plancidades.revisao.projeto.iniciarRevisao');
 Route::post('/plancidades/revisao/projeto/salvarRevisao', 'Mod_plancidades\RevisaoProjetoController@salvarRevisao')->name('plancidades.revisao.projeto.salvarRevisao');
 Route::get('/plancidades/revisao/projeto/listar/{projetoId}', 'Mod_plancidades\RevisaoProjetoController@index')->name('plancidades.revisao.projeto.listarRevisoes');
@@ -696,6 +696,12 @@ Route::get('/plancidades/revisao/etapas/projeto/{revisaoId}/criar', 'Mod_plancid
 Route::post('/plancidades/revisao/etapas/projeto/{revisaoId}/salvar', 'Mod_plancidades\RevisaoEtapasProjetoController@store')->name('plancidades.revisao.etapas.projeto.salvar');
 Route::get('/plancidades/revisao/etapas/projeto/{revisaoId}/editar', 'Mod_plancidades\RevisaoEtapasProjetoController@edit')->name('plancidades.revisao.etapas.projeto.editar');
 Route::post('/plancidades/revisao/etapas/projeto/{revisaoId}/atualizar', 'Mod_plancidades\RevisaoEtapasProjetoController@update')->name('plancidades.revisao.etapas.projeto.atualizar');
+Route::post('/plancidades/revisao/etapas/projeto/{revisaoId}/excluir', 'Mod_plancidades\RevisaoEtapasProjetoController@destroy')->name('plancidades.revisao.etapas.projeto.excluir');
+Route::post('/plancidades/revisao/etapas/projeto/{revisaoId}/adicionar', 'Mod_plancidades\RevisaoEtapasProjetoController@adicionarEtapa')->name('plancidades.revisao.etapas.projeto.adicionar');
+
+//Finalizar Revisão
+Route::get('/plancidades/revisao/projeto/exibir/{revisaoId}', 'Mod_plancidades\RevisaoProjetoController@show')->name('plancidades.revisao.projeto.show');
+Route::get('/plancidades/revisao/projeto/finalizar/{revisaoId}', 'Mod_plancidades\RevisaoProjetoController@finalizarRevisao')->name('plancidades.revisao.projeto.finalizar');
 
 
 
@@ -712,10 +718,10 @@ Route::get('/plancidades/revisao/validacao/iniciativa/listarRevisoes', 'Mod_plan
 Route::get('/plancidades/revisao/validacao/iniciativa/{revisaoIniciativaid}/editar', 'Mod_plancidades\ValidacaoRevisaoIniciativaController@edit')->name('plancidades.revisao.validacao.iniciativas.editar');
 Route::post('/plancidades/revisao/validacao/iniciativa/{revisaoIniciativaid}/atualizar', 'Mod_plancidades\ValidacaoRevisaoIniciativaController@update')->name('plancidades.revisao.validacao.iniciativas.atualizar');
 
-// Route::get('/plancidades/revisao/validacao/projeto/listarRevisoesPendentes', 'Mod_plancidades\ValidacaoRevisaoController@listarRevisoesPendentesProjetos')->name('plancidades.revisao.validacoesPendentes.projetos.listar');
-// Route::get('/plancidades/revisao/validacao/projeto/listarRevisoes', 'Mod_plancidades\ValidacaoRevisaoController@listarRevisoesProjetos')->name('plancidades.revisao.validacao.projetos.listar');
-// Route::get('/plancidades/revisao/validacao/projeto/{revisaoProjetoid}/editar', 'Mod_plancidades\ValidacaoRevisaoProjetoController@edit')->name('plancidades.revisao.validacao.projetos.editar');
-// Route::post('/plancidades/revisao/validacao/projeto/{revisaoProjetoid}/atualizar', 'Mod_plancidades\ValidacaoRevisaoProjetoController@update')->name('plancidades.revisao.validacao.projetos.atualizar');
+Route::get('/plancidades/revisao/validacao/projeto/listarRevisoesPendentes', 'Mod_plancidades\ValidacaoRevisaoController@listarRevisoesPendentesProjetos')->name('plancidades.revisao.validacoesPendentes.projetos.listar');
+Route::get('/plancidades/revisao/validacao/projeto/listarRevisoes', 'Mod_plancidades\ValidacaoRevisaoController@listarRevisoesProjetos')->name('plancidades.revisao.validacao.projetos.listar');
+Route::get('/plancidades/revisao/validacao/projeto/{revisaoProjetoid}/editar', 'Mod_plancidades\ValidacaoRevisaoProjetoController@edit')->name('plancidades.revisao.validacao.projetos.editar');
+Route::post('/plancidades/revisao/validacao/projeto/{revisaoProjetoid}/atualizar', 'Mod_plancidades\ValidacaoRevisaoProjetoController@update')->name('plancidades.revisao.validacao.projetos.atualizar');
 
 
 

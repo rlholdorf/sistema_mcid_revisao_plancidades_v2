@@ -19,10 +19,10 @@ use App\Mod_plancidades\RlcRestricaoMetaMonitoramentoIndic;
 use App\Mod_plancidades\RlcSituacaoRevisaoProjetos;
 use App\Mod_plancidades\ViewIndicadoresObjetivosEstrategicos;
 use App\Mod_plancidades\ViewApuracaoMetaIndicador;
-use App\Mod_plancidades\ViewMonitoramentoIndicadoresObjEstrategicos;
+use App\Mod_plancidades\ViewRevisaoProjetos;
 use App\Mod_plancidades\ViewProjetos;
 use App\Mod_plancidades\ViewResumoApuracaoMetaIndicador;
-use App\Mod_plancidades\ViewValidacaoMonitoramentoIndicadores;
+use App\Mod_plancidades\ViewValidacaoRevisaoProjetos;
 use Illuminate\Support\Facades\DB;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegrationAssertPostConditionsForV7AndPrevious;
 use Illuminate\Database\Query\JoinClause;
@@ -43,18 +43,18 @@ class RevisaoProjetoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($indicadorId)
+    public function index($projetoId)
     {
-        $monitoramentos = ViewMonitoramentoIndicadoresObjEstrategicos::where('view_monitoramento_indicadores.indicador_objetivo_estrategico_id', $indicadorId)
-        ->orderBy('view_monitoramento_indicadores.monitoramento_indicador_id', 'DESC')
-        ->leftJoin('mcid_hom_plancidades.view_validacao_monitoramento_indicadores','view_validacao_monitoramento_indicadores.monitoramento_indicador_id','=','view_monitoramento_indicadores.monitoramento_indicador_id')
-        ->select('view_monitoramento_indicadores.*','view_validacao_monitoramento_indicadores.situacao_monitoramento_id','view_validacao_monitoramento_indicadores.txt_situacao_monitoramento')
+        $revisoes = ViewRevisaoProjetos::where('view_revisao_projetos.projeto_id', $projetoId)
+        ->orderBy('view_revisao_projetos.revisao_projeto_id', 'DESC')
+        ->leftJoin('mcid_hom_plancidades.view_validacao_revisao_projetos','view_validacao_revisao_projetos.revisao_projeto_id','=','view_revisao_projetos.revisao_projeto_id')
+        ->select('view_revisao_projetos.*','view_validacao_revisao_projetos.situacao_revisao_id','view_validacao_revisao_projetos.txt_situacao_revisao')
         ->get();
 
-        if(count($monitoramentos) > 0){
-            return view("modulo_plancidades.objetivo_estrategico.listar_monitoramentos_indicador", compact('monitoramentos'));
+        if(count($revisoes) > 0){
+            return view("modulo_plancidades.revisao.projeto.listar_revisoes_projeto", compact('revisoes'));
         }else{
-            flash()->erro("Erro", "Nenhum monitoramento encontrado...");
+            flash()->erro("Erro", "Nenhuma revisao encontrada...");
             return back();
         }
     }
@@ -144,17 +144,17 @@ class RevisaoProjetoController extends Controller
         $dados_salvos = $dados_projeto_revisao->save();
 
 
-        $situacao_revisao_indicadores = new RlcSituacaoRevisaoProjetos();
-        $situacao_revisao_indicadores->revisao_projeto_id = $dados_revisao->id;
-        $situacao_revisao_indicadores->situacao_revisao_id = '1';
-        $situacao_revisao_indicadores->user_id = $user->id;
-        $situacao_revisao_indicadores->created_at = date('Y-m-d H:i:s');
-        $situacao_revisao_indicadores->projeto_id = $dados_revisao->projeto_id;
-        $situacao_revisao_indicadores->save();
+        $situacao_revisao_projetos = new RlcSituacaoRevisaoProjetos();
+        $situacao_revisao_projetos->revisao_projeto_id = $dados_revisao->id;
+        $situacao_revisao_projetos->situacao_revisao_id = '1';
+        $situacao_revisao_projetos->user_id = $user->id;
+        $situacao_revisao_projetos->created_at = date('Y-m-d H:i:s');
+        $situacao_revisao_projetos->projeto_id = $dados_revisao->projeto_id;
+        $situacao_revisao_projetos->save();
         
         if ($dados_salvos) {
             DB::commit();
-            flash()->sucesso("Sucesso", "Revisão do Indicador de Objetivo Estratégico cadastrada com sucesso!");
+            flash()->sucesso("Sucesso", "Revisão do Projeto cadastrada com sucesso!");
             return Redirect::route("plancidades.revisao.etapas.projeto.criar", ["revisaoId" => $revisaoId]);
         } else {
             DB::rollBack();
@@ -169,57 +169,28 @@ class RevisaoProjetoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($revisaoId)
     {
-        $dados_monitoramento = ViewMonitoramentoIndicadoresObjEstrategicos::find($id);
+        $dadosRevisao = RevisaoProjetos::with('periodoRevisao')->find($revisaoId);
+            $dadosRevisao->bln_projeto = ProjetosRevisao::where('revisao_projeto_id', $revisaoId)->first()?true:false;
+            $dadosRevisao->bln_etapas = EtapasProjetoRevisao::where('revisao_projeto_id', $revisaoId)->first()?true:false;
+            
+        $dadosProjeto = ViewProjetos::where('projeto_id', $dadosRevisao->projeto_id)->first();
+        $dadosProjetoRevisao = ProjetosRevisao::where('revisao_projeto_id', $revisaoId)->first();
+        $dadosEtapas = EtapasProjeto::where('projeto_id' , $dadosRevisao->projeto_id)->with('situacao')->orderBy('id')->get();
+        $dadosEtapasRevisao = EtapasProjetoRevisao::where('revisao_projeto_id', $revisaoId)->with('situacao')->orderBy('id')->get();
 
-        switch ($dados_monitoramento->unidade_medida_id){
-            case 1:
-                $dados_monitoramento->unidade_medida_simbolo = '(R$)';
-                break;
-            case 2:
-                $dados_monitoramento->unidade_medida_simbolo = '(%)';
-                break;
-            case 3:
-                $dados_monitoramento->unidade_medida_simbolo = '(ADI)';
-                break;
-            case 4:
-                $dados_monitoramento->unidade_medida_simbolo = '(m²)';
-                break;
-            case 5:
-                $dados_monitoramento->unidade_medida_simbolo = '(UN)';
-                break;
-            default:
-                $dados_monitoramento->unidade_medida_simbolo = '';
-        }
+        // Validação da soma dos pesos das etapas
+            $somaPesos = $dadosEtapasRevisao->sum('vlr_peso_etapa');
+            if ($somaPesos !== 100) {
+                flash()->erro("Erro", "A soma dos pesos das etapas deve ser igual a 100. Soma atual: $somaPesos");
+                return Redirect::route("plancidades.revisao.etapas.projeto.editar", ["revisaoId" => $revisaoId]);
+            }
 
-        $resumoApuracaoMeta = ViewResumoApuracaoMetaIndicador::where('monitoramento_indicador_id', $id)->first();
+        $situacaoRevisao = ViewValidacaoRevisaoProjetos::where('revisao_projeto_id', $revisaoId)->orderBy('created_at', 'desc')->first();
 
-        $metaIndicador = MetasObjetivosEstrategicos::where('indicador_objetivo_estrategico_id', $dados_monitoramento->indicador_objetivo_estrategico_id)->first();
-
-        $regionalizacaoMetas = RegionalizacaoMetaObjEstr::where('meta_objetivos_estrategicos_id', $metaIndicador->id)
-            ->leftJoin('mcid_hom_plancidades.rlc_metas_monitoramento_indicadores','rlc_metas_monitoramento_indicadores.regionalizacao_meta_indicador_id','=','tab_regionalizacao_metas_objetivos_estrategicos.id')
-            ->where('rlc_metas_monitoramento_indicadores.monitoramento_indicador_id',$id)
-            ->orderBy('tab_regionalizacao_metas_objetivos_estrategicos.id')
-            ->get();
-        $regionalizacaoMetas->load('regionalizacao', 'metasIndicadores.indicador');
-
-        $restricoes = RlcRestricaoMetaMonitoramentoIndic::where('monitoramento_indicador_id', $dados_monitoramento->monitoramento_indicador_id)->get();
-        $restricoes->load('monitoramentoIndicador', 'restricaoAtingimentoMeta');
-
-        $situacao_monitoramento = ViewValidacaoMonitoramentoIndicadores::where('monitoramento_indicador_id', $id)->first();
-
-        return view(
-            'modulo_plancidades.objetivo_estrategico.show_monitoramento_indicador',
-             compact(
-                'dados_monitoramento', 
-                'resumoApuracaoMeta', 
-                'metaIndicador', 
-                'regionalizacaoMetas', 
-                'restricoes',
-                'situacao_monitoramento'
-            )
-        );
+        flash()->sucesso("Sucesso", "Revisão das Etapas do Projeto atualizada com sucesso!");
+        return view('modulo_plancidades.revisao.projeto.show_revisao_projeto', compact('dadosProjeto', 'dadosRevisao', 'dadosProjetoRevisao', 'dadosEtapas', 'dadosEtapasRevisao', 'situacaoRevisao'));;
     }
 
     /**
@@ -340,6 +311,35 @@ class RevisaoProjetoController extends Controller
       
         return view('modulo_plancidades.revisao.projeto.iniciar_revisao_projeto', compact('dadosProjeto'));
 
+    }
+
+    public function finalizarRevisao($revisaoId){
+
+        //return ($revisaoId);
+
+        $user = Auth()->user();
+        DB::beginTransaction();
+
+        $dados_revisao = RevisaoProjetos::where('id', $revisaoId)->first();
+
+        $situacao_revisao_projetos = new RlcSituacaoRevisaoProjetos();
+        $situacao_revisao_projetos->revisao_projeto_id = $revisaoId;
+        $situacao_revisao_projetos->situacao_revisao_id = '3';
+        $situacao_revisao_projetos->user_id = $user->id;
+        $situacao_revisao_projetos->created_at = date('Y-m-d H:i:s');
+        $situacao_revisao_projetos->projeto_id = $dados_revisao->projeto_id;
+        $dados_salvos = $situacao_revisao_projetos->save();
+
+        if ($dados_salvos) {
+            DB::commit();
+
+            flash()->sucesso("Sucesso", "Revisão do Projeto finalizada com sucesso!");
+             return Redirect::route("plancidades.revisao.projeto.listarRevisoes", ["projeto_id" => $dados_revisao->projeto_id]);
+        } else {
+            DB::rollBack();
+            flash()->erro("Erro", "Não foi possível cadastrar a revisão.");
+            return back();
+        }
     }
 
     public function salvarRevisao(Request $request)

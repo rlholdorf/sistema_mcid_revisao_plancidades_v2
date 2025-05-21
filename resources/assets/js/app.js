@@ -616,10 +616,10 @@ Vue.component(
   require("./components/mod_plancidades/revisao/projeto/EditarRevisaoProjeto.vue")
 );
 
-// Vue.component(
-//   "show-finalizar-revisao-indicador",
-//   require("./components/mod_plancidades/revisao/objetivo_estrategico/ShowFinalizarRevisaoIndicador.vue")
-// );
+Vue.component(
+  "show-finalizar-revisao-projeto",
+  require("./components/mod_plancidades/revisao/projeto/ShowFinalizarRevisaoProjeto.vue")
+);
 
 Vue.component(
   "criar-revisao-projeto",
@@ -631,6 +631,10 @@ Vue.component(
   require("./components/mod_plancidades/revisao/projeto/etapas/CriarRevisaoEtapas.vue")
 );
 
+Vue.component(
+  "editar-revisao-etapas",
+  require("./components/mod_plancidades/revisao/projeto/etapas/EditarRevisaoEtapas.vue")
+);
 
 
 // Validação Revisão
@@ -645,10 +649,10 @@ Vue.component(
   require("./components/mod_plancidades/revisao/validacao/AlteraSituacaoRevisaoIniciativa.vue")
 );
 
-// Vue.component(
-//   "altera-situacao-monitoramento-projeto",
-//   require("./components/mod_plancidades/validacao_monitoramento/AlteraSituacaoMonitoramentoProjeto.vue")
-// );
+Vue.component(
+  "altera-situacao-revisao-projeto",
+  require("./components/mod_plancidades/revisao/validacao/AlteraSituacaoRevisaoProjeto.vue")
+);
 
 
 

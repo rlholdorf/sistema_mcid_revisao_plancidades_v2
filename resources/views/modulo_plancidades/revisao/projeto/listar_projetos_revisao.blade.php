@@ -42,10 +42,10 @@
               <th>Nome do Projeto</th>
               <th class="text-center">Unidade Responsável</th>
               <th class="text-center ">PPA</th>
-              <!-- <th class="text-center ">Última Revisão</th>
-              <th class="text-center ">Situação da Revisão</th> -->
+              <th class="text-center ">Última Revisão</th>
+              <th class="text-center ">Situação da Revisão</th>
               <th class="text-center acao">Nova Revisão</th>
-              <!-- <th class="text-center acao">Exibir Anteriores</th> -->
+              <th class="text-center acao">Exibir Anteriores</th>
             </tr>
           </thead>
             <tbody>
@@ -56,11 +56,14 @@
                       <td>{{ $projeto->txt_enunciado_projeto}}</td>
                       <td class="text-center">{{ $projeto->txt_sigla_orgao}}</td>
                       <td class="text-center">{{ $projeto->bln_ppa ? "Sim" : "Não"}}</td>
-                      <!-- <td class="text-center">{{ ($projeto->monitoramento_created_at != null) ? ($projeto->periodo_ultimo_monitoramento) : 'Não monitorado'  }}</td>
-                      <td class="text-center">{{ ($projeto->txt_situacao_monitoramento != null) ? ($projeto->txt_situacao_monitoramento) : ''  }}</td> -->
-                      <td class="text-center acao"><a class="br-button circle primary small"
+                      <td class="text-center">{{ ($projeto->revisao_created_at != null) ? ($projeto->periodo_ultima_revisao) : 'Não revisado' }}</td>
+                      <td class="text-center">{{ ($projeto->txt_situacao_revisao != null) ? ($projeto->txt_situacao_revisao) : ''  }}</td>
+                      <td class="text-center acao" {{(($projeto->situacao_revisao_id == null) || ($projeto->situacao_revisao_id == '5' ) || ($projeto->situacao_revisao_id == '6')) ? '' : 'disabled' }}><a class="br-button circle primary small"
                           href='{{ route("plancidades.revisao.projeto.iniciarRevisao", ['projetoId' =>$projeto->projeto_id]) }}'><i
                               class="fas fa-plus"></i></a></td>
+                      <td class="text-center acao"><a class="br-button circle primary small"
+                        href='{{ route("plancidades.revisao.projeto.listarRevisoes", ['projetoId' =>$projeto->projeto_id]) }}'><i
+                              class="fas fa-eye"></i></a></td>
                     </tr>
                 @endforeach
             </tbody>

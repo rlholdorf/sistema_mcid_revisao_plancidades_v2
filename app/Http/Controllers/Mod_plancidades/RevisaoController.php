@@ -19,7 +19,7 @@ use App\Mod_plancidades\ViewMonitoramentoIndicadoresObjEstrategicos;
 use App\Mod_plancidades\ViewIndicadoresIniciativasRevisao;
 use App\Mod_plancidades\ViewResumoApuracaoMetaIndicador;
 use App\Mod_plancidades\ViewIndicadoresObjetivosEstrategicosRevisao;
-use App\Mod_plancidades\ViewProjetos;
+use App\Mod_plancidades\ViewProjetosRevisao;
 use Illuminate\Support\Facades\DB;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegrationAssertPostConditionsForV7AndPrevious;
 
@@ -187,7 +187,7 @@ class RevisaoController extends Controller
         
         //return ($where);
 
-        $projetos = ViewProjetos::where($where)->orderBy('projeto_id')->get();
+        $projetos = ViewProjetosRevisao::where($where)->orderBy('projeto_id')->get();
 
         //return ($projetos);
 

@@ -46,11 +46,11 @@
             <a class="br-button primary mr-3 mt-3" href="{{ route('plancidades.revisao.validacao.iniciativas.listar') }}">Todos as revisões</a>
         </div>
 
-        <div class="col col-xs-4 col-sm-4" disabled>
+        <div class="col col-xs-4 col-sm-4">
             <h4>Projetos</h4>
-            <a class="br-button primary mr-3" href="#">Revisões pendentes</a>
+            <a class="br-button primary mr-3" href="{{ route('plancidades.revisao.validacoesPendentes.projetos.listar') }}">Revisões pendentes</a>
             <br>
-            <a class="br-button primary mr-3 mt-3" href="#">Todos as revisões</a>
+            <a class="br-button primary mr-3 mt-3" href="{{ route('plancidades.revisao.validacao.projetos.listar') }}">Todos as revisões</a>
         </div> 
     </div>
 </div>

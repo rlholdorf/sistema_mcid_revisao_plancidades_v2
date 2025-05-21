@@ -28,7 +28,9 @@
         <p>
            Nesta página, você poderá visualizar todas as informações das etapas do projeto.
            <br>
-           Ao final da página, clique em Salvar Revisão para salvar.
+           Caso deseje editar as informações das etapas, clique em Revisar Etapas.
+           <br>
+           Caso deseje avançar sem alterar as informações, clique em Avançar.
         </p>
         
         <hr>

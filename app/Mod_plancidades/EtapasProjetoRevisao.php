@@ -14,4 +14,10 @@ class EtapasProjetoRevisao extends Model
    protected $table = 'mcid_hom_plancidades.tab_etapas_projetos_revisao';
 
    public $timestamps = false; // tabela possui coluna de data de criação/atualização
+
+   public function situacao()
+   {
+      return $this->hasOne(SituacoesEtapasProjetos::class, 'id', 'situacao_etapa_projeto_id');
+   }
+   
 }

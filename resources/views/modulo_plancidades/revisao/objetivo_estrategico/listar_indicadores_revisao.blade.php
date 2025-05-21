@@ -43,7 +43,7 @@
                                 <td class="text-center">{{ ($indicador->revisao_created_at != null) ? ($indicador->periodo_ultima_revisao) : 'Não revisado'  }}</td>
                                 <td class="text-center">{{ ($indicador->txt_situacao_revisao != null) ? ($indicador->txt_situacao_revisao) : ''  }}</td>
                                 <td class="text-center acao" {{(($indicador->situacao_revisao_id == null) || ($indicador->situacao_revisao_id == '5' ) || ($indicador->situacao_revisao_id == '6')) ? '' : 'disabled' }}><a class="br-button circle primary small"
-                                    href='{{ route("plancidades.revisao.objetivoEstrategico.iniciarRevisao", ['indicadorId' =>$indicador->id]) }}'><i
+                                    href='{{ route("plancidades.revisao.objetivoEstrategico.iniciarRevisao", ['indicadorId' =>$indicador->id]) }}'><i   
                                         class="fas fa-plus"></i></a></td>
                                 <td class="text-center acao"><a class="br-button circle primary small"
                                     href='{{ route("plancidades.revisao.objetivoEstrategico.listarRevisoes", ['indicadorId' => $indicador->id]) }}'><i
