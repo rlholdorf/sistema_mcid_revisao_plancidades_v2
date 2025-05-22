@@ -241,6 +241,17 @@
                 </div>
             </div>
 
+            
+            <hr>
+
+            <div class="row mt-3" >
+                <div class="col col-xs-12 br-textarea">
+                    <label for="txt_justificativa_revisao_projeto">Justificativa para as alterações do Projeto (Obrigatório)</label>
+                    <textarea required class="input-medium" id="txt_justificativa_revisao_projeto" name="txt_justificativa_revisao_projeto" rows="2"
+                    v-model="dadosProjetoRevisao.txt_justificativa_revisao_projeto">
+                    </textarea>
+                </div>
+            </div>
 
     <!-- Botões Formulário -->
             <div class="row">

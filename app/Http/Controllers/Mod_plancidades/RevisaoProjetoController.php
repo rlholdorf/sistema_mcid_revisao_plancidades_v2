@@ -137,6 +137,8 @@ class RevisaoProjetoController extends Controller
         $dados_projeto_revisao->dsc_nome_gerente_substituto = $request->dsc_nome_gerente_substituto_nova;
         $dados_projeto_revisao->cargo_gerente_substituto_id = $request->cargo_gerente_substituto_id_nova;
         $dados_projeto_revisao->unidade_gerente_substituto_id = $request->unidade_gerente_substituto_id_nova;
+        $dados_projeto_revisao->txt_justificativa_revisao_projeto = $request->txt_justificativa_revisao_projeto;
+
 
 
         $dados_projeto_revisao->created_at = date('Y-m-d H:i:s');
@@ -263,6 +265,8 @@ class RevisaoProjetoController extends Controller
         $dados_projeto_revisao->dsc_nome_gerente_substituto = $request->dsc_nome_gerente_substituto_nova;
         $dados_projeto_revisao->cargo_gerente_substituto_id = $request->cargo_gerente_substituto_id_nova;
         $dados_projeto_revisao->unidade_gerente_substituto_id = $request->unidade_gerente_substituto_id_nova;
+        $dados_projeto_revisao->txt_justificativa_revisao_projeto = $request->txt_justificativa_revisao_projeto;
+
 
         $dados_projeto_revisao->updated_at = date('Y-m-d H:i:s');
         $dados_salvos = $dados_projeto_revisao->update();
