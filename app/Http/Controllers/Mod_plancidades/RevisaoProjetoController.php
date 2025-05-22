@@ -47,7 +47,7 @@ class RevisaoProjetoController extends Controller
     {
         $revisoes = ViewRevisaoProjetos::where('view_revisao_projetos.projeto_id', $projetoId)
         ->orderBy('view_revisao_projetos.revisao_projeto_id', 'DESC')
-        ->leftJoin('mcid_hom_plancidades.view_validacao_revisao_projetos','view_validacao_revisao_projetos.revisao_projeto_id','=','view_revisao_projetos.revisao_projeto_id')
+        ->leftJoin('mcid_plancidades.view_validacao_revisao_projetos','view_validacao_revisao_projetos.revisao_projeto_id','=','view_revisao_projetos.revisao_projeto_id')
         ->select('view_revisao_projetos.*','view_validacao_revisao_projetos.situacao_revisao_id','view_validacao_revisao_projetos.txt_situacao_revisao')
         ->get();
 

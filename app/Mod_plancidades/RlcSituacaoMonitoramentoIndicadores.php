@@ -9,7 +9,7 @@ class RlcSituacaoMonitoramentoIndicadores extends Model
 
    protected $connection  = 'pgsql_corp';
 
-   protected $table = 'mcid_hom_plancidades.rlc_situacao_monitoramento_indicadores';
+   protected $table = 'mcid_plancidades.rlc_situacao_monitoramento_indicadores';
 
    public $timestamps = false; // tabela possui coluna de data de criação/atualização
 

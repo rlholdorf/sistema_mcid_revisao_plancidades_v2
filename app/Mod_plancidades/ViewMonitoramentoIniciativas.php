@@ -12,7 +12,7 @@ class ViewMonitoramentoIniciativas extends Model
 
    protected $primaryKey = 'monitoramento_iniciativa_id';
 
-   protected $table = 'mcid_hom_plancidades.view_monitoramento_iniciativa';
+   protected $table = 'mcid_plancidades.view_monitoramento_iniciativa';
 
    public $timestamps = true; // tabela possui coluna de data de criação/atualização
 

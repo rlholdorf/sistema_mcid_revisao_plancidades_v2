@@ -13,7 +13,7 @@ class IndicadoresObjetivosEstrategicos extends Model
 
    protected $keyType = 'string';
 
-   protected $table = 'mcid_hom_plancidades.tab_indicadores_objetivos_estrategicos';
+   protected $table = 'mcid_plancidades.tab_indicadores_objetivos_estrategicos';
 
    public $timestamps = false; // tabela possui coluna de data de criação/atualização
 

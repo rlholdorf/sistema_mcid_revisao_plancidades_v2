@@ -9,7 +9,7 @@ class UnidadesResponsaveis extends Model
 
    protected $connection   = 'pgsql_corp';
 
-   protected $table = 'mcid_hom_plancidades.opc_unidades_responsaveis';
+   protected $table = 'mcid_plancidades.opc_unidades_responsaveis';
 
    public $timestamps = false; // tabela não possui coluna de data de criação/atualização
 

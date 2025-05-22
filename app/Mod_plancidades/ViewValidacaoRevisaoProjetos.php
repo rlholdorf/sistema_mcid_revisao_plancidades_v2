@@ -13,7 +13,7 @@ class ViewValidacaoRevisaoProjetos extends Model
 
    protected $keyType = 'string';
 
-   protected $table = 'mcid_hom_plancidades.view_validacao_revisao_projetos';
+   protected $table = 'mcid_plancidades.view_validacao_revisao_projetos';
 
    public $timestamps = false; // tabela possui coluna de data de criação/atualização
 

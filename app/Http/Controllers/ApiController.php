@@ -898,8 +898,8 @@ class ApiController extends Controller
 
     public function buscarProjetosOrgao($orgaoResponsavelId)
     {
-        return Projetos::join('mcid_hom_plancidades.opc_unidades_responsaveis', 'opc_unidades_responsaveis.id', '=', 'view_projetos.unidade_responsavel_id')
-            ->join('mcid_hom_plancidades.opc_objetivos_estrategicos_pei', 'opc_objetivos_estrategicos_pei.id', '=', 'view_projetos.objetivo_estrategico_pei_id')
+        return Projetos::join('mcid_plancidades.opc_unidades_responsaveis', 'opc_unidades_responsaveis.id', '=', 'view_projetos.unidade_responsavel_id')
+            ->join('mcid_plancidades.opc_objetivos_estrategicos_pei', 'opc_objetivos_estrategicos_pei.id', '=', 'view_projetos.objetivo_estrategico_pei_id')
             ->selectRaw('view_projetos.objetivo_estrategico_pei_id as id, opc_objetivos_estrategicos_pei.txt_titulo_objetivo_estrategico_pei')
             ->where('opc_unidades_responsaveis.orgao_pei_id', $orgaoResponsavelId)
             ->groupBy('view_projetos.objetivo_estrategico_pei_id', 'opc_objetivos_estrategicos_pei.txt_titulo_objetivo_estrategico_pei')
@@ -920,8 +920,8 @@ class ApiController extends Controller
 
     public function buscarRegionalizacoesMetaIniciativas($metaId, $monitoramentoId)
     {
-        return RegionalizacaoMetaIniciativa::join('mcid_hom_plancidades.opc_regionalizacao', 'opc_regionalizacao.id', '=', 'regionalizacao_id')
-            ->leftjoin('mcid_hom_plancidades.rlc_metas_monitoramento_iniciativas', 'rlc_metas_monitoramento_iniciativas.regionalizacao_meta_iniciativa_id', '=', 'tab_regionalizacao_metas_iniciativas.id')
+        return RegionalizacaoMetaIniciativa::join('mcid_plancidades.opc_regionalizacao', 'opc_regionalizacao.id', '=', 'regionalizacao_id')
+            ->leftjoin('mcid_plancidades.rlc_metas_monitoramento_iniciativas', 'rlc_metas_monitoramento_iniciativas.regionalizacao_meta_iniciativa_id', '=', 'tab_regionalizacao_metas_iniciativas.id')
             ->select('tab_regionalizacao_metas_iniciativas.id as regionalizacao_meta_iniciativa_id', 'regionalizacao_id', 'opc_regionalizacao.txt_regionalizacao')
             ->where('tab_regionalizacao_metas_iniciativas.meta_iniciativa_id', $metaId)
             ->where('rlc_metas_monitoramento_iniciativas.monitoramento_iniciativa_id', $monitoramentoId)
@@ -930,8 +930,8 @@ class ApiController extends Controller
 
     public function buscarRegionalizacoesMetaIndicadores($metaId, $monitoramentoId)
     {
-        return RegionalizacaoMetaObjEstr::join('mcid_hom_plancidades.opc_regionalizacao', 'opc_regionalizacao.id', '=', 'regionalizacao_id')
-            ->leftjoin('mcid_hom_plancidades.rlc_metas_monitoramento_indicadores', 'rlc_metas_monitoramento_indicadores.regionalizacao_meta_indicador_id', '=', 'tab_regionalizacao_metas_objetivos_estrategicos.id')
+        return RegionalizacaoMetaObjEstr::join('mcid_plancidades.opc_regionalizacao', 'opc_regionalizacao.id', '=', 'regionalizacao_id')
+            ->leftjoin('mcid_plancidades.rlc_metas_monitoramento_indicadores', 'rlc_metas_monitoramento_indicadores.regionalizacao_meta_indicador_id', '=', 'tab_regionalizacao_metas_objetivos_estrategicos.id')
             ->select('tab_regionalizacao_metas_objetivos_estrategicos.id as regionalizacao_metas_objetivos_estrategicos_id', 'regionalizacao_id', 'opc_regionalizacao.txt_regionalizacao')
             ->where('tab_regionalizacao_metas_objetivos_estrategicos.meta_objetivos_estrategicos_id', $metaId)
             ->where('rlc_metas_monitoramento_indicadores.monitoramento_indicador_id', $monitoramentoId)
@@ -958,8 +958,8 @@ class ApiController extends Controller
 
     public function buscarEtapasMonitoramentoProjeto($monitoramentoProjetoId)
     {
-        return RlcMonitoramentoEtapasProjetos::join('mcid_hom_plancidades.tab_etapas_projetos', 'tab_etapas_projetos.id', '=', 'rlc_monitoramento_projetos_etapas.etapa_projeto_id')
-            ->leftjoin('mcid_hom_plancidades.opc_situacao_etapas_projetos', 'opc_situacao_etapas_projetos.id', '=', 'rlc_monitoramento_projetos_etapas.situacao_etapa_projeto_id')
+        return RlcMonitoramentoEtapasProjetos::join('mcid_plancidades.tab_etapas_projetos', 'tab_etapas_projetos.id', '=', 'rlc_monitoramento_projetos_etapas.etapa_projeto_id')
+            ->leftjoin('mcid_plancidades.opc_situacao_etapas_projetos', 'opc_situacao_etapas_projetos.id', '=', 'rlc_monitoramento_projetos_etapas.situacao_etapa_projeto_id')
             ->select(
                 'monitoramento_projeto_id',
                 'etapa_projeto_id',
@@ -1015,8 +1015,8 @@ class ApiController extends Controller
 
     public function buscarIndicadoresOrgao($orgaoResponsavelId)
     {
-        return IndicadoresObjetivosEstrategicos::join('mcid_hom_plancidades.opc_unidades_responsaveis', 'opc_unidades_responsaveis.id', '=', 'tab_indicadores_objetivos_estrategicos.unidade_responsavel_id')
-            ->join('mcid_hom_plancidades.opc_objetivos_estrategicos_pei', 'opc_objetivos_estrategicos_pei.id', '=', 'tab_indicadores_objetivos_estrategicos.objetivo_estrategico_pei_id')
+        return IndicadoresObjetivosEstrategicos::join('mcid_plancidades.opc_unidades_responsaveis', 'opc_unidades_responsaveis.id', '=', 'tab_indicadores_objetivos_estrategicos.unidade_responsavel_id')
+            ->join('mcid_plancidades.opc_objetivos_estrategicos_pei', 'opc_objetivos_estrategicos_pei.id', '=', 'tab_indicadores_objetivos_estrategicos.objetivo_estrategico_pei_id')
             ->selectRaw('tab_indicadores_objetivos_estrategicos.objetivo_estrategico_pei_id as id, opc_objetivos_estrategicos_pei.txt_titulo_objetivo_estrategico_pei')
             ->where('opc_unidades_responsaveis.orgao_pei_id', $orgaoResponsavelId)
             ->groupBy('tab_indicadores_objetivos_estrategicos.objetivo_estrategico_pei_id', 'opc_objetivos_estrategicos_pei.txt_titulo_objetivo_estrategico_pei')
@@ -1025,8 +1025,8 @@ class ApiController extends Controller
 
     public function buscarIniciativasOrgao($orgaoResponsavelId)
     {
-        return Iniciativas::join('mcid_hom_plancidades.opc_unidades_responsaveis', 'opc_unidades_responsaveis.id', '=', 'tab_iniciativas.unidade_responsavel_id')
-            ->join('mcid_hom_plancidades.opc_objetivos_estrategicos_pei', 'opc_objetivos_estrategicos_pei.id', '=', 'tab_iniciativas.objetivo_estrategico_pei_id')
+        return Iniciativas::join('mcid_plancidades.opc_unidades_responsaveis', 'opc_unidades_responsaveis.id', '=', 'tab_iniciativas.unidade_responsavel_id')
+            ->join('mcid_plancidades.opc_objetivos_estrategicos_pei', 'opc_objetivos_estrategicos_pei.id', '=', 'tab_iniciativas.objetivo_estrategico_pei_id')
             ->selectRaw('tab_iniciativas.objetivo_estrategico_pei_id as id, opc_objetivos_estrategicos_pei.txt_titulo_objetivo_estrategico_pei')
             ->where('opc_unidades_responsaveis.orgao_pei_id', $orgaoResponsavelId)
             ->groupBy('tab_iniciativas.objetivo_estrategico_pei_id', 'opc_objetivos_estrategicos_pei.txt_titulo_objetivo_estrategico_pei')
@@ -1166,14 +1166,14 @@ class ApiController extends Controller
 
     public function buscarIndicadoresIniciativas($iniciativaId)
     {
-        return ViewIndicadoresIniciativas::leftJoin('mcid_hom_plancidades.tab_metas_iniciativas', 'tab_metas_iniciativas.iniciativa_id', '=', 'view_indicadores_iniciativas.iniciativa_id')
+        return ViewIndicadoresIniciativas::leftJoin('mcid_plancidades.tab_metas_iniciativas', 'tab_metas_iniciativas.iniciativa_id', '=', 'view_indicadores_iniciativas.iniciativa_id')
             ->where('view_indicadores_iniciativas.iniciativa_id', $iniciativaId)
             ->orderBy('txt_denominacao_indicador')->first();
 
-        // return IndicadoresIniciativa::join('mcid_hom_plancidades.tab_iniciativas', 'tab_iniciativas.id', '=', 'tab_indicadores_iniciativas.iniciativa_id')
-        //     ->join('mcid_hom_plancidades.tab_metas_iniciativas', 'tab_metas_iniciativas.iniciativa_id', '=', 'tab_indicadores_iniciativas.id')
-        //     ->join('mcid_hom_plancidades.opc_unidades_medidas', 'opc_unidades_medidas.id', '=', 'tab_indicadores_iniciativas.unidade_medida_id')
-        //     ->join('mcid_hom_plancidades.opc_periodicidades', 'opc_periodicidades.id', '=', 'tab_indicadores_iniciativas.periodicidade_id')
+        // return IndicadoresIniciativa::join('mcid_plancidades.tab_iniciativas', 'tab_iniciativas.id', '=', 'tab_indicadores_iniciativas.iniciativa_id')
+        //     ->join('mcid_plancidades.tab_metas_iniciativas', 'tab_metas_iniciativas.iniciativa_id', '=', 'tab_indicadores_iniciativas.id')
+        //     ->join('mcid_plancidades.opc_unidades_medidas', 'opc_unidades_medidas.id', '=', 'tab_indicadores_iniciativas.unidade_medida_id')
+        //     ->join('mcid_plancidades.opc_periodicidades', 'opc_periodicidades.id', '=', 'tab_indicadores_iniciativas.periodicidade_id')
         //     ->select(
         //         'tab_indicadores_iniciativas.id as indicador_iniciativa_id',
         //         'tab_indicadores_iniciativas.iniciativa_id',

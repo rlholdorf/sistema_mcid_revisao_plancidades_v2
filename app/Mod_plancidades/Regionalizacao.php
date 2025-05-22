@@ -9,7 +9,7 @@ class Regionalizacao extends Model
 
    protected $connection  = 'pgsql_corp';
 
-   protected $table = 'mcid_hom_plancidades.opc_regionalizacao';
+   protected $table = 'mcid_plancidades.opc_regionalizacao';
 
    public $timestamps = false; // tabela possui coluna de data de criação/atualização
 

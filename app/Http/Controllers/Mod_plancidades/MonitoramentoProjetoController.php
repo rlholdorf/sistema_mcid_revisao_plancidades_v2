@@ -128,9 +128,9 @@ class MonitoramentoProjetoController extends Controller
         $dados_monitoramento = ViewMonitoramentoProjetos::find($id);
         $dados_projeto = ViewProjetos::where('projeto_id', $dados_monitoramento->projeto_id)->first();
 
-        $etapasPreenchidas = RlcMonitoramentoEtapasProjetos::join('mcid_hom_plancidades.tab_etapas_projetos', 'tab_etapas_projetos.id', '=', 'rlc_monitoramento_projetos_etapas.etapa_projeto_id')
-            ->leftjoin('mcid_hom_plancidades.opc_situacao_etapas_projetos as opc1', 'opc1.id', '=', 'rlc_monitoramento_projetos_etapas.situacao_etapa_projeto_id')
-            ->leftjoin('mcid_hom_plancidades.opc_situacao_etapas_projetos as opc2', 'opc2.id', '=', 'tab_etapas_projetos.situacao_etapa_projeto_id')
+        $etapasPreenchidas = RlcMonitoramentoEtapasProjetos::join('mcid_plancidades.tab_etapas_projetos', 'tab_etapas_projetos.id', '=', 'rlc_monitoramento_projetos_etapas.etapa_projeto_id')
+            ->leftjoin('mcid_plancidades.opc_situacao_etapas_projetos as opc1', 'opc1.id', '=', 'rlc_monitoramento_projetos_etapas.situacao_etapa_projeto_id')
+            ->leftjoin('mcid_plancidades.opc_situacao_etapas_projetos as opc2', 'opc2.id', '=', 'tab_etapas_projetos.situacao_etapa_projeto_id')
             ->select(
                 'rlc_monitoramento_projetos_etapas.id',
                 'monitoramento_projeto_id',
@@ -204,9 +204,9 @@ class MonitoramentoProjetoController extends Controller
             $dados_monitoramento = ViewMonitoramentoProjetos::find($id);
             $dados_projeto = ViewProjetos::where('projeto_id', $dados_monitoramento->projeto_id)->first();
 
-            $etapasPreenchidas = RlcMonitoramentoEtapasProjetos::join('mcid_hom_plancidades.tab_etapas_projetos', 'tab_etapas_projetos.id', '=', 'rlc_monitoramento_projetos_etapas.etapa_projeto_id')
-            ->leftjoin('mcid_hom_plancidades.opc_situacao_etapas_projetos as opc1', 'opc1.id', '=', 'rlc_monitoramento_projetos_etapas.situacao_etapa_projeto_id')
-            ->leftjoin('mcid_hom_plancidades.opc_situacao_etapas_projetos as opc2', 'opc2.id', '=', 'tab_etapas_projetos.situacao_etapa_projeto_id')
+            $etapasPreenchidas = RlcMonitoramentoEtapasProjetos::join('mcid_plancidades.tab_etapas_projetos', 'tab_etapas_projetos.id', '=', 'rlc_monitoramento_projetos_etapas.etapa_projeto_id')
+            ->leftjoin('mcid_plancidades.opc_situacao_etapas_projetos as opc1', 'opc1.id', '=', 'rlc_monitoramento_projetos_etapas.situacao_etapa_projeto_id')
+            ->leftjoin('mcid_plancidades.opc_situacao_etapas_projetos as opc2', 'opc2.id', '=', 'tab_etapas_projetos.situacao_etapa_projeto_id')
             ->select(
                 'rlc_monitoramento_projetos_etapas.id',
                 'monitoramento_projeto_id',
@@ -369,7 +369,7 @@ class MonitoramentoProjetoController extends Controller
 
         $monitoramentos = ViewMonitoramentoProjetos::where('view_monitoramento_projetos.projeto_id', $projetoId)
         ->orderBy('view_monitoramento_projetos.monitoramento_projeto_id', 'DESC')
-        ->leftJoin('mcid_hom_plancidades.view_validacao_monitoramento_projetos','view_validacao_monitoramento_projetos.monitoramento_projeto_id','=','view_monitoramento_projetos.monitoramento_projeto_id')
+        ->leftJoin('mcid_plancidades.view_validacao_monitoramento_projetos','view_validacao_monitoramento_projetos.monitoramento_projeto_id','=','view_monitoramento_projetos.monitoramento_projeto_id')
         ->select('view_monitoramento_projetos.*','view_validacao_monitoramento_projetos.situacao_monitoramento_id','view_validacao_monitoramento_projetos.txt_situacao_monitoramento')
         ->get();
 

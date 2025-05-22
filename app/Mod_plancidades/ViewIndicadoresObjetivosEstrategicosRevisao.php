@@ -13,7 +13,7 @@ class ViewIndicadoresObjetivosEstrategicosRevisao extends Model
 
    protected $keyType = 'string';
 
-   protected $table = 'mcid_hom_plancidades.view_indicadores_objetivos_estrategicos_revisao';
+   protected $table = 'mcid_plancidades.view_indicadores_objetivos_estrategicos_revisao';
 
    public $timestamps = false; // tabela não possui coluna de data de criação/atualização
 

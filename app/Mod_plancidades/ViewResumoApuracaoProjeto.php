@@ -10,7 +10,7 @@ class ViewResumoApuracaoProjeto extends Model
 
    protected $connection   = 'pgsql_corp';
 
-   protected $table = 'mcid_hom_plancidades.view_resumo_apuracao_projeto';
+   protected $table = 'mcid_plancidades.view_resumo_apuracao_projeto';
 
    public $timestamps = true; // tabela possui coluna de data de criação/atualização
 

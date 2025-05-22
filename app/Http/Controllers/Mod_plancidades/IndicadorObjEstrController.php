@@ -124,9 +124,9 @@ class IndicadorObjEstrController extends Controller
 
        // return $where;
 
-        // $indicadores = IndicadoresObjetivosEstrategicos::join('mcid_hom_plancidades.opc_unidades_responsaveis', 'opc_unidades_responsaveis.id', '=', 'unidade_responsavel_id')
-        //     ->join('mcid_hom_plancidades.opc_orgao_pei', 'opc_orgao_pei.id','=','opc_unidades_responsaveis.orgao_pei_id')
-        //     ->join('mcid_hom_plancidades.opc_objetivos_estrategicos_pei', 'opc_objetivos_estrategicos_pei.id', '=', 'objetivo_estrategico_pei_id')
+        // $indicadores = IndicadoresObjetivosEstrategicos::join('mcid_plancidades.opc_unidades_responsaveis', 'opc_unidades_responsaveis.id', '=', 'unidade_responsavel_id')
+        //     ->join('mcid_plancidades.opc_orgao_pei', 'opc_orgao_pei.id','=','opc_unidades_responsaveis.orgao_pei_id')
+        //     ->join('mcid_plancidades.opc_objetivos_estrategicos_pei', 'opc_objetivos_estrategicos_pei.id', '=', 'objetivo_estrategico_pei_id')
         //     ->select('tab_indicadores_objetivos_estrategicos.*', 'opc_unidades_responsaveis.id as unidade_responsavel_id','opc_unidades_responsaveis.txt_unidade_responsavel','opc_orgao_pei.id as orgao_pei_id', 'opc_orgao_pei.txt_sigla_orgao', 'opc_objetivos_estrategicos_pei.id as objetivos_estrategicos_pei_id', 'opc_objetivos_estrategicos_pei.txt_titulo_objetivo_estrategico_pei')
         //     ->where($where)->orderBy('txt_titulo_objetivo_estrategico_pei')->get();
 

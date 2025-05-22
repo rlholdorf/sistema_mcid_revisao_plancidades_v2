@@ -9,7 +9,7 @@ class RlcProgramaMetaOds extends Model
 
    protected $connection   = 'pgsql_corp';
 
-   protected $table = 'mcid_hom_plancidades.rlc_programa_meta_ods';
+   protected $table = 'mcid_plancidades.rlc_programa_meta_ods';
 
    public $timestamps = false; // tabela não possui coluna de data de criação/atualização
 

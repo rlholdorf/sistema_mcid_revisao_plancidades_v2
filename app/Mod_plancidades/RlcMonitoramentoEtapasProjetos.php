@@ -10,7 +10,7 @@ class RlcMonitoramentoEtapasProjetos extends Model
 
    protected $connection   = 'pgsql_corp';
 
-   protected $table = 'mcid_hom_plancidades.rlc_monitoramento_projetos_etapas';
+   protected $table = 'mcid_plancidades.rlc_monitoramento_projetos_etapas';
 
    public $timestamps = true; // tabela possui coluna de data de criação/atualização
 

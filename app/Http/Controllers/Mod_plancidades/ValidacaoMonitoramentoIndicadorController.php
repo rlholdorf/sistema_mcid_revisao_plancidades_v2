@@ -113,7 +113,7 @@ class ValidacaoMonitoramentoIndicadorController extends Controller
         $metaIndicador = MetasObjetivosEstrategicos::where('indicador_objetivo_estrategico_id', $dados_monitoramento->indicador_objetivo_estrategico_id)->first();
 
         $regionalizacaoMetas = RegionalizacaoMetaObjEstr::where('meta_objetivos_estrategicos_id', $metaIndicador->id)
-            ->leftJoin('mcid_hom_plancidades.rlc_metas_monitoramento_indicadores','rlc_metas_monitoramento_indicadores.regionalizacao_meta_indicador_id','=','tab_regionalizacao_metas_objetivos_estrategicos.id')
+            ->leftJoin('mcid_plancidades.rlc_metas_monitoramento_indicadores','rlc_metas_monitoramento_indicadores.regionalizacao_meta_indicador_id','=','tab_regionalizacao_metas_objetivos_estrategicos.id')
             ->where('rlc_metas_monitoramento_indicadores.monitoramento_indicador_id',$monitoramento_indicador_id)
             ->orderBy('tab_regionalizacao_metas_objetivos_estrategicos.id')
             ->get();

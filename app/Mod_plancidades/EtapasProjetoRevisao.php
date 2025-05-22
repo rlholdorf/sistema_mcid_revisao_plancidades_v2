@@ -11,7 +11,7 @@ class EtapasProjetoRevisao extends Model
 
    protected $keyType = 'string';
 
-   protected $table = 'mcid_hom_plancidades.tab_etapas_projetos_revisao';
+   protected $table = 'mcid_plancidades.tab_etapas_projetos_revisao';
 
    public $timestamps = false; // tabela possui coluna de data de criação/atualização
 

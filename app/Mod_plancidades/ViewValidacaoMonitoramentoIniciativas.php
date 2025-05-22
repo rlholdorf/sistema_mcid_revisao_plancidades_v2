@@ -13,7 +13,7 @@ class ViewValidacaoMonitoramentoIniciativas extends Model
 
    protected $keyType = 'string';
 
-   protected $table = 'mcid_hom_plancidades.view_validacao_monitoramento_iniciativas';
+   protected $table = 'mcid_plancidades.view_validacao_monitoramento_iniciativas';
 
    public $timestamps = false; // tabela possui coluna de data de criação/atualização
 

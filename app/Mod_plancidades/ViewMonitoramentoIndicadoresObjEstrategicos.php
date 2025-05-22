@@ -11,7 +11,7 @@ class ViewMonitoramentoIndicadoresObjEstrategicos extends Model
 
    protected $primaryKey = 'monitoramento_indicador_id';
 
-   protected $table = 'mcid_hom_plancidades.view_monitoramento_indicadores';
+   protected $table = 'mcid_plancidades.view_monitoramento_indicadores';
 
    public $timestamps = true; // tabela possui coluna de data de criação/atualização
 

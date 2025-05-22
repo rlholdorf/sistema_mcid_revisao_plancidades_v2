@@ -11,7 +11,7 @@ class ObjetivosEstrategicos extends Model
 
    protected $keyType = 'string';
 
-   protected $table = 'mcid_hom_plancidades.opc_objetivos_estrategicos_pei';
+   protected $table = 'mcid_plancidades.opc_objetivos_estrategicos_pei';
 
    public $timestamps = false; // tabela não possui coluna de data de criação/atualização
 

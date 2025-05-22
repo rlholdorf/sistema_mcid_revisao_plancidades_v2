@@ -9,7 +9,7 @@ class MomentosPPA extends Model
 
    protected $connection  = 'pgsql_corp';
 
-   protected $table = 'mcid_hom_plancidades.opc_momentos_ppa';
+   protected $table = 'mcid_plancidades.opc_momentos_ppa';
 
    public $timestamps = false; // tabela não possui coluna de data de criação/atualização
 
