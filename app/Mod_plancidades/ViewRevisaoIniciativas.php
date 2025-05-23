@@ -11,7 +11,7 @@ class ViewRevisaoIniciativas extends Model
 
    protected $primaryKey = 'revisao_iniciativa_id';
 
-   protected $table = 'mcid_plancidades.view_revisao_iniciativas';
+   protected $table = 'mcid_hom_plancidades.view_revisao_iniciativas';
 
    public $timestamps = true; // tabela possui coluna de data de criação/atualização
 

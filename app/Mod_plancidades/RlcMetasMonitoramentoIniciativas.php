@@ -9,7 +9,7 @@ class RlcMetasMonitoramentoIniciativas extends Model
 
    protected $connection   = 'pgsql_corp';
 
-   protected $table = 'mcid_plancidades.rlc_metas_monitoramento_iniciativas';
+   protected $table = 'mcid_hom_plancidades.rlc_metas_monitoramento_iniciativas';
 
    public $timestamps = true; // tabela não possui coluna de data de criação/atualização
 

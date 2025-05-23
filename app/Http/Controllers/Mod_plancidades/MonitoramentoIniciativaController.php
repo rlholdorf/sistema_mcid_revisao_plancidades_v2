@@ -140,7 +140,7 @@ class MonitoramentoIniciativaController extends Controller
 
 
         $regionalizacaoMetas = RegionalizacaoMetaIniciativa::where('tab_regionalizacao_metas_iniciativas.meta_iniciativa_id', $metaIniciativa->id)
-            ->leftJoin('mcid_plancidades.rlc_metas_monitoramento_iniciativas', 'rlc_metas_monitoramento_iniciativas.regionalizacao_meta_iniciativa_id', '=', 'tab_regionalizacao_metas_iniciativas.id')
+            ->leftJoin('mcid_hom_plancidades.rlc_metas_monitoramento_iniciativas', 'rlc_metas_monitoramento_iniciativas.regionalizacao_meta_iniciativa_id', '=', 'tab_regionalizacao_metas_iniciativas.id')
             ->where('rlc_metas_monitoramento_iniciativas.monitoramento_iniciativa_id', $id)
             ->orderBy('tab_regionalizacao_metas_iniciativas.id')
             ->get();
@@ -203,7 +203,7 @@ class MonitoramentoIniciativaController extends Controller
 
 
             $regionalizacaoMetas = RegionalizacaoMetaIniciativa::where('tab_regionalizacao_metas_iniciativas.meta_iniciativa_id', $metaIniciativa->id)
-                ->leftJoin('mcid_plancidades.rlc_metas_monitoramento_iniciativas', 'rlc_metas_monitoramento_iniciativas.regionalizacao_meta_iniciativa_id', '=', 'tab_regionalizacao_metas_iniciativas.id')
+                ->leftJoin('mcid_hom_plancidades.rlc_metas_monitoramento_iniciativas', 'rlc_metas_monitoramento_iniciativas.regionalizacao_meta_iniciativa_id', '=', 'tab_regionalizacao_metas_iniciativas.id')
                 ->where('rlc_metas_monitoramento_iniciativas.monitoramento_iniciativa_id', $id)
                 ->orderBy('tab_regionalizacao_metas_iniciativas.id')
                 ->get();
@@ -408,7 +408,7 @@ class MonitoramentoIniciativaController extends Controller
     public function listarMonitoramentos($iniciativaId)
     {
         $monitoramentos = ViewMonitoramentoIniciativas::where('view_monitoramento_iniciativa.iniciativa_id', $iniciativaId)->orderBy('monitoramento_iniciativa_id', 'desc')
-            ->leftJoin('mcid_plancidades.view_validacao_monitoramento_iniciativas', 'view_validacao_monitoramento_iniciativas.monitoramento_iniciativa_id', '=', 'view_monitoramento_iniciativa.monitoramento_iniciativa_id')
+            ->leftJoin('mcid_hom_plancidades.view_validacao_monitoramento_iniciativas', 'view_validacao_monitoramento_iniciativas.monitoramento_iniciativa_id', '=', 'view_monitoramento_iniciativa.monitoramento_iniciativa_id')
             ->select('view_monitoramento_iniciativa.*', 'view_validacao_monitoramento_iniciativas.situacao_monitoramento_id', 'view_validacao_monitoramento_iniciativas.txt_situacao_monitoramento')
             ->get();
 

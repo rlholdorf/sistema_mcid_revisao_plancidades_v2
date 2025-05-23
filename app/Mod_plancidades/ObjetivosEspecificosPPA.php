@@ -9,7 +9,7 @@ class ObjetivosEspecificosPPA extends Model
 
    protected $connection  = 'pgsql_corp';
 
-   protected $table = 'mcid_plancidades.tab_objetivo_especifico_ppa';
+   protected $table = 'mcid_hom_plancidades.tab_objetivo_especifico_ppa';
 
    public $timestamps = false; // tabela possui coluna de data de criação/atualização
 

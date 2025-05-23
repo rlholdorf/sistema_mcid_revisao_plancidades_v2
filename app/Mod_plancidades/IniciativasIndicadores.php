@@ -9,7 +9,7 @@ class IniciativasIndicadores extends Model
 
    protected $connection   = 'pgsql_corp';
 
-   protected $table = 'mcid_plancidades.tab_indicadores_iniciativas';
+   protected $table = 'mcid_hom_plancidades.tab_indicadores_iniciativas';
 
    public $timestamps = false; // tabela possui coluna de data de criação/atualização
 
